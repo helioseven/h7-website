@@ -2,7 +2,7 @@
 <html>
 
 <head>
-	<title>Drew Barnett's Home Page</title>
+	<title>Personal Website of Drew Barnett</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<style>
 		* {
@@ -27,12 +27,17 @@
 			transform-origin: center center;
 		}
 
+		#h7button, #h7corona { transform-origin: inherit; }
+
+		.logo:hover > #h7corona {
+			animation: idle_spin 60s linear 0s infinite;
+		}
+
 		#hidden-checkbox:checked + label svg.logo {
 			animation: unlock_spin 2s linear 0s 1 normal forwards;
 		}
 
 		#hidden-checkbox:checked + label svg.logo > #h7button {
-			transform-origin: inherit;
 			animation: unlock_spin_inverse 2s linear 0s 1 normal forwards;
 		}
 

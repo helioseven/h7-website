@@ -29,21 +29,25 @@
 
 		#h7button, #h7corona { transform-origin: inherit; }
 
+		/* Conditionals */
+
 		.logo:hover > #h7corona {
 			animation: idle_spin 60s linear 0s infinite;
 		}
 
 		#hidden-checkbox:checked + label svg.logo {
-			animation: unlock_spin 2s linear 0s 1 normal forwards;
+			animation: unlock_spin 2s linear 0s 1 normal, slide_left 3s ease 2s 1 normal forwards;
 		}
 
 		#hidden-checkbox:checked + label svg.logo > #h7button {
-			animation: unlock_spin_inverse 2s linear 0s 1 normal forwards;
+			animation: unlock_spin_inverse 2s linear 0s 1 normal;
 		}
 
 		#hidden-checkbox:checked + label svg.logo > #h7corona {
 			animation: opacity_fade 2s linear 0s 1 normal forwards;
 		}
+
+		/* Keyframe Animations */
 
 		@keyframes idle_spin {
 			from { transform: rotate(0deg); }
@@ -63,6 +67,11 @@
 		@keyframes opacity_fade {
 			from { opacity: 1.0; }
 			to { opacity: 0.0; }
+		}
+
+		@keyframes slide_left {
+			from { transform: translateX(0%); }
+			to { transform: translateX(-75%); }
 		}
 	</style>
 </head>

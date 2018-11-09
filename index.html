@@ -21,7 +21,9 @@
 
 		path { fill: white; }
 
-		div {
+		/* Specific Style Definitions */
+
+		#page-content {
 			position: fixed;
 			top: 0;
 			left: 0;
@@ -31,8 +33,6 @@
 			background-image: linear-gradient(to right, black, black 10%, white 50%, white);
 			transition: opacity 3s linear 2s;
 		}
-
-		/* Specific Style Definitions */
 
 		.logo {
 			display: fixed;
@@ -89,6 +89,13 @@
 <body>
 	<input type="checkbox" id="hidden-checkbox">
 	<div id="page-content">
+		<div id="menu-box">
+			<ul>
+				<li>About Me</li>
+				<li>Referentia</li>
+				<li>Miscellanea</li>
+			</ul>
+		</div>
 	</div>
 	<label for="hidden-checkbox">
 		<!-- Created with Inkscape (http://www.inkscape.org/) -->

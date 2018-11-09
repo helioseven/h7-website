@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html>
-
 <head>
 	<title>Personal Website of Drew Barnett</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<style>
+		/* General Style Definitions */
+
 		* {
 			box-sizing: border-box;
 			overflow: hidden;
@@ -15,6 +16,8 @@
 			padding: 0;
 		}
 		path { fill: white; }
+
+		/* Specific Style Definitions */
 
 		#hidden-checkbox { display: none; }
 
@@ -29,23 +32,15 @@
 
 		#h7button, #h7corona { transform-origin: inherit; }
 
-		/* Conditionals */
+		/* Conditional Style Definitions */
 
-		.logo:hover > #h7corona {
-			animation: idle_spin 60s linear 0s infinite;
-		}
+		.logo:hover > #h7corona { animation: idle_spin 60s linear 0s infinite; }
 
-		#hidden-checkbox:checked + label svg.logo {
-			animation: unlock_spin 2s linear 0s 1 normal, slide_left 3s ease 2s 1 normal forwards;
-		}
+		#hidden-checkbox:checked + label svg.logo { animation: unlock_spin 2s linear 1 normal, slide_left 3s ease 2s 1 forwards; }
 
-		#hidden-checkbox:checked + label svg.logo > #h7button {
-			animation: unlock_spin_inverse 2s linear 0s 1 normal;
-		}
+		#hidden-checkbox:checked + label svg.logo > #h7button { animation: unlock_spin_inverse 2s linear 1; }
 
-		#hidden-checkbox:checked + label svg.logo > #h7corona {
-			animation: opacity_fade 2s linear 0s 1 normal forwards;
-		}
+		#hidden-checkbox:checked + label svg.logo > #h7corona { animation: opacity_fade 2s linear 1 forwards; }
 
 		/* Keyframe Animations */
 
@@ -75,7 +70,6 @@
 		}
 	</style>
 </head>
-
 <body>
 	<input type="checkbox" id="hidden-checkbox">
 	<label for="hidden-checkbox">
@@ -87,5 +81,4 @@
 		</svg>
 	</label>
 </body>
-
 </html>

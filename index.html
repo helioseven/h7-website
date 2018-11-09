@@ -43,11 +43,16 @@
 			transform: translate(calc(50vw - 50%), calc(50vh - 50%));
 		}
 
-		#h7button, #h7corona { transform-origin: inherit; }
+		#h7button { transform-origin: inherit; }
+
+		#h7corona {
+			transform-origin: inherit;
+			transition: transform 60s linear;
+		}
 
 		/* Conditional Style Definitions */
 
-		.logo:hover > #h7corona { animation: idle_spin 60s linear 0s infinite; }
+		.logo:hover > #h7corona { transform: rotate(360deg); }
 
 		#hidden-checkbox:checked ~ label svg.logo { animation: unlock_spin 2s linear 1 normal, slide_left 3s ease 2s 1 forwards; }
 
@@ -58,11 +63,6 @@
 		#hidden-checkbox:checked + div { background-color: red; }
 
 		/* Keyframe Animations */
-
-		@keyframes idle_spin {
-			from { transform: rotate(0deg); }
-			to { transform: rotate(360deg); }
-		}
 
 		@keyframes unlock_spin {
 			from { transform: translateX(calc(50vw - 50%)) scale(1.0, 1.0) rotate(0deg); }

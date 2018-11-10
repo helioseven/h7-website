@@ -30,14 +30,36 @@
 		/* Specific Style Definitions */
 
 		#page-content {
+			text-align: center;
 			position: fixed;
 			top: 0;
 			left: 0;
 			width: 100%;
 			height: 100%;
+			min-height: 200px;
 			opacity: 0.0;
 			background-image: linear-gradient(to right, black, black 10%, white 50%, white);
 			transition: opacity 3s linear 2s;
+		}
+
+		.tab-button [type=radio] { display: none; }
+
+		.tab label {
+			background: #EEE;
+			padding: 10px;
+			border: 1px solid #CCC;
+		}
+
+		.tab-content {
+			position: absolute;
+			top: 28px;
+			left: 0;
+			right: 0;
+			bottom: 0;
+			background: blue;
+			color: red;
+			padding: 20px;
+			border: 1px solid #CCC;
 		}
 
 		.logo {
@@ -60,6 +82,14 @@
 
 		/* Conditional Style Definitions */
 
+		[type=radio]:checked ~ label {
+			background: white;
+			border-bottom: 1px solid white;
+			z-index: 2;
+		}
+
+		[type=radio]:checked ~ label ~ .tab-content { z-index: 1; }
+
 		.logo:hover > #h7corona { transform: rotate(360deg); }
 
 		#hidden-checkbox:checked ~ label svg.logo { animation: unlock_spin 2s linear 1 normal, slide_left 3s ease 2s 1 forwards; }
@@ -68,7 +98,7 @@
 
 		#hidden-checkbox:checked ~ label svg.logo > #h7corona { opacity: 0.0; }
 
-		#hidden-checkbox:checked + div { opacity: 1.0; }
+		#hidden-checkbox:checked + #page-content { opacity: 1.0; }
 
 		/* Keyframe Animations */
 
@@ -97,12 +127,30 @@
 <body>
 	<input type="checkbox" id="hidden-checkbox">
 	<div id="page-content">
-		<div id="menu-box">
-			<ul>
-				<li>About Me</li>
-				<li>Referentia</li>
-				<li>Miscellanea</li>
-			</ul>
+		<div class="tab-button">
+			<input type="radio" id="tab1" name="menu-group" checked>
+			<label for="tab1">About</label>
+			<div class="tab-content">stuff</div>
+		</div>
+		<div class="tab-button">
+			<input type="radio" id="tab2" name="menu-group">
+			<label for="tab2">Logica</label>
+			<div class="tab-content">stuff</div>
+		</div>
+		<div class="tab-button">
+			<input type="radio" id="tab3" name="menu-group">
+			<label for="tab3">Creata</label>
+			<div class="tab-content">stuff</div>
+		</div>
+		<div class="tab-button">
+			<input type="radio" id="tab4" name="menu-group">
+			<label for="tab4">Referentia</label>
+			<div class="tab-content">stuff</div>
+		</div>
+		<div class="tab-button">
+			<input type="radio" id="tab5" name="menu-group">
+			<label for="tab5">Miscellanea</label>
+			<div class="tab-content">stuff</div>
 		</div>
 	</div>
 	<label for="hidden-checkbox">

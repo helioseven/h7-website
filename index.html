@@ -11,7 +11,11 @@
 			overflow: hidden;
 		}
 
-		*:focus { border: none; }
+		*:focus {
+			outline: none;
+			box-shadow: none;
+			border-color: transparent;
+		}
 
 		body, html {
 			background-color: black;
@@ -44,7 +48,6 @@
 			width: auto;
 			transform-origin: center center;
 			transform: translate(calc(50vw - 50%), calc(50vh - 50%));
-			transition: transform 3s ease 2s;
 		}
 
 		#h7button { transform-origin: inherit; }
@@ -59,10 +62,7 @@
 
 		.logo:hover > #h7corona { transform: rotate(360deg); }
 
-		#hidden-checkbox:checked ~ label svg.logo {
-			transform: translate(calc(50vw - 125%), calc(50vh - 50%));
-			animation: unlock_spin 2s linear 1 normal;
-		}
+		#hidden-checkbox:checked ~ label svg.logo { animation: unlock_spin 2s linear 1 normal, slide_left 3s ease 2s 1 forwards; }
 
 		#hidden-checkbox:checked ~ label svg.logo > #h7button { animation: unlock_spin_inverse 2s linear 1; }
 
@@ -85,6 +85,12 @@
 		@keyframes opacity_fade {
 			from { opacity: 1.0; }
 			to { opacity: 0.0; }
+		}
+
+		@keyframes slide_left {
+			from { transform: translateX(calc(50vw - 50%)); }
+			/* the value used here is not precisely valid for all media */
+			to { transform: translateX(calc(50vw - 100%)); }
 		}
 	</style>
 </head>

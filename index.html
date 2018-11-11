@@ -30,8 +30,9 @@
 		/* Specific Style Definitions */
 
 		#page-content {
-			text-align: left;
-			line-height: 100%;
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
 			position: fixed;
 			top: 0;
 			right: 0;
@@ -87,7 +88,7 @@
 			z-index: 2;
 		}
 
-		[type=radio]:checked ~ label ~ .tab-content { z-index: 1; }
+		[type=radio]:checked ~ .tab-content { z-index: 1; }
 
 		.logo:hover > #h7corona { transform: rotate(360deg); }
 

@@ -30,21 +30,20 @@
 		/* Specific Style Definitions */
 
 		#page-content {
-			text-align: center;
+			text-align: left;
+			line-height: 100%;
 			position: fixed;
 			top: 0;
-			left: 0;
-			width: 100%;
+			right: 0;
+			width: 50%;
 			height: 100%;
-			min-height: 200px;
 			opacity: 0.0;
 			background-image: linear-gradient(to right, black, black 10%, white 50%, white);
 			transition: opacity 3s linear 2s;
 		}
 
-		.tab-button [type=radio] { display: none; }
-
-		.tab label {
+		.tab-button label {
+			line-height: 1.5;
 			background: #EEE;
 			padding: 10px;
 			border: 1px solid #CCC;
@@ -52,8 +51,8 @@
 
 		.tab-content {
 			position: absolute;
-			top: 28px;
-			left: 0;
+			top: 0;
+			left: 200px;
 			right: 0;
 			bottom: 0;
 			background: blue;
@@ -133,27 +132,27 @@
 		<div class="tab-button">
 			<input type="radio" id="tab1" name="menu-group" checked>
 			<label for="tab1">About</label>
-			<div class="tab-content">stuff</div>
+			<div class="tab-content">stuff1</div>
 		</div>
 		<div class="tab-button">
 			<input type="radio" id="tab2" name="menu-group">
 			<label for="tab2">Logica</label>
-			<div class="tab-content">stuff</div>
+			<div class="tab-content">stuff2</div>
 		</div>
 		<div class="tab-button">
 			<input type="radio" id="tab3" name="menu-group">
 			<label for="tab3">Creata</label>
-			<div class="tab-content">stuff</div>
+			<div class="tab-content">stuff3</div>
 		</div>
 		<div class="tab-button">
 			<input type="radio" id="tab4" name="menu-group">
 			<label for="tab4">Referentia</label>
-			<div class="tab-content">stuff</div>
+			<div class="tab-content">stuff4</div>
 		</div>
 		<div class="tab-button">
 			<input type="radio" id="tab5" name="menu-group">
 			<label for="tab5">Miscellanea</label>
-			<div class="tab-content">stuff</div>
+			<div class="tab-content">stuff5</div>
 		</div>
 	</div>
 	<label for="hidden-checkbox">

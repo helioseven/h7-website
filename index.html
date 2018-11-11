@@ -25,6 +25,11 @@
 
 		input { display: none; }
 
+		img {
+			display: block;
+			margin: 0 auto;
+		}
+
 		path { fill: white; }
 
 		/* Specific Style Definitions */
@@ -38,9 +43,9 @@
 			right: 0;
 			width: 60%;
 			height: 100%;
-			opacity: 0.0;
+			opacity: 0;
 			background-image: linear-gradient(to right, black, white 50%, white);
-			transition: opacity 3s linear 2s;
+			transition: opacity 2s linear 3s;
 		}
 
 		.tab-button label {
@@ -48,19 +53,21 @@
 			color: black;
 			text-shadow: 0 0 12px white;
 			padding: 24px;
+			transition: font-size 0.5s ease, text-shadow 1s ease;
 		}
 
 		.tab-content {
-			display: none;
 			position: absolute;
 			top: 0;
 			left: 320px;
 			right: 0;
 			bottom: 0;
+			opacity: 0;
 			background: transparent;
 			color: red;
+			text-align: center;
 			padding: 20px;
-			border: 1px solid #CCC;
+			transition: opacity 0.5s linear;
 		}
 
 		.logo {
@@ -90,7 +97,7 @@
 		}
 
 		[type=radio]:checked ~ .tab-content {
-			display: initial;
+			opacity: 1;
 			z-index: 1;
 		}
 
@@ -110,18 +117,18 @@
 		/* Keyframe Animations */
 
 		@keyframes unlock_spin {
-			from { transform: translateX(calc(50vw - 50%)) scale(1.0, 1.0) rotate(0deg); }
-			to { transform: translateX(calc(50vw - 50%)) scale(2.0, 2.0) rotate(360deg); }
+			from { transform: translateX(calc(50vw - 50%)) scale(1, 1) rotate(0deg); }
+			to { transform: translateX(calc(50vw - 50%)) scale(2, 2) rotate(360deg); }
 		}
 
 		@keyframes unlock_spin_inverse {
-			from { transform: scale(1.0, 1.0) rotate(0deg); }
+			from { transform: scale(1, 1) rotate(0deg); }
 			to { transform: scale(0.5, 0.5) rotate(-360deg); }
 		}
 
 		@keyframes opacity_fade {
-			from { opacity: 1.0; }
-			to { opacity: 0.0; }
+			from { opacity: 1; }
+			to { opacity: 0; }
 		}
 
 		@keyframes slide_left {
@@ -136,8 +143,11 @@
 	<div id="page-content">
 		<div class="tab-button">
 			<input type="radio" id="tab1" name="menu-group" checked>
-			<label for="tab1">About</label>
-			<div class="tab-content">stuff1</div>
+			<label for="tab1">Readme</label>
+			<div class="tab-content">
+				<img src="Drew.jpg" alt="Portrait!" height="400">
+				<p>This'll be some introductory text, at some point.</p>
+			</div>
 		</div>
 		<div class="tab-button">
 			<input type="radio" id="tab2" name="menu-group">

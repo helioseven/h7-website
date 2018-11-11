@@ -36,27 +36,28 @@
 			position: fixed;
 			top: 0;
 			right: 0;
-			width: 50%;
+			width: 60%;
 			height: 100%;
 			opacity: 0.0;
-			background-image: linear-gradient(to right, black, black 10%, white 50%, white);
+			background-image: linear-gradient(to right, black, white 50%, white);
 			transition: opacity 3s linear 2s;
 		}
 
 		.tab-button label {
-			line-height: 1.5;
-			background: #EEE;
-			padding: 10px;
-			border: 1px solid #CCC;
+			font: bold 32px/1.8 Helvetica, sans serif;
+			color: black;
+			text-shadow: 0 0 12px white;
+			padding: 24px;
 		}
 
 		.tab-content {
+			display: none;
 			position: absolute;
 			top: 0;
-			left: 200px;
+			left: 320px;
 			right: 0;
 			bottom: 0;
-			background: blue;
+			background: transparent;
 			color: red;
 			padding: 20px;
 			border: 1px solid #CCC;
@@ -83,12 +84,15 @@
 		/* Conditional Style Definitions */
 
 		[type=radio]:checked ~ label {
-			background: white;
-			border-bottom: 1px solid white;
+			font-size: 48px;
+			text-shadow: 0 0 24px white;
 			z-index: 2;
 		}
 
-		[type=radio]:checked ~ .tab-content { z-index: 1; }
+		[type=radio]:checked ~ .tab-content {
+			display: initial;
+			z-index: 1;
+		}
 
 		.logo:hover > #h7corona { transform: rotate(360deg); }
 
@@ -157,7 +161,7 @@
 		</div>
 	</div>
 	<label for="hidden-checkbox">
-		<!-- Created with Inkscape (http://www.inkscape.org/) -->
+		<!-- SVG Created with Inkscape (http://www.inkscape.org/) -->
 		<svg class="logo" id="h7logo" width="1024" height="1024" viewBox="0 0 1024 1024" tabindex="1">
 			<title>h7_logo</title>
 			<path id="h7button" d="m435.8 632.61c0-0.61552 9.45-17.381 21-37.256s20.93-37.597 20.845-39.381c-0.085-1.7841-4.8197-10.894-10.521-20.244l-10.367-17h-43.934l-32.247 56-21.629 0.5701c-19.477 0.5134-21.502 0.23934-20.353-2.7547 1.5779-4.1118 115.11-201.16 117.26-203.52 1.62-1.777 21.98 31.002 21.903 35.264-0.0242 1.3413-9.4427 18.639-20.93 38.439l-20.886 36 20.842 0.56676c20.143 0.54776 20.967 0.74896 24.575 6 5.1045 7.4286 37.886 64.584 39.548 68.954 0.9127 2.3992-4.5756 13.866-17.23 36-27.611 48.295-22.404 43.479-47.011 43.479-11.475 0-20.864-0.5036-20.864-1.1191zm98.304 19.457c-5.6672-9.8196-10.304-18.423-10.304-19.12s23.807-42.468 52.903-92.827c29.097-50.359 53.5-93.116 54.229-95.016 1.2349-3.218-1.6679-3.4179-42.347-2.9152l-43.673 0.53964-10.179 17.456c-5.5982 9.6007-10.607 17.884-11.131 18.408-0.52372 0.52372-5.7843-7.3147-11.69-17.419l-10.738-18.371 6.6367-12.037c3.6502-6.6204 8.7522-15.412 11.338-19.537l4.701-7.5 130.95 0.0752 10.613 18.423c5.837 10.133 10.243 19.837 9.7914 21.564-0.87426 3.3432-126.65 221.83-129.26 224.53-0.84644 0.8778-6.1758-6.4382-11.843-16.258zm20.061 50.468c71.72-16.185 128.1-70.728 147-142.21 6.7257-25.44 7.5357-64.809 1.8433-89.593-16.867-73.438-70.489-129.23-142.61-148.39-16.811-4.4651-23.71-5.2039-48.593-5.2039-24.867 0-31.786 0.74-48.547 5.1923-69.037 18.338-122.51 71.682-140.74 140.4-4.577 17.254-5.3053 23.981-5.3053 49 0 24.867 0.74 31.786 5.1923 48.547 20.446 76.97 82.903 132.82 162.57 145.38 15.974 2.5173 51.269 0.92632 69.196-3.1191z"/>

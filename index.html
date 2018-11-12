@@ -12,12 +12,6 @@
 			overflow: hidden;
 		}
 
-		*:focus {
-			outline: none;
-			box-shadow: none;
-			border-color: transparent;
-		}
-
 		body, html {
 			background-color: black;
 			margin: 0;
@@ -49,19 +43,21 @@
 			transition: opacity 2s linear 3s;
 		}
 
+		.tab-button { transform: none; }
+
 		.tab-button label {
 			font: bold 32px/1.8 'KoHo', sans serif;
 			color: black;
 			text-shadow: 0 0 12px silver;
 			padding: 24px;
-			transition: font-size 0.5s ease, text-shadow 1s ease;
+			transition: font-size 0.5s ease, text-shadow 0.5s ease;
 		}
 
 		.tab-content {
 			position: absolute;
 			top: 0;
 			left: 320px;
-			right: 0;
+			right: 100px;
 			bottom: 0;
 			opacity: 0;
 			background: transparent;
@@ -89,19 +85,31 @@
 			transition: transform 60s linear, opacity 2s linear;
 		}
 
-		/* Conditional Style Definitions */
+		/* Event-Triggered Style Definitions */
+
+		*:focus {
+			outline: none;
+			box-shadow: none;
+			border-color: transparent;
+		}
 
 		.logo:hover > #h7corona { transform: rotate(360deg); }
 
+		.tab-button:hover { transform: translateX(15px); }
+
 		.tab-button:hover label { text-shadow: 0 0 12px white; }
 
-		[type=radio]:checked ~ label {
+		/* Conditional Style Definitions */
+
+		[type=radio]:checked + .tab-button:hover { transform: none; }
+
+		[type=radio]:checked +.tab-button label {
 			font-size: 48px;
 			text-shadow: 0 0 24px white;
 			z-index: 2;
 		}
 
-		[type=radio]:checked ~ .tab-content {
+		[type=radio]:checked + .tab-button .tab-content {
 			opacity: 1;
 			z-index: 1;
 		}
@@ -111,9 +119,9 @@
 			animation: unlock_spin 2s linear 1 normal, slide_left 3s ease 2s 1 forwards;
 		}
 
-		#hidden-checkbox:checked ~ label svg.logo > #h7button { animation: unlock_spin_inverse 2s linear 1; }
+		#hidden-checkbox:checked ~ label .logo > #h7button { animation: unlock_spin_inverse 2s linear 1; }
 
-		#hidden-checkbox:checked ~ label svg.logo > #h7corona { opacity: 0.0; }
+		#hidden-checkbox:checked ~ label .logo > #h7corona { opacity: 0.0; }
 
 		#hidden-checkbox:checked + #page-content { opacity: 1.0; }
 
@@ -144,31 +152,31 @@
 <body>
 	<input type="checkbox" id="hidden-checkbox">
 	<div id="page-content">
+		<input type="radio" id="tab1" name="menu-group" checked>
 		<div class="tab-button">
-			<input type="radio" id="tab1" name="menu-group" checked>
 			<label for="tab1">Readme</label>
 			<div class="tab-content">
 				<img src="Drew.jpg" alt="Portrait!" height="400">
 				<p>This'll be some introductory text, at some point.</p>
 			</div>
 		</div>
+		<input type="radio" id="tab2" name="menu-group">
 		<div class="tab-button">
-			<input type="radio" id="tab2" name="menu-group">
 			<label for="tab2">Logica</label>
 			<div class="tab-content">stuff2</div>
 		</div>
+		<input type="radio" id="tab3" name="menu-group">
 		<div class="tab-button">
-			<input type="radio" id="tab3" name="menu-group">
 			<label for="tab3">Creata</label>
 			<div class="tab-content">stuff3</div>
 		</div>
+		<input type="radio" id="tab4" name="menu-group">
 		<div class="tab-button">
-			<input type="radio" id="tab4" name="menu-group">
 			<label for="tab4">Referentia</label>
 			<div class="tab-content">stuff4</div>
 		</div>
+		<input type="radio" id="tab5" name="menu-group">
 		<div class="tab-button">
-			<input type="radio" id="tab5" name="menu-group">
 			<label for="tab5">Miscellanea</label>
 			<div class="tab-content">stuff5</div>
 		</div>

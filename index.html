@@ -3,6 +3,7 @@
 <head>
 	<title>Personal Website of Drew Barnett</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link href="https://fonts.googleapis.com/css?family=Cuprum|KoHo|Nunito|Source+Code+Pro|Varela+Round" rel="stylesheet">
 	<style>
 		/* General Style Definitions */
 
@@ -44,14 +45,14 @@
 			width: 60%;
 			height: 100%;
 			opacity: 0;
-			background-image: linear-gradient(to right, black, white 50%, white);
+			background-image: linear-gradient(to right, black, gray 50%, lightgray);
 			transition: opacity 2s linear 3s;
 		}
 
 		.tab-button label {
-			font: bold 32px/1.8 Helvetica, sans serif;
+			font: bold 32px/1.8 'KoHo', sans serif;
 			color: black;
-			text-shadow: 0 0 12px white;
+			text-shadow: 0 0 12px silver;
 			padding: 24px;
 			transition: font-size 0.5s ease, text-shadow 1s ease;
 		}
@@ -90,6 +91,10 @@
 
 		/* Conditional Style Definitions */
 
+		.logo:hover > #h7corona { transform: rotate(360deg); }
+
+		.tab-button:hover label { text-shadow: 0 0 12px white; }
+
 		[type=radio]:checked ~ label {
 			font-size: 48px;
 			text-shadow: 0 0 24px white;
@@ -100,8 +105,6 @@
 			opacity: 1;
 			z-index: 1;
 		}
-
-		.logo:hover > #h7corona { transform: rotate(360deg); }
 
 		#hidden-checkbox:checked ~ label svg.logo {
 			pointer-events: none;

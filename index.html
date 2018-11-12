@@ -20,9 +20,23 @@
 
 		input { display: none; }
 
+		h1 {
+			display: inline;
+			font: inherit;
+			color: inherit;
+			text-shadow: inherit;
+		}
+
 		img {
 			display: block;
+			padding: 10px;
 			margin: 0 auto;
+		}
+
+		p {
+			font: 16px/1.25 'Varela Round', sans serif;
+			color: white;
+			text-shadow: 0 0 4px black;
 		}
 
 		path { fill: white; }
@@ -61,7 +75,6 @@
 			bottom: 0;
 			opacity: 0;
 			background: transparent;
-			color: red;
 			text-align: center;
 			padding: 20px;
 			transition: opacity 0.5s linear;
@@ -154,30 +167,30 @@
 	<div id="page-content">
 		<input type="radio" id="tab1" name="menu-group" checked>
 		<div class="tab-button">
-			<label for="tab1">Readme</label>
+			<label for="tab1"><h1>Readme</h1></label>
 			<div class="tab-content">
 				<img src="Drew.jpg" alt="Portrait!" height="400">
-				<p>This'll be some introductory text, at some point.</p>
+				<p>Drew Emile Barnett; born July 9th 1992 in North Brunswick NJ, but native to Seattle WA. Adventurer, ex-hippie, good-timer, communist? quite possibly, cool and froody, terrible bad at relationships, incredibly egotistical, and generally thought to be completely out to lunch. Might know a few things about computing, mechanics, history, and philosophy. Owns too many bicycles. If nothing else, hopes you're having a really great day.</p>
 			</div>
 		</div>
 		<input type="radio" id="tab2" name="menu-group">
 		<div class="tab-button">
-			<label for="tab2">Logica</label>
+			<label for="tab2"><h1>Logica</h1></label>
 			<div class="tab-content">stuff2</div>
 		</div>
 		<input type="radio" id="tab3" name="menu-group">
 		<div class="tab-button">
-			<label for="tab3">Creata</label>
+			<label for="tab3"><h1>Creata</h1></label>
 			<div class="tab-content">stuff3</div>
 		</div>
 		<input type="radio" id="tab4" name="menu-group">
 		<div class="tab-button">
-			<label for="tab4">Referentia</label>
+			<label for="tab4"><h1>Referentia</h1></label>
 			<div class="tab-content">stuff4</div>
 		</div>
 		<input type="radio" id="tab5" name="menu-group">
 		<div class="tab-button">
-			<label for="tab5">Miscellanea</label>
+			<label for="tab5"><h1>Miscellanea</h1></label>
 			<div class="tab-content">stuff5</div>
 		</div>
 	</div>

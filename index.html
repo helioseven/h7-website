@@ -20,7 +20,7 @@
 
 		input { display: none; }
 
-		h1 {
+		h1, h2 {
 			display: inline;
 			font: inherit;
 			color: inherit;
@@ -59,7 +59,7 @@
 
 		.tab-button { transform: none; }
 
-		.tab-button label {
+		.tab-button label h1 {
 			font: bold 32px/1.8 'KoHo', sans serif;
 			color: black;
 			text-shadow: 0 0 12px silver;
@@ -79,6 +79,15 @@
 			padding: 20px;
 			transition: opacity 0.5s linear;
 		}
+
+		.tab-content label h2 {
+			display: block;
+			font: 24px/1 'Varela Round', sans serif;
+			text-shadow: 0 0 6px white;
+			padding: 5px;
+		}
+
+		.readme-content { display: none; }
 
 		.logo {
 			display: fixed;
@@ -127,6 +136,8 @@
 			z-index: 1;
 		}
 
+		.readme-items:checked + .readme-content { display: block; }
+
 		#hidden-checkbox:checked ~ label .logo {
 			pointer-events: none;
 			animation: unlock_spin 2s linear 1 normal, slide_left 3s ease 2s 1 forwards;
@@ -170,10 +181,34 @@
 			<label for="tab1"><h1>Readme</h1></label>
 			<div class="tab-content">
 				<img src="Drew.jpg" alt="Portrait!" height="400">
-				<p>Drew Emile Barnett, born July 9th 1992, native to Seattle WA. Adventurer, ex-hippie, good-timer (crook? quite possibly), manic self-publicist, terrible bad at personal relationships, generally thought to be completely out to lunch. Might know a few things about computing, mechanics, history, and philosophy. Owns too many bicycles, and is honestly a bit worried by it, but sincerely hopes you're having a really great day nonetheless.</p>
-				<p>You might be wondering how much of the above is accurate, and honestly, I'm sorta wondering the same myself. Some of it, clearly, and some of it perhaps less clearly so. Maybe it seems like nonsense, but maybe language just hasn't yet found the words that you'll understand. To quote Herbert Br&#252;n, "Anticommunication is an attempt at respectfully teaching language to say [something]." Thus I hope you can forgive the obfuscation, for within my odd attempts to self-describe lie the attempt to say something less obvious, but no less meaningful.</p>
-				<p>Concomitant to all that, I can offer but one really meaningful self-descriptor: I'm a learner. And also a meta-learner, I suppose, because in particular I learn about things that learn, both mechanical and organic. I worked for several years in the public school system, and learned a lot about institutional practices in both pedagogy and assessment. I studied at Evergreen for two and a half years, and I learned a lot about the history and theory of computing. And every day I'm reading books, chatting up strangers, and running little experiments, because I deeply and profoundly believe in John Dewey's "full meaning of the present life" being embodied with each and every day.</p>
-				<p>So if all that hasn't given you a reasonably good idea of who I am, then hopefully the rest of this website will. Please, do poke around.</p>
+				<label for="rm-who"><h2>Who?</h2></label>
+				<input type="checkbox" class="readme-items" id="rm-who">
+				<div class="readme-content">
+					<p>Drew Emile Barnett, born July 9th 1992, native to Seattle WA. Adventurer, ex-hippie, good-timer (crook? quite possibly), manic self-publicist, terrible bad at personal relationships, generally thought to be completely out to lunch. Might know a few things about computing, mechanics, history, and philosophy. Owns too many bicycles, and is honestly a bit worried by it, but sincerely hopes you're having a really great day nonetheless.</p>
+					<p>You might be wondering how much of the above is accurate, and honestly, I'm sorta wondering the same myself. Some of it, clearly, and some of it perhaps less clearly so. Maybe it seems like nonsense, but maybe language just hasn't yet found the words that you'll understand. To quote Herbert Br&#252;n, "Anticommunication is an attempt at respectfully teaching language to say [something]." Thus I hope you can forgive the obfuscation, for within my odd attempts to self-describe lie the attempt to say something less obvious, but no less meaningful.</p>
+					<p>Concomitant to all that, I can offer but one really meaningful self-descriptor: I'm a learner. And also a meta-learner, I suppose, because in particular I learn about things that learn, both mechanical and organic. I worked for several years in the public school system, and learned a lot about institutional practices in both pedagogy and assessment. I studied at Evergreen for two and a half years, and I learned a lot about the history and theory of computing. And every day I'm reading books, chatting up strangers, and running little experiments, because I deeply and profoundly believe in John Dewey's "full meaning of the present life" being embodied with each and every day.</p>
+					<p>So if all that hasn't given you a reasonably good idea of who I am, then hopefully the rest of this website will. Please, do poke around.</p>
+				</div>
+				<label for="rm-what"><h2>What?</h2></label>
+				<input type="checkbox" class="readme-items" id="rm-what">
+				<div class="readme-content">
+					<p>What goes here.</p>
+				</div>
+				<label for="rm-where"><h2>Where?</h2></label>
+				<input type="checkbox" class="readme-items" id="rm-where">
+				<div class="readme-content">
+					<p>Where goes here.</p>
+				</div>
+				<label for="rm-when"><h2>When?</h2></label>
+				<input type="checkbox" class="readme-items" id="rm-when">
+				<div class="readme-content">
+					<p>When goes here.</p>
+				</div>
+				<label for="rm-why"><h2>Why?</h2></label>
+				<input type="checkbox" class="readme-items" id="rm-why">
+				<div class="readme-content">
+					<p>Why goes here.</p>
+				</div>
 			</div>
 		</div>
 		<input type="radio" id="tab2" name="menu-group">

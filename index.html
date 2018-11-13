@@ -77,6 +77,7 @@
 			background: transparent;
 			text-align: center;
 			padding: 20px;
+			overflow: auto;
 			transition: opacity 0.5s linear;
 		}
 
@@ -88,6 +89,10 @@
 		}
 
 		.readme-content { display: none; }
+
+		.art-content { display: none; }
+
+		.art-content img { max-width: 100%; }
 
 		.logo {
 			display: fixed;
@@ -136,7 +141,9 @@
 			z-index: 1;
 		}
 
-		.readme-items:checked + .readme-content { display: block; }
+		.rm-items:checked + .readme-content { display: block; }
+
+		.art-items:checked + .art-content { display: block; }
 
 		#hidden-checkbox:checked ~ label .logo {
 			pointer-events: none;
@@ -182,32 +189,32 @@
 			<div class="tab-content">
 				<img src="Drew.jpg" alt="Portrait!" height="400">
 				<label for="rm-who"><h2>Who?</h2></label>
-				<input type="checkbox" class="readme-items" id="rm-who">
+				<input type="checkbox" class="rm-items" id="rm-who">
 				<div class="readme-content">
-					<p>Drew Emile Barnett, born July 9th 1992, native to Seattle WA. Adventurer, ex-hippie, good-timer (crook? quite possibly), manic self-publicist, terrible bad at personal relationships, generally thought to be completely out to lunch. Might know a few things about computing, mechanics, history, and philosophy. Owns too many bicycles, and is honestly a bit worried by it, but sincerely hopes you're having a really great day nonetheless.</p>
-					<p>You might be wondering how much of the above is accurate, and honestly, I'm sorta wondering the same myself. Some of it, clearly, and some of it perhaps less clearly so. Maybe it seems like nonsense, but maybe language just hasn't yet found the words that you'll understand. To quote Herbert Br&#252;n, "Anticommunication is an attempt at respectfully teaching language to say [something]." Thus I hope you can forgive the obfuscation, for within my odd attempts to self-describe lie the attempt to say something less obvious, but no less meaningful.</p>
-					<p>Concomitant to all that, I can offer but one really meaningful self-descriptor: I'm a learner. And also a meta-learner, I suppose, because in particular I learn about things that learn, both mechanical and organic. I worked for several years in the public school system, and learned a lot about institutional practices in both pedagogy and assessment. I studied at Evergreen for two and a half years, and I learned a lot about the history and theory of computing. And every day I'm reading books, chatting up strangers, and running little experiments, because I deeply and profoundly believe in John Dewey's "full meaning of the present life" being embodied with each and every day.</p>
+					<p>Drew Emile Barnett, born July 9th 1992, native to Seattle WA. Adventurer, ex-hippie, good-timer (crook? quite possibly), manic self-publicist, terrible bad at personal relationships, generally thought to be completely out to lunch. Might know a few things about what's really going on, but don't tell anyone. Owns too many bicycles, and is honestly a bit worried by it, but sincerely hopes you're not and that you manage to have a really great day nonetheless.</p>
+					<p>How much of the above is accurate? Honestly, I'm sorta wondering myself. Some of it, clearly, and some of it perhaps less clearly so. Maybe it seems like nonsense, and then again perhaps language merely hasn't yet found the words that you'll understand. To quote Herbert Br&#252;n, "Anticommunication is an attempt at respectfully teaching language to say [something]." Thus I hope you can forgive the obfuscation, for within my odd attempts to self-describe lie the attempt to say perhaps something less obvious, but no less meaningful.</p>
+					<p>Concomitant to all that, I can offer but one really meaningful self-descriptor: I'm a learner. And also a meta-learner, in that I particularly learn about things that learn, both mechanical and organic. I worked for several years in the public school system, and learned a lot about institutional practices in both pedagogy and assessment. I studied at Evergreen for two and a half years, and I learned a lot about the history and theory of computing. And every day I'm reading books, chatting up strangers, and deeply contemplating who I am, because I deeply and profoundly believe in John Dewey's "full meaning of the present life" being embodied with each and every day.</p>
 					<p>So if all that hasn't given you a reasonably good idea of who I am, then hopefully the rest of this website will. Please, do poke around.</p>
 				</div>
 				<label for="rm-what"><h2>What?</h2></label>
-				<input type="checkbox" class="readme-items" id="rm-what">
+				<input type="checkbox" class="rm-items" id="rm-what">
 				<div class="readme-content">
 					<p>This section is the ReadMe. Content is mostly words, of some questionable value. Further sections include Logica, Creata, Referentia, and Miscellanea. Logica groups together work relating to logic, mathematics, programming, and computation. Creata groups together work relating to art, music, writing, and philosophy. Referentia groups together content links to various things that aren't mine, but I think are worth checking out. Miscellanea is, I believe, self-explanitory.</p>
 				</div>
 				<label for="rm-where"><h2>Where?</h2></label>
-				<input type="checkbox" class="readme-items" id="rm-where">
+				<input type="checkbox" class="rm-items" id="rm-where">
 				<div class="readme-content">
 					<p>I'm based primarily in Seattle, WA for the foreseeable future. I teach weekly at the Seattle Go Center, and can be found there most Tuesdays and every Wednesday evening. I do bike touring regularly, and travel further abroad occasionally.</p>
 				</div>
 				<label for="rm-when"><h2>When?</h2></label>
-				<input type="checkbox" class="readme-items" id="rm-when">
+				<input type="checkbox" class="rm-items" id="rm-when">
 				<div class="readme-content">
 					<p>Timeline of content is forthcoming.</p>
 				</div>
 				<label for="rm-why"><h2>Why?</h2></label>
-				<input type="checkbox" class="readme-items" id="rm-why">
+				<input type="checkbox" class="rm-items" id="rm-why">
 				<div class="readme-content">
-					<p>If you're reading this, it is probably because you are either (a) a friend of mine, (b) interested in hiring me, or (c) interested in using some of my work for something. As such, this website will serve primarily as a place to collect various pieces of my work from over the years and house them in one central place. Beyond that, it will serve as a platform for the dissemination of various pieces of content and knowledge, as well as some more bizarre endeavors. Stay tuned.</p>
+					<p>If you're reading this, it is probably because you are either (a) a friend of mine, (b) interested in hiring me, or (c) interested in using some of my work for something. As such, this website will serve primarily as a place to collect various pieces of my work from over the years, and curate them in one central place for easy viewing. Beyond that, it will serve as a platform for the dissemination of curiosity, both visceral and abstract. Stay tuned.</p>
 				</div>
 			</div>
 		</div>
@@ -219,7 +226,30 @@
 		<input type="radio" id="tab3" name="menu-group">
 		<div class="tab-button">
 			<label for="tab3"><h1>Creata</h1></label>
-			<div class="tab-content"><p>stuff3</p></div>
+			<div class="tab-content">
+				<label for="art-finished"><h2>Finished</h2></label>
+				<input type="checkbox" class="art-items" id="art-finished">
+				<div class="art-content">
+					<img src="dont_be_afraid_of_the_dark.png" alt="Don't Be Afraid Of the Dark" width="800">
+					<img src="chaos.png" alt="Chaos" height="800">
+					<img src="holographic_chess.png" alt="Holographic Chess" height="800">
+				</div>
+				<label for="art-AAA"><h2>Project AAA</h2></label>
+				<input type="checkbox" class="art-items" id="art-AAA">
+				<div class="art-content">
+					<p></p>
+				</div>
+				<label for="art-clay"><h2>3D Clays</h2></label>
+				<input type="checkbox" class="art-items" id="art-clay">
+				<div class="art-content">
+					<p></p>
+				</div>
+				<label for="art-other"><h2>Unrelated</h2></label>
+				<input type="checkbox" class="art-items" id="art-other">
+				<div class="art-content">
+					<p></p>
+				</div>
+			</div>
 		</div>
 		<input type="radio" id="tab4" name="menu-group">
 		<div class="tab-button">

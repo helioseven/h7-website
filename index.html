@@ -43,7 +43,7 @@
 
 		/* Specific Style Definitions */
 
-		#page-content {
+		.page-content {
 			display: flex;
 			flex-direction: column;
 			justify-content: center;
@@ -95,7 +95,7 @@
 		.art-content img { max-width: 100%; }
 
 		.logo {
-			display: fixed;
+			position: fixed;
 			top: 0;
 			left: 0;
 			height: 100vh;
@@ -124,13 +124,13 @@
 
 		.tab-button:hover { transform: translateX(15px); }
 
-		.tab-button:hover label { text-shadow: 0 0 12px white; }
+		.tab-button:hover label h1 { text-shadow: 0 0 12px white; }
 
 		/* Conditional Style Definitions */
 
 		[type=radio]:checked + .tab-button:hover { transform: none; }
 
-		[type=radio]:checked +.tab-button label {
+		[type=radio]:checked + .tab-button label h1 {
 			font-size: 48px;
 			text-shadow: 0 0 24px white;
 			z-index: 2;
@@ -154,7 +154,7 @@
 
 		#hidden-checkbox:checked ~ label .logo > #h7corona { opacity: 0.0; }
 
-		#hidden-checkbox:checked + #page-content { opacity: 1.0; }
+		#hidden-checkbox:checked + .page-content { opacity: 1.0; }
 
 		/* Keyframe Animations */
 
@@ -182,7 +182,7 @@
 </head>
 <body>
 	<form autocomplete="off"><input type="checkbox" id="hidden-checkbox">
-	<div id="page-content">
+	<div class="page-content">
 		<input type="radio" id="tab1" name="menu-group" checked>
 		<div class="tab-button">
 			<label for="tab1"><h1>Readme</h1></label>

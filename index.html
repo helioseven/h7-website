@@ -47,7 +47,7 @@
 			height: 100%;
 			opacity: 0;
 			background-image: linear-gradient(to right, black, gray 50%, lightgray);
-			transition: opacity 2s linear 3s;
+			transition: opacity 1.5s linear 2s;
 		}
 
 		.tab-button { transform: none; }
@@ -104,7 +104,7 @@
 		#h7corona {
 			opacity: 1.0;
 			transform-origin: inherit;
-			transition: transform 60s linear, opacity 2s linear;
+			transition: transform 60s linear, opacity 1.5s linear;
 		}
 
 		/* Event-Triggered Style Definitions */
@@ -143,10 +143,10 @@
 
 		#hidden-checkbox:checked ~ label .logo {
 			pointer-events: none;
-			animation: unlock_spin 2s linear 1 normal, slide_left 3s ease 2s 1 forwards;
+			animation: unlock_spin 1.5s linear 1 normal, slide_left 2s ease 1.5s 1 forwards;
 		}
 
-		#hidden-checkbox:checked ~ label .logo > #h7button { animation: unlock_spin_inverse 2s linear 1; }
+		#hidden-checkbox:checked ~ label .logo > #h7button { animation: unlock_spin_inverse 1.5s linear 1; }
 
 		#hidden-checkbox:checked ~ label .logo > #h7corona { opacity: 0.0; }
 

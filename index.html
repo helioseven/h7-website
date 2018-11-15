@@ -20,13 +20,6 @@
 
 		input { display: none; }
 
-		h1, h2 {
-			display: inline;
-			font: inherit;
-			color: inherit;
-			text-shadow: inherit;
-		}
-
 		img {
 			display: block;
 			padding: 10px;
@@ -60,11 +53,13 @@
 		.tab-button { transform: none; }
 
 		.tab-button label h1 {
-			font: bold 32px/1.8 'KoHo', sans serif;
+			display: block;
+			font: bold 32px/1 'KoHo', sans serif;
 			color: black;
 			text-shadow: 0 0 12px silver;
-			padding: 24px;
-			transition: font-size 0.5s ease, text-shadow 0.5s ease;
+			padding: 12px;
+			margin: 0;
+			transition: font-size 0.5s ease, text-shadow 0.5s ease, padding 0.5s ease;
 		}
 
 		.tab-content {
@@ -133,6 +128,7 @@
 		[type=radio]:checked + .tab-button label h1 {
 			font-size: 48px;
 			text-shadow: 0 0 24px white;
+			padding: 24px;
 			z-index: 2;
 		}
 

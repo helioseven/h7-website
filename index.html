@@ -66,7 +66,7 @@
 			position: absolute;
 			top: 0;
 			left: 320px;
-			right: 100px;
+			right: 25px;
 			bottom: 0;
 			opacity: 0;
 			background: transparent;
@@ -76,6 +76,12 @@
 			transition: opacity 0.5s linear;
 		}
 
+		.tab-content img {
+			width: 200px;
+			height: 200px;
+			border-radius: 50%;
+		}
+
 		.tab-content label h2 {
 			display: block;
 			font: 24px/1 'Nunito', sans serif;
@@ -83,7 +89,9 @@
 			padding: 5px;
 		}
 
-		.readme-content { display: none; }
+		.rm-expand { display: none ;}
+
+		.code-items { display: none; }
 
 		.art-content { display: none; }
 
@@ -137,7 +145,9 @@
 			z-index: 1;
 		}
 
-		.rm-items:checked + .readme-content { display: block; }
+		.rm-items:checked + .rm-expand { display: block; }
+
+		.code-items:checked + .code-content { display: block; }
 
 		.art-items:checked + .art-content { display: block; }
 
@@ -184,28 +194,19 @@
 			<label for="tab1"><h1>Readme</h1></label>
 			<div class="tab-content">
 				<img src="Drew.jpg" alt="Portrait!" height="400">
-				<label for="rm-who"><h2>Who?</h2></label>
-				<input type="checkbox" class="rm-items" id="rm-who">
-				<div class="readme-content">
-					<p>Drew Emile Barnett, born July 9th 1992, native to Seattle WA. Adventurer, ex-hippie, good-timer (weirdo? quite possibly), occasionally manic self-publicist, terrible bad at casual grammars, generally thought to be completely out to lunch. Might know a few things about what's really going on, but please don't tell anyone. Owns too many bicycles, and is honestly a bit worried by it, but sincerely hopes that you're not and that you manage to have a really great day nonetheless.</p>
-					<p>Okay, so some of that is true, clearly, and some of it perhaps less clearly so. Some of it is maybe nonsense, and then again perhaps its language merely hasn't yet found the words which you will understand. To quote Herbert Br&#252;n, "Anticommunication is an attempt at respectfully teaching language to say [something]." Thus I hope you can forgive the obfuscation, because talking about oneself is hard, and my doing so is an attempt to say something perhaps less obvious, but no less meaningful.</p>
-					<p>Concomitant to all that, I have one decently meaningful self-descriptor: I'm a learner. By extension I am also a meta-learner, in both mechanical and organic media. I worked for several years in the public school system, and learned a lot about at-scale institutional practices in both pedagogy and assessment. I studied at Evergreen for two and a half years, and I learned a lot about the history and theory of computing. And every day I'm reading books, chatting up strangers, and introspecting through contemplation, because I deeply and profoundly believe in John Dewey's "full meaning of the present life" being embodied with each and every day.</p>
+				<p>This section is the ReadMe. Content is mostly words, probably words like "programmer", "creator", or maybe "just a really great all-around rad dude", if that's your flavor. Further sections include Logica, Creata, Referentia, and Miscellanea. Logica groups together work relating to logic, mathematics, programming, and computation. Creata groups together work relating to art, music, writing, and philosophy. Referentia groups together content links to various things that aren't mine, but I think are worth checking out. Miscellanea is, I believe, self-explanitory.</p>
+				<label for="rm-one"><h2>?</h2></label>
+				<input type="checkbox" class="rm-items" id="rm-one">
+				<div class="rm-expand">
+					<p>If you're reading this, it is probably because you are either (a) a friend of mine, (b) interested in hiring me, or (c) interested in using some of my work for your own ends. As such, this website will serve primarily as a place to collect various pieces of my work from over the years, and curate them in one central place for easy viewing. In addition, all works collected here will (eventually) encode Creative Commons licenses to encourage their use by the general public. Beyond that, it will serve as a platform for the dissemination of curiosity, both practical and abstract. Stay tuned, and stay happy.</p>
+				</div>
+				<label for="rm-two"><h2>??</h2></label>
+				<input type="checkbox" class="rm-items" id="rm-two">
+				<div class="rm-expand">
+					<p>Drew Emile Barnett, born July 9th 1992 in NJ, but native to Seattle WA. Adventurer, ex-hippie, good-timer (weirdo? quite possibly), occasionally manic self-publicist, terrible bad at casual grammars, generally thought to be completely out to lunch. Might know a few things about what's really going on, but please don't tell anyone. Owns too many bicycles, and isn't sure whether he should be worried about it, but sincerely hopes that you're not and that you have a really great day regardless.</p>
+					<p>Okay, so some of that is true, clearly, and some of it perhaps less clearly so. Some of it is maybe nonsense, and then perhaps its merely language that hasn't yet found the words that you'll understand. To quote Herbert Br&#252;n, "Anticommunication is an attempt at respectfully teaching language to say [something]." Thus I hope you can forgive the obfuscation, because talking about oneself is hard, and my doing so is an attempt to say something perhaps less obvious, but no less meaningful.</p>
+					<p>Concomitant to all that, I have one decently meaningful self-descriptor: I'm a learner. By extension I am also a meta-learner, in both mechanical and organic media. I worked for several years in the public school system, and learned a lot about at-scale institutional practices in both pedagogy and assessment of today's children. I studied at Evergreen for two and a half years, and I learned a lot about the history and theory of computing. And every day I'm reading books, chatting up strangers, and introspecting through contemplation, because I deeply and profoundly believe in John Dewey's "full meaning of the present life" being embodied with each and every day.</p>
 					<p>If all that isn't a reasonably good idea of who I am, then hopefully the rest of this website will be. Please, do poke around.</p>
-				</div>
-				<label for="rm-what"><h2>What?</h2></label>
-				<input type="checkbox" class="rm-items" id="rm-what">
-				<div class="readme-content">
-					<p>This section is the ReadMe. Content is mostly words, of questionable value. Further sections include Logica, Creata, Referentia, and Miscellanea. Logica groups together work relating to logic, mathematics, programming, and computation. Creata groups together work relating to art, music, writing, and philosophy. Referentia groups together content links to various things that aren't mine, but I think are worth checking out. Miscellanea is, I believe, self-explanitory.</p>
-				</div>
-				<label for="rm-when"><h2>When?</h2></label>
-				<input type="checkbox" class="rm-items" id="rm-when">
-				<div class="readme-content">
-					<p>Timeline of content is forthcoming.</p>
-				</div>
-				<label for="rm-why"><h2>Why?</h2></label>
-				<input type="checkbox" class="rm-items" id="rm-why">
-				<div class="readme-content">
-					<p>If you're reading this, it is probably because you are either (a) a friend of mine, (b) interested in hiring me, or (c) interested in using some of my work for your own ends. As such, this website will serve primarily as a place to collect various pieces of my work from over the years, and curate them in one central place for easy viewing. In addition, all works collected here will encode Creative Commons licenses so that they are usable by the general public. Beyond that, it will serve as a platform for the dissemination of curiosity, both practical and abstract. Stay tuned.</p>
 				</div>
 			</div>
 		</div>
@@ -270,10 +271,10 @@
 				<input type="checkbox" class="art-items" id="art-drawn">
 				<div class="art-content">
 					<img src="art_drawn/holographic_chess.png" alt="Holographic Chess">
-					<img src="art_drawn/presenting.jpg" alt="Presenting">
+					<img src="art_drawn/presenting.png" alt="Presenting">
 					<img src="art_drawn/hummingbird.jpg" alt="Hummingbird">
 					<img src="art_drawn/morning_mists.png" alt="Morning Mists">
-					<img src="art_drawn/watching.jpg" alt="Watching">
+					<img src="art_drawn/watching.png" alt="Watching">
 					<img src="art_drawn/stag.jpg" alt="Stag">
 					<img src="art_drawn/dreamweaver.png" alt="Dreamweaver">
 				</div>
@@ -292,7 +293,7 @@
 		<input type="radio" id="tab4" name="menu-group">
 		<div class="tab-button">
 			<label for="tab4"><h1>Referentia</h1></label>
-			<div class="tab-content"><p>stuff4</p></div>
+			<div class="tab-content"><p>Some links go here at some point.</p></div>
 		</div>
 		<input type="radio" id="tab5" name="menu-group">
 		<div class="tab-button">

@@ -38,7 +38,7 @@
 
 		.page-content {
 			display: flex;
-			flex-direction: column;
+			flex-flow: column nowrap;
 			justify-content: center;
 			position: fixed;
 			top: 0;
@@ -59,10 +59,13 @@
 			text-shadow: 0 0 12px silver;
 			padding: 12px;
 			margin: 0;
-			transition: font-size 0.5s ease, text-shadow 0.5s ease, padding 0.5s ease;
+			transition: all 0.5s ease;
 		}
 
 		.tab-content {
+			display: flex;
+			flex-flow: column nowrap;
+			justify-content: center;
 			position: absolute;
 			top: 0;
 			left: 320px;
@@ -72,11 +75,11 @@
 			background: transparent;
 			text-align: center;
 			padding: 20px;
-			overflow: auto;
 			transition: opacity 0.5s linear;
 		}
 
-		.tab-content img {
+		.tab-content > img {
+			flex: 0 0 auto;
 			width: 200px;
 			height: 200px;
 			border-radius: 50%;
@@ -86,16 +89,33 @@
 			display: block;
 			font: 24px/1 'Nunito', sans serif;
 			text-shadow: 0 0 6px white;
-			padding: 5px;
 		}
 
-		.rm-expand { display: none ;}
+		.rm-content {
+			display: none;
+			width: 800;
+			overflow-y: auto;
+		}
 
 		.code-items { display: none; }
 
-		.art-content { display: none; }
+		.art-content {
+			display: none;
+			overflow-y: auto;
+		}
 
-		.art-content img { max-width: 100%; }
+		.art-content .img-item {
+			width: 250px;
+			height: 250px;
+			border-radius: 50%;
+			overflow: hidden;
+		}
+
+		.art-content .img-item img {
+			min-width: 100%;
+			min-height: 100%;
+			margin: auto;
+		}
 
 		.logo {
 			position: fixed;
@@ -131,21 +151,21 @@
 
 		/* Conditional Style Definitions */
 
-		[type=radio]:checked + .tab-button:hover { transform: none; }
+		[name=menu-group]:checked + .tab-button:hover { transform: none; }
 
-		[type=radio]:checked + .tab-button label h1 {
+		[name=menu-group]:checked + .tab-button label h1 {
 			font-size: 48px;
 			text-shadow: 0 0 24px white;
 			padding: 24px;
 			z-index: 2;
 		}
 
-		[type=radio]:checked + .tab-button .tab-content {
+		[name=menu-group]:checked + .tab-button .tab-content {
 			opacity: 1;
 			z-index: 1;
 		}
 
-		.rm-items:checked + .rm-expand { display: block; }
+		.rm-items:checked + .rm-content { display: block; }
 
 		.code-items:checked + .code-content { display: block; }
 
@@ -194,17 +214,23 @@
 			<label for="tab1"><h1>Readme</h1></label>
 			<div class="tab-content">
 				<img src="Drew.jpg" alt="Portrait!" height="400">
-				<p>This section is the ReadMe. Content is mostly words, probably words like "programmer", "creator", or maybe "just a really great all-around rad dude", if that's your flavor. Further sections include Logica, Creata, Referentia, and Miscellanea. Logica groups together work relating to logic, mathematics, programming, and computation. Creata groups together work relating to art, music, writing, and philosophy. Referentia groups together content links to various things that aren't mine, but I think are worth checking out. Miscellanea is, I believe, self-explanitory.</p>
 				<label for="rm-one"><h2>?</h2></label>
-				<input type="checkbox" class="rm-items" id="rm-one">
-				<div class="rm-expand">
-					<p>If you're reading this, it is probably because you are either (a) a friend of mine, (b) considering hiring me, or (c) interested in using some of my work for your own work. As such, this website will serve primarily as a place to collect various pieces of my work from over the years, and curate it all in one central place. In addition, all works collected here will (eventually) encode Creative Commons licenses to encourage their use by the general public. Beyond that, it will serve as a platform for the dissemination of curiosity, both practical and abstract. Stay tuned, and stay happy.</p>
+				<input type="radio" class="rm-items" id="rm-one" name="rm-group" checked>
+				<div class="rm-content">
+					<p>This section is the ReadMe. Content is mostly words, probably* words like "coder", "creator", or maybe "just a really great all-around rad dude", if that's your flavor. Further sections include Logica, Creata, Referentia, and Miscellanea.</p>
+					<p>* not actually</p>
 				</div>
 				<label for="rm-two"><h2>??</h2></label>
-				<input type="checkbox" class="rm-items" id="rm-two">
-				<div class="rm-expand">
-					<p>Drew Emile Barnett, born July 9th 1992 in NJ, but native to Seattle WA. Adventurer, ex-hippie, good-timer (weirdo? quite possibly), occasionally manic self-publicist, terrible bad at casual grammars, generally thought to be completely out to lunch. Might know a few things about what's really going on, but please don't tell anyone. Owns too many bicycles, and isn't sure whether he should be worried about it, but sincerely hopes that you're not and that you have a really great day regardless.</p>
-					<p>True? Well clearly some of it, and then some of it perhaps less clearly so. Some of it is maybe nonsense, that language that merely has yet to find the words that you'll understand. To quote Herbert Br&#252;n, "Anticommunication is an attempt at respectfully teaching language to say [something]." Thus I hope you can forgive the obfuscation, because talking about oneself is hard, and my doing so is an attempt to say something perhaps less obvious, but no less meaningful.</p>
+				<input type="radio" class="rm-items" id="rm-two" name="rm-group">
+				<div class="rm-content">
+					<p>Logica covers work relating to logic, mathematics, programming, and computation. Creata covers work relating to art, music, writing, and philosophy. Referentia covers content links to various things that aren't mine, but I think are worth checking out. Miscellanea is, I believe, self-explanitory.</p>
+					<p>If you're reading this, it is probably because you are either (a) a friend of mine, (b) considering hiring me, or (c) interested in using some of my work for your own work. As such, this website will serve primarily as a place to collect various pieces of my work from over the years, and curate it all in one central place. In addition, all works collected here will (eventually) encode Creative Commons licenses to encourage their use by the general public. Beyond that, it will serve as a platform for the dissemination of curiosity, both practical and abstract. Stay tuned, and stay happy.</p>
+				</div>
+				<label for="rm-three"><h2>???</h2></label>
+				<input type="radio" class="rm-items" id="rm-three" name="rm-group">
+				<div class="rm-content">
+					<p>Drew Emile Barnett? Well, originally born in 1992 on the east coast of the US, but grew up in and considers themselves native to Seattle, WA. Adventurer, ex-hippie, good-timer (weirdo? quite possibly), occasionally manic self-publicist, terrible bad at casual grammars, generally thought to be completely out to lunch. Might know a few things about what's really going on, but please don't tell anyone. Owns too many bicycles, and isn't sure whether he should be worried about it, but sincerely hopes that you're not and that you have a really great day regardless.</p>
+					<p>True? Well, clearly some of it, but then some of it perhaps less clearly so. Some of it is also probably nonsense, that language that merely has yet to find the words that you'll understand. To quote Herbert Br&#252;n, "Anticommunication is an attempt at respectfully teaching language to say [something]." Thus I hope you can forgive the obfuscation, because talking about oneself is hard, and my doing so is an attempt to say something perhaps less intuitive, but no less meaningful.</p>
 					<p>Concomitant to all that, I have one decently meaningful self-descriptor: I'm a learner. By extension I am also a meta-learner, in both mechanical and organic media. I worked for several years in the public school system, and learned a lot about at-scale institutional practices in both pedagogy and assessment of today's children. I studied at Evergreen for two and a half years, and I learned a lot about the history and theory of computing. And every day I'm reading books, chatting up strangers, and introspecting through contemplation, because I deeply and profoundly believe in John Dewey's "full meaning of the present life" being embodied with each and every day.</p>
 					<p>If all that isn't a reasonably good idea of who I am, then hopefully the rest of this website will be. Please, do poke around.</p>
 				</div>
@@ -243,50 +269,128 @@
 				<label for="art-feature"><h2>Featured</h2></label>
 				<input type="checkbox" class="art-items" id="art-feature">
 				<div class="art-content">
-					<img src="art_feature/dont_be_afraid_of_the_dark.png" alt="Don't Be Afraid Of the Dark">
-					<img src="art_feature/chaos.png" alt="Chaos">
-					<img src="art_feature/so_long_and_thanks_for_all_the_grunts.png" alt="So Long, and Thanks for All the Grunts">
-					<img src="art_feature/heaven_and_earth.png" alt="HEAVEN//EARTH">
+					<div class="img-item">
+						<img src="art_feature/dont_be_afraid_of_the_dark.png" alt="Don't Be Afraid Of the Dark">
+					</div>
+					<div class="img-item">
+						<img src="art_feature/chaos.png" alt="Chaos">
+					</div>
+					<div class="img-item">
+						<img src="art_feature/so_long_and_thanks_for_all_the_grunts.png" alt="So Long, and Thanks for All the Grunts">
+					</div>
+					<div class="img-item">
+						<img src="art_feature/heaven_and_earth.png" alt="HEAVEN//EARTH">
+					</div>
 				</div>
-				<label for="art-AAA"><h2>AAA Project</h2></label>
-				<input type="checkbox" class="art-items" id="art-AAA">
+				<label for="art-AAAt"><h2>AAA Tiles</h2></label>
+				<input type="checkbox" class="art-items" id="art-AAAt">
 				<div class="art-content">
-					<img src="art_AAA/river_deaths.png" alt="River Deaths?">
-					<img src="art_AAA/brain_drain.png" alt="Brain Drain">
-					<img src="art_AAA/blue_001.png" alt="Blue 001">
-					<img src="art_AAA/blue_002.png" alt="Blue 002">
-					<img src="art_AAA/orange_001.png" alt="Orange 001">
+					<div class="img-item">
+						<img src="art_AAA_tiles/dia_blue.png" alt="Blue Diamond">
+					</div>
+					<div class="img-item">
+						<img src="art_AAA_tiles/hex_brown.png" alt="Brown Hexagon">
+					</div>
+					<div class="img-item">
+						<img src="art_AAA_tiles/sqr_green.png" alt="Green Square">
+					</div>
+					<div class="img-item">
+						<img src="art_AAA_tiles/trap_orange.png" alt="Orange Trapezoid">
+					</div>
+					<div class="img-item">
+						<img src="art_AAA_tiles/tri_purple.png" alt="Purple Triangle">
+					</div>
+					<div class="img-item">
+						<img src="art_AAA_tiles/wed_red.png" alt="Red Wedge">
+					</div>
+				</div>
+				<label for="art-AAAo"><h2>AAA Originals</h2></label>
+				<input type="checkbox" class="art-items" id="art-AAAo">
+				<div class="art-content">
+					<div class="img-item">
+						<img src="art_AAA/river_deaths.png" alt="River Deaths?">
+					</div>
+					<div class="img-item">
+						<img src="art_AAA/brain_drain.png" alt="Brain Drain">
+					</div>
+					<div class="img-item">
+						<img src="art_AAA/blue_001.png" alt="Blue 001">
+					</div>
+					<div class="img-item">
+						<img src="art_AAA/blue_002.png" alt="Blue 002">
+					</div>
+					<div class="img-item">
+						<img src="art_AAA/orange_001.png" alt="Orange 001">
+					</div>
 				</div>
 				<label for="art-render"><h2>3D Render</h2></label>
 				<input type="checkbox" class="art-items" id="art-render">
 				<div class="art-content">
-					<img src="art_render/falcon_high_poly.png" alt="Halo Falcon (High Poly)">
-					<img src="art_render/scorpion_high_poly.png" alt="Halo Scorpion (High Poly)">
-					<img src="art_render/cubic_chess_set.png" alt="Cubic Chess Set">
-					<img src="art_render/inspector.png" alt="Inspector">
-					<img src="art_render/promethean.png" alt="Promethean">
-					<img src="art_render/odst_helmet.png" alt="ODST Helmet">
+					<div class="img-item">
+						<img src="art_render/falcon_high_poly.png" alt="Halo Falcon (High Poly)">
+					</div>
+					<div class="img-item">
+						<img src="art_render/scorpion_high_poly.png" alt="Halo Scorpion (High Poly)">
+					</div>
+					<div class="img-item">
+						<img src="art_render/cubic_chess_set.png" alt="Cubic Chess Set">
+					</div>
+					<div class="img-item">
+						<img src="art_render/inspector.png" alt="Inspector">
+					</div>
+					<div class="img-item">
+						<img src="art_render/promethean.png" alt="Promethean">
+					</div>
+					<div class="img-item">
+						<img src="art_render/odst_helmet.png" alt="ODST Helmet">
+					</div>
 				</div>
 				<label for="art-drawn"><h2>Traditional Media</h2></label>
 				<input type="checkbox" class="art-items" id="art-drawn">
 				<div class="art-content">
-					<img src="art_drawn/holographic_chess.png" alt="Holographic Chess">
-					<img src="art_drawn/presenting.png" alt="Presenting">
-					<img src="art_drawn/hummingbird.jpg" alt="Hummingbird">
-					<img src="art_drawn/morning_mists.png" alt="Morning Mists">
-					<img src="art_drawn/watching.png" alt="Watching">
-					<img src="art_drawn/stag.jpg" alt="Stag">
-					<img src="art_drawn/dreamweaver.png" alt="Dreamweaver">
+					<div class="img-item">
+						<img src="art_drawn/holographic_chess.png" alt="Holographic Chess">
+					</div>
+					<div class="img-item">
+						<img src="art_drawn/presenting.png" alt="Presenting">
+					</div>
+					<div class="img-item">
+						<img src="art_drawn/hummingbird.jpg" alt="Hummingbird">
+					</div>
+					<div class="img-item">
+						<img src="art_drawn/morning_mists.png" alt="Morning Mists">
+					</div>
+					<div class="img-item">
+						<img src="art_drawn/watching.png" alt="Watching">
+					</div>
+					<div class="img-item">
+						<img src="art_drawn/stag.jpg" alt="Stag">
+					</div>
+					<div class="img-item">
+						<img src="art_drawn/dreamweaver.png" alt="Dreamweaver">
+					</div>
 				</div>
-				<label for="art-photo"><h2>Traditional Media</h2></label>
+				<label for="art-photo"><h2>Photography</h2></label>
 				<input type="checkbox" class="art-items" id="art-photo">
 				<div class="art-content">
-					<img src="art_photo/nap_cantwell.jpg" alt="Nap Cantwell">
-					<img src="art_photo/pinecone.jpg" alt="Pinecone">
-					<img src="art_photo/exit_38.jpg" alt="Exit 38">
-					<img src="art_photo/lotus.jpg" alt="Lotus">
-					<img src="art_photo/sunset_at_crater_lake.jpg" alt="Sunset at Crater Lake">
-					<img src="art_photo/mirror_balls.jpg" alt="Mirror Balls">
+					<div class="img-item">
+						<img src="art_photo/nap_cantwell.jpg" alt="Nap Cantwell">
+					</div>
+					<div class="img-item">
+						<img src="art_photo/pinecone.jpg" alt="Pinecone">
+					</div>
+					<div class="img-item">
+						<img src="art_photo/exit_38.jpg" alt="Exit 38">
+					</div>
+					<div class="img-item">
+						<img src="art_photo/lotus.jpg" alt="Lotus">
+					</div>
+					<div class="img-item">
+						<img src="art_photo/sunset_at_crater_lake.jpg" alt="Sunset at Crater Lake">
+					</div>
+					<div class="img-item">
+						<img src="art_photo/mirror_balls.jpg" alt="Mirror Balls">
+					</div>
 				</div>
 			</div>
 		</div>

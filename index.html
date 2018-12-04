@@ -52,13 +52,13 @@
 
 		.tab-button { transform: none; }
 
-		.tab-button label h1 {
+		.tab-button h1 {
 			display: block;
+			padding: 12px;
+			margin: 0;
 			font: bold 32px/1 'KoHo', sans serif;
 			color: black;
 			text-shadow: 0 0 12px silver;
-			padding: 12px;
-			margin: 0;
 			transition: all 0.5s ease;
 		}
 
@@ -95,22 +95,15 @@
 			padding: 6px;
 			margin: 0;
 			font: 24px/1 'Nunito', sans serif;
-			text-shadow: 0 0 6px white;
+			text-shadow: 0 0 6px silver;
+			transition: all 0.5s ease;
 		}
 
-		.rm-content {
+		.tab-content label + div {
 			display: none;
+			flex: 0 1 1px;
 			overflow-y: auto;
-		}
-
-		.code-content {
-			display: none;
-			overflow-y: auto;
-		}
-
-		.art-content {
-			display: none;
-			overflow-y: auto;
+			transition: flex-basis 1s ease;
 		}
 
 		.art-content img {
@@ -152,29 +145,35 @@
 
 		.tab-button:hover { transform: translateX(15px); }
 
-		.tab-button:hover label h1 { text-shadow: 0 0 12px white; }
+		.tab-button:hover h1 { text-shadow: 0 0 12px white; }
 
 		/* Conditional Style Definitions */
 
 		[name=menu-group]:checked + .tab-button:hover { transform: none; }
 
-		[name=menu-group]:checked + .tab-button label h1 {
+		[name=menu-group]:checked + .tab-button h1 {
+			padding: 24px;
 			font-size: 48px;
 			text-shadow: 0 0 24px white;
-			padding: 24px;
 			z-index: 2;
 		}
 
-		[name=menu-group]:checked + .tab-button .tab-content {
+		[name=menu-group]:checked + .tab-button + .tab-content {
 			opacity: 1;
 			z-index: 1;
 		}
 
-		.rm-items:checked + .rm-content { display: block; }
+		.tab-content input:checked + label h2 {
+			padding: 8px;
+			font-size: 28px;
+			font-weight: bold;
+			text-shadow: 0 0 8px white;
+		}
 
-		.code-items:checked + .code-content { display: block; }
-
-		.art-items:checked + .art-content { display: block; }
+		.tab-content input:checked + label + div {
+			display: block;
+			flex: 0 1 auto;
+		}
 
 		#hidden-checkbox:checked ~ label .logo {
 			pointer-events: none;
@@ -215,131 +214,161 @@
 	<form autocomplete="off"><input type="checkbox" id="hidden-checkbox">
 	<div class="page-content">
 		<input type="radio" id="tab1" name="menu-group" checked>
-		<div class="tab-button">
-			<label for="tab1"><h1>Readme</h1></label>
-			<div class="tab-content">
-				<img src="Drew.jpg" alt="Portrait!" height="400">
-				<label for="rm-one"><h2>?</h2></label>
-				<input type="radio" class="rm-items" id="rm-one" name="rm-group" checked>
-				<div class="rm-content">
-					<p>This section is the ReadMe. Content is mostly words, probably* words like "coder", "creator", or maybe "just a really great all-around rad dude", if that's your flavor. Further sections include Logica, Creata, Referentia, and Miscellanea.</p>
-					<p>* not actually</p>
-				</div>
-				<label for="rm-two"><h2>??</h2></label>
-				<input type="radio" class="rm-items" id="rm-two" name="rm-group">
-				<div class="rm-content">
-					<p>Logica covers work relating to logic, mathematics, programming, and computation. Creata covers work relating to art, music, writing, and philosophy. Referentia covers content links to various things that aren't mine, but I think are worth checking out. Miscellanea is, I believe, self-explanitory.</p>
-					<p>If you're reading this, it is probably because you are either (a) a friend of mine, (b) considering hiring me, or (c) interested in using some of my work for your own work. As such, this website will serve primarily as a place to collect various pieces of my work from over the years, and curate it all in one central place. In addition, all works collected here will (eventually) encode Creative Commons licenses to encourage their use by the general public. Beyond that, it will serve as a platform for the dissemination of curiosity, both practical and abstract. Stay tuned, and stay happy.</p>
-				</div>
-				<label for="rm-three"><h2>???</h2></label>
-				<input type="radio" class="rm-items" id="rm-three" name="rm-group">
-				<div class="rm-content">
-					<p>Drew Emile Barnett. Originally born in 1992 on the east coast of the US, but grew up in and considers themself native to Seattle, WA. Adventurer, ex-hippie, good-timer (weirdo? quite possibly), occasionally manic self-publicist, terrible bad at casual grammars, generally thought to be completely out to lunch. Might know a few things about what's really going on, but please don't tell anyone. Owns too many bicycles, and isn't sure whether he should be worried about it, but sincerely hopes that you're not and that you have a really great day regardless.</p>
-					<p>True? Well, clearly some of it, but then some of it perhaps less clearly so. Some of it is also probably nonsense, that language that merely has yet to find the words that you'll understand. To quote Herbert Br&#252;n, "Anticommunication is an attempt at respectfully teaching language to say [something]." Thus I hope you can forgive the obfuscation, because talking about oneself is hard, and my doing so is an attempt to say something perhaps less intuitive, but no less meaningful.</p>
-					<p>Concomitant to all that, I have one decently meaningful self-descriptor: I'm a learner. By extension I am also a meta-learner, in both mechanical and organic media. I worked for several years in the public school system, and learned a lot about at-scale institutional practices in both pedagogy and assessment of today's children. I studied at Evergreen for two and a half years, and I learned a lot about the history and theory of computing. And every day I'm reading books, chatting up strangers, and introspecting through contemplation, because I deeply and profoundly believe in John Dewey's "full meaning of the present life" being embodied with each and every day.</p>
-					<p>If all that isn't a reasonably good idea of who I am, then hopefully the rest of this website will be. Please, do poke around.</p>
-				</div>
+		<label for="tab1" class="tab-button">
+			<h1>Readme</h1>
+		</label>
+		<div class="tab-content">
+			<img src="Drew.jpg" alt="Portrait!" height="400">
+			<input type="radio" id="rm-one" name="rm-group" checked>
+			<label for="rm-one" class="rm-items">
+				<h2>?</h2>
+			</label>
+			<div class="rm-content">
+				<p>This section is the ReadMe. Content is mostly words, probably* words like "programmer", "creator", or maybe "just a really great all-around rad dude", if that's your flavor. Further sections include Logica, Creata, Referentia, and Miscellanea.</p>
+				<p>* not actually</p>
+			</div>
+			<input type="radio" id="rm-two" name="rm-group">
+			<label for="rm-two" class="rm-items">
+				<h2>??</h2>
+			</label>
+			<div class="rm-content">
+				<p>Logica covers work relating to logic, mathematics, programming, and computation. Creata covers work relating to art, music, writing, and philosophy. Referentia covers content links to various things that aren't mine, but I think are worth checking out. Miscellanea is, I believe, self-explanitory.</p>
+				<p>If you're reading this, it is probably because you are either (a) a friend of mine, (b) considering hiring me, or (c) interested in using some of my work for your own work. As such, this website will serve primarily as a place to collect various pieces of my work from over the years, and curate it all in one central place. In addition, all works collected here will (eventually) encode Creative Commons licenses to encourage their use by the general public. Beyond that, it will serve as a platform for the dissemination of curiosity, both practical and abstract. Stay tuned, and stay happy.</p>
+			</div>
+			<input type="radio" id="rm-three" name="rm-group">
+			<label for="rm-three" class="rm-items">
+				<h2>???</h2>
+			</label>
+			<div class="rm-content">
+				<p>Drew Emile Barnett. Originally born in 1992 on the east coast of the US, but grew up in and considers self native to Seattle, WA. Adventurer, ex-hippie, good-timer (weirdo? quite possibly), occasionally manic self-publicist, terrible bad at casual grammars, generally thought to be completely out to lunch. Might know a few things about what's really going on, but please don't tell anyone. Owns too many bicycles, and isn't sure whether he should be worried about it, but sincerely hopes that you're not and that you have a really great day regardless.</p>
+				<p>True? Well, clearly some of it, but then some of it perhaps less clearly so. Some of it is also probably nonsense, that language that merely has yet to find the words that you'll understand. To quote Herbert Br&#252;n, "Anticommunication is an attempt at respectfully teaching language to say [something]." Thus I hope you can forgive the obfuscation, because talking about oneself is hard, and my doing so is an attempt to say something perhaps less intuitive, but no less meaningful.</p>
+				<p>Concomitant to all that, I have one decently meaningful self-descriptor: I'm a learner. By extension I am also a meta-learner, in both mechanical and organic media. I worked for several years in the public school system, and learned a lot about at-scale institutional practices in both pedagogy and assessment of today's children. I studied at Evergreen for two and a half years, and I learned a lot about the history and theory of computing. And every day I'm reading books, chatting up strangers, and introspecting through contemplation, because I deeply and profoundly believe in John Dewey's "full meaning of the present life" being embodied with each and every day.</p>
+				<p>If all that isn't a reasonably good idea of who I am, then hopefully the rest of this website will be. Please, do poke around.</p>
 			</div>
 		</div>
 		<input type="radio" id="tab2" name="menu-group">
-		<div class="tab-button">
-			<label for="tab2"><h1>Logica</h1></label>
-			<div class="tab-content">
-				<label for="code-site"><h2>Website</h2></label>
-				<input type="checkbox" class="code-items" id="code-site">
-				<div class="code-content">
-					<p>This website was coded by hand! It is built entirely with HTML5/CSS3, intentionally avoiding the use of any scripting. You can view the source code either by using your browser's inspector, or by checking out <a href="https://bitbucket.org/helioseven/h7_website">the git repository</a> online.</p>
-				</div>
-				<label for="code-AAA"><h2>AAA Project</h2></label>
-				<input type="checkbox" class="code-items" id="code-AAA">
-				<div class="code-content">
-					<p>An Angular Adventure is the working title of a 2D run-and-jump platformer project. AAA coalesced into a meaningful project in mid-2015, but has its origins in a series of collaborative artworks produced by my best friend and I, stretching back to high school in the late 2000s (see Creata > AAA Project). The game is being produced with the Unity engine, and <a href="https://bitbucket.org/micaharvey/an_angular_adventure">the git repository</a> is publically available online.</p>
-				</div>
-				<label for="code-goai"><h2>Go AI</h2></label>
-				<input type="checkbox" class="code-items" id="code-goai">
-				<div class="code-content">
-					<p>Link and info will go here.</p>
-				</div>
-				<label for="code-misc"><h2>Project Fragments</h2></label>
-				<input type="checkbox" class="code-items" id="code-misc">
-				<div class="code-content">
-					<p>Links and info will go here.</p>
-				</div>
+		<label for="tab2" class="tab-button">
+			<h1>Logica</h1>
+		</label>
+		<div class="tab-content">
+			<input type="checkbox" class="code-group" id="code-site">
+			<label for="code-site" class="code-items">
+				<h2>Website</h2>
+			</label>
+			<div class="code-content">
+				<p>This website was coded by hand! It is built entirely with HTML5/CSS3, intentionally avoiding the use of any scripting. You can view the source code either by using your browser's inspector, or by checking out <a href="https://bitbucket.org/helioseven/h7_website">the git repository</a> online.</p>
+			</div>
+			<input type="checkbox" class="code-group" id="code-AAA">
+			<label for="code-AAA" class="code-items">
+				<h2>AAA Project</h2>
+			</label>
+			<div class="code-content">
+				<p>An Angular Adventure is the working title of a 2D run-and-jump platformer project. AAA coalesced into a meaningful project in mid-2015, but has its origins in a series of collaborative artworks produced by my best friend and I, stretching back to high school in the late 2000s (see Creata > AAA Project). The game is being produced with the Unity engine, and <a href="https://bitbucket.org/micaharvey/an_angular_adventure">the git repository</a> is publically available online.</p>
+			</div>
+			<input type="checkbox" class="code-group" id="code-goai">
+			<label for="code-goai" class="code-items">
+				<h2>Go AI</h2>
+			</label>
+			<div class="code-content">
+				<p>Link and info will go here.</p>
+			</div>
+			<input type="checkbox" class="code-group" id="code-misc">
+			<label for="code-misc" class="code-items">
+				<h2>Project Fragments</h2>
+			</label>
+			<div class="code-content">
+				<p>Links and info will go here.</p>
 			</div>
 		</div>
 		<input type="radio" id="tab3" name="menu-group">
-		<div class="tab-button">
-			<label for="tab3"><h1>Creata</h1></label>
-			<div class="tab-content">
-				<label for="art-feature"><h2>Featured</h2></label>
-				<input type="checkbox" class="art-items" id="art-feature">
-				<div class="art-content">
-					<img src="art_feature/dont_be_afraid_of_the_dark.png" alt="Don't Be Afraid Of the Dark">
-					<img src="art_feature/chaos.png" alt="Chaos">
-					<img src="art_feature/so_long_and_thanks_for_all_the_grunts.png" alt="So Long, and Thanks for All the Grunts">
-					<img src="art_feature/heaven_and_earth.png" alt="HEAVEN//EARTH">
-				</div>
-				<label for="art-AAAt"><h2>AAA Tiles</h2></label>
-				<input type="checkbox" class="art-items" id="art-AAAt">
-				<div class="art-content">
-					<img src="art_AAA_tiles/dia_blue.png" alt="Blue Diamond">
-					<img src="art_AAA_tiles/hex_brown.png" alt="Brown Hexagon">
-					<img src="art_AAA_tiles/sqr_green.png" alt="Green Square">
-					<img src="art_AAA_tiles/trap_orange.png" alt="Orange Trapezoid">
-					<img src="art_AAA_tiles/tri_purple.png" alt="Purple Triangle">
-					<img src="art_AAA_tiles/wed_red.png" alt="Red Wedge">
-				</div>
-				<label for="art-AAAo"><h2>AAA Originals</h2></label>
-				<input type="checkbox" class="art-items" id="art-AAAo">
-				<div class="art-content">
-					<img src="art_AAA/river_deaths.png" alt="River Deaths?">
-					<img src="art_AAA/brain_drain.png" alt="Brain Drain">
-					<img src="art_AAA/blue_001.png" alt="Blue 001">
-					<img src="art_AAA/blue_002.png" alt="Blue 002">
-					<img src="art_AAA/orange_001.png" alt="Orange 001">
-				</div>
-				<label for="art-render"><h2>3D Render</h2></label>
-				<input type="checkbox" class="art-items" id="art-render">
-				<div class="art-content">
-					<img src="art_render/falcon_high_poly.png" alt="Halo Falcon (High Poly)">
-					<img src="art_render/scorpion_high_poly.png" alt="Halo Scorpion (High Poly)">
-					<img src="art_render/cubic_chess_set.png" alt="Cubic Chess Set">
-					<img src="art_render/inspector.png" alt="Inspector">
-					<img src="art_render/promethean.png" alt="Promethean">
-					<img src="art_render/odst_helmet.png" alt="ODST Helmet">
-				</div>
-				<label for="art-drawn"><h2>Traditional Media</h2></label>
-				<input type="checkbox" class="art-items" id="art-drawn">
-				<div class="art-content">
-					<img src="art_drawn/holographic_chess.png" alt="Holographic Chess">
-					<img src="art_drawn/presenting.png" alt="Presenting">
-					<img src="art_drawn/hummingbird.jpg" alt="Hummingbird">
-					<img src="art_drawn/morning_mists.png" alt="Morning Mists">
-					<img src="art_drawn/watching.png" alt="Watching">
-					<img src="art_drawn/stag.jpg" alt="Stag">
-					<img src="art_drawn/dreamweaver.png" alt="Dreamweaver">
-				</div>
-				<label for="art-photo"><h2>Photography</h2></label>
-				<input type="checkbox" class="art-items" id="art-photo">
-				<div class="art-content">
-					<img src="art_photo/nap_cantwell.jpg" alt="Nap Cantwell">
-					<img src="art_photo/pinecone.jpg" alt="Pinecone">
-					<img src="art_photo/exit_38.jpg" alt="Exit 38">
-					<img src="art_photo/lotus.jpg" alt="Lotus">
-					<img src="art_photo/sunset_at_crater_lake.jpg" alt="Sunset at Crater Lake">
-					<img src="art_photo/mirror_balls.jpg" alt="Mirror Balls">
-				</div>
+		<label for="tab3" class="tab-button">
+			<h1>Creata</h1>
+		</label>
+		<div class="tab-content">
+			<input type="checkbox" class="art-group" id="art-feature">
+			<label for="art-feature" class="art-items">
+				<h2>Featured</h2>
+			</label>
+			<div class="art-content">
+				<img src="art_feature/dont_be_afraid_of_the_dark.png" alt="Don't Be Afraid Of the Dark">
+				<img src="art_feature/chaos.png" alt="Chaos">
+				<img src="art_feature/so_long_and_thanks_for_all_the_grunts.png" alt="So Long, and Thanks for All the Grunts">
+				<img src="art_feature/heaven_and_earth.png" alt="HEAVEN//EARTH">
+			</div>
+			<input type="checkbox" class="art-group" id="art-AAAt">
+			<label for="art-AAAt" class="art-items">
+				<h2>AAA Tiles</h2>
+			</label>
+			<div class="art-content">
+				<img src="art_AAA_tiles/dia_blue.png" alt="Blue Diamond">
+				<img src="art_AAA_tiles/hex_brown.png" alt="Brown Hexagon">
+				<img src="art_AAA_tiles/sqr_green.png" alt="Green Square">
+				<img src="art_AAA_tiles/trap_orange.png" alt="Orange Trapezoid">
+				<img src="art_AAA_tiles/tri_purple.png" alt="Purple Triangle">
+				<img src="art_AAA_tiles/wed_red.png" alt="Red Wedge">
+			</div>
+			<input type="checkbox" class="art-group" id="art-AAAo">
+			<label for="art-AAAo" class="art-items">
+				<h2>AAA Originals</h2>
+			</label>
+			<div class="art-content">
+				<img src="art_AAA/river_deaths.png" alt="River Deaths?">
+				<img src="art_AAA/brain_drain.png" alt="Brain Drain">
+				<img src="art_AAA/blue_001.png" alt="Blue 001">
+				<img src="art_AAA/blue_002.png" alt="Blue 002">
+				<img src="art_AAA/orange_001.png" alt="Orange 001">
+			</div>
+			<input type="checkbox" class="art-group" id="art-render">
+			<label for="art-render" class="art-items">
+				<h2>3D Render</h2>
+			</label>
+			<div class="art-content">
+				<img src="art_render/falcon_high_poly.png" alt="Halo Falcon (High Poly)">
+				<img src="art_render/scorpion_high_poly.png" alt="Halo Scorpion (High Poly)">
+				<img src="art_render/cubic_chess_set.png" alt="Cubic Chess Set">
+				<img src="art_render/inspector.png" alt="Inspector">
+				<img src="art_render/promethean.png" alt="Promethean">
+				<img src="art_render/odst_helmet.png" alt="ODST Helmet">
+			</div>
+			<input type="checkbox" class="art-group" id="art-drawn">
+			<label for="art-drawn" class="art-items">
+				<h2>Traditional Media</h2>
+			</label>
+			<div class="art-content">
+				<img src="art_drawn/holographic_chess.png" alt="Holographic Chess">
+				<img src="art_drawn/presenting.png" alt="Presenting">
+				<img src="art_drawn/hummingbird.jpg" alt="Hummingbird">
+				<img src="art_drawn/morning_mists.png" alt="Morning Mists">
+				<img src="art_drawn/watching.png" alt="Watching">
+				<img src="art_drawn/stag.jpg" alt="Stag">
+				<img src="art_drawn/dreamweaver.png" alt="Dreamweaver">
+			</div>
+			<input type="checkbox" class="art-group" id="art-photo">
+			<label for="art-photo" class="art-items">
+				<h2>Photography</h2>
+			</label>
+			<div class="art-content">
+				<img src="art_photo/nap_cantwell.jpg" alt="Nap Cantwell">
+				<img src="art_photo/pinecone.jpg" alt="Pinecone">
+				<img src="art_photo/exit_38.jpg" alt="Exit 38">
+				<img src="art_photo/lotus.jpg" alt="Lotus">
+				<img src="art_photo/sunset_at_crater_lake.jpg" alt="Sunset at Crater Lake">
+				<img src="art_photo/mirror_balls.jpg" alt="Mirror Balls">
 			</div>
 		</div>
 		<input type="radio" id="tab4" name="menu-group">
-		<div class="tab-button">
-			<label for="tab4"><h1>Referentia</h1></label>
-			<div class="tab-content"><p>Some links go here at some point.</p></div>
+		<label for="tab4" class="tab-button">
+			<h1>Referentia</h1>
+		</label>
+		<div class="tab-content">
+			<p>Some links go here at some point.</p>
 		</div>
 		<input type="radio" id="tab5" name="menu-group">
-		<div class="tab-button">
-			<label for="tab5"><h1>Miscellanea</h1></label>
-			<div class="tab-content"><p>Once, a goose clapped.</p></div>
+		<label for="tab5" class="tab-button">
+			<h1>Miscellanea</h1>
+		</label>
+		<div class="tab-content">
+			<p>Once, a goose clapped.</p>
 		</div>
 	</div>
 	<label for="hidden-checkbox">

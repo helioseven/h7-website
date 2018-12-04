@@ -74,7 +74,6 @@
 			opacity: 0;
 			background: transparent;
 			text-align: center;
-			padding: 20px;
 			transition: opacity 0.5s linear;
 		}
 
@@ -82,11 +81,19 @@
 			flex: 0 0 auto;
 			width: 200px;
 			height: 200px;
+			object-fit: cover;
 			border-radius: 50%;
+		}
+
+		.tab-content label {
+			flex: 0 0 auto;
+			margin: 1vh auto;
 		}
 
 		.tab-content label h2 {
 			display: block;
+			padding: 6px;
+			margin: 0;
 			font: 24px/1 'Nunito', sans serif;
 			text-shadow: 0 0 6px white;
 		}
@@ -104,17 +111,13 @@
 			overflow-y: auto;
 		}
 
-		.art-content .img-item {
+		.art-content img {
 			width: 250px;
 			height: 250px;
+			object-fit: cover;
 			border-radius: 50%;
-			overflow: hidden;
-		}
-
-		.art-content .img-item img {
-			min-width: 100%;
-			min-height: 100%;
-			margin: auto;
+			padding: 0;
+			margin: 2vh auto;
 		}
 
 		.logo {
@@ -269,128 +272,60 @@
 				<label for="art-feature"><h2>Featured</h2></label>
 				<input type="checkbox" class="art-items" id="art-feature">
 				<div class="art-content">
-					<div class="img-item">
-						<img src="art_feature/dont_be_afraid_of_the_dark.png" alt="Don't Be Afraid Of the Dark">
-					</div>
-					<div class="img-item">
-						<img src="art_feature/chaos.png" alt="Chaos">
-					</div>
-					<div class="img-item">
-						<img src="art_feature/so_long_and_thanks_for_all_the_grunts.png" alt="So Long, and Thanks for All the Grunts">
-					</div>
-					<div class="img-item">
-						<img src="art_feature/heaven_and_earth.png" alt="HEAVEN//EARTH">
-					</div>
+					<img src="art_feature/dont_be_afraid_of_the_dark.png" alt="Don't Be Afraid Of the Dark">
+					<img src="art_feature/chaos.png" alt="Chaos">
+					<img src="art_feature/so_long_and_thanks_for_all_the_grunts.png" alt="So Long, and Thanks for All the Grunts">
+					<img src="art_feature/heaven_and_earth.png" alt="HEAVEN//EARTH">
 				</div>
 				<label for="art-AAAt"><h2>AAA Tiles</h2></label>
 				<input type="checkbox" class="art-items" id="art-AAAt">
 				<div class="art-content">
-					<div class="img-item">
-						<img src="art_AAA_tiles/dia_blue.png" alt="Blue Diamond">
-					</div>
-					<div class="img-item">
-						<img src="art_AAA_tiles/hex_brown.png" alt="Brown Hexagon">
-					</div>
-					<div class="img-item">
-						<img src="art_AAA_tiles/sqr_green.png" alt="Green Square">
-					</div>
-					<div class="img-item">
-						<img src="art_AAA_tiles/trap_orange.png" alt="Orange Trapezoid">
-					</div>
-					<div class="img-item">
-						<img src="art_AAA_tiles/tri_purple.png" alt="Purple Triangle">
-					</div>
-					<div class="img-item">
-						<img src="art_AAA_tiles/wed_red.png" alt="Red Wedge">
-					</div>
+					<img src="art_AAA_tiles/dia_blue.png" alt="Blue Diamond">
+					<img src="art_AAA_tiles/hex_brown.png" alt="Brown Hexagon">
+					<img src="art_AAA_tiles/sqr_green.png" alt="Green Square">
+					<img src="art_AAA_tiles/trap_orange.png" alt="Orange Trapezoid">
+					<img src="art_AAA_tiles/tri_purple.png" alt="Purple Triangle">
+					<img src="art_AAA_tiles/wed_red.png" alt="Red Wedge">
 				</div>
 				<label for="art-AAAo"><h2>AAA Originals</h2></label>
 				<input type="checkbox" class="art-items" id="art-AAAo">
 				<div class="art-content">
-					<div class="img-item">
-						<img src="art_AAA/river_deaths.png" alt="River Deaths?">
-					</div>
-					<div class="img-item">
-						<img src="art_AAA/brain_drain.png" alt="Brain Drain">
-					</div>
-					<div class="img-item">
-						<img src="art_AAA/blue_001.png" alt="Blue 001">
-					</div>
-					<div class="img-item">
-						<img src="art_AAA/blue_002.png" alt="Blue 002">
-					</div>
-					<div class="img-item">
-						<img src="art_AAA/orange_001.png" alt="Orange 001">
-					</div>
+					<img src="art_AAA/river_deaths.png" alt="River Deaths?">
+					<img src="art_AAA/brain_drain.png" alt="Brain Drain">
+					<img src="art_AAA/blue_001.png" alt="Blue 001">
+					<img src="art_AAA/blue_002.png" alt="Blue 002">
+					<img src="art_AAA/orange_001.png" alt="Orange 001">
 				</div>
 				<label for="art-render"><h2>3D Render</h2></label>
 				<input type="checkbox" class="art-items" id="art-render">
 				<div class="art-content">
-					<div class="img-item">
-						<img src="art_render/falcon_high_poly.png" alt="Halo Falcon (High Poly)">
-					</div>
-					<div class="img-item">
-						<img src="art_render/scorpion_high_poly.png" alt="Halo Scorpion (High Poly)">
-					</div>
-					<div class="img-item">
-						<img src="art_render/cubic_chess_set.png" alt="Cubic Chess Set">
-					</div>
-					<div class="img-item">
-						<img src="art_render/inspector.png" alt="Inspector">
-					</div>
-					<div class="img-item">
-						<img src="art_render/promethean.png" alt="Promethean">
-					</div>
-					<div class="img-item">
-						<img src="art_render/odst_helmet.png" alt="ODST Helmet">
-					</div>
+					<img src="art_render/falcon_high_poly.png" alt="Halo Falcon (High Poly)">
+					<img src="art_render/scorpion_high_poly.png" alt="Halo Scorpion (High Poly)">
+					<img src="art_render/cubic_chess_set.png" alt="Cubic Chess Set">
+					<img src="art_render/inspector.png" alt="Inspector">
+					<img src="art_render/promethean.png" alt="Promethean">
+					<img src="art_render/odst_helmet.png" alt="ODST Helmet">
 				</div>
 				<label for="art-drawn"><h2>Traditional Media</h2></label>
 				<input type="checkbox" class="art-items" id="art-drawn">
 				<div class="art-content">
-					<div class="img-item">
-						<img src="art_drawn/holographic_chess.png" alt="Holographic Chess">
-					</div>
-					<div class="img-item">
-						<img src="art_drawn/presenting.png" alt="Presenting">
-					</div>
-					<div class="img-item">
-						<img src="art_drawn/hummingbird.jpg" alt="Hummingbird">
-					</div>
-					<div class="img-item">
-						<img src="art_drawn/morning_mists.png" alt="Morning Mists">
-					</div>
-					<div class="img-item">
-						<img src="art_drawn/watching.png" alt="Watching">
-					</div>
-					<div class="img-item">
-						<img src="art_drawn/stag.jpg" alt="Stag">
-					</div>
-					<div class="img-item">
-						<img src="art_drawn/dreamweaver.png" alt="Dreamweaver">
-					</div>
+					<img src="art_drawn/holographic_chess.png" alt="Holographic Chess">
+					<img src="art_drawn/presenting.png" alt="Presenting">
+					<img src="art_drawn/hummingbird.jpg" alt="Hummingbird">
+					<img src="art_drawn/morning_mists.png" alt="Morning Mists">
+					<img src="art_drawn/watching.png" alt="Watching">
+					<img src="art_drawn/stag.jpg" alt="Stag">
+					<img src="art_drawn/dreamweaver.png" alt="Dreamweaver">
 				</div>
 				<label for="art-photo"><h2>Photography</h2></label>
 				<input type="checkbox" class="art-items" id="art-photo">
 				<div class="art-content">
-					<div class="img-item">
-						<img src="art_photo/nap_cantwell.jpg" alt="Nap Cantwell">
-					</div>
-					<div class="img-item">
-						<img src="art_photo/pinecone.jpg" alt="Pinecone">
-					</div>
-					<div class="img-item">
-						<img src="art_photo/exit_38.jpg" alt="Exit 38">
-					</div>
-					<div class="img-item">
-						<img src="art_photo/lotus.jpg" alt="Lotus">
-					</div>
-					<div class="img-item">
-						<img src="art_photo/sunset_at_crater_lake.jpg" alt="Sunset at Crater Lake">
-					</div>
-					<div class="img-item">
-						<img src="art_photo/mirror_balls.jpg" alt="Mirror Balls">
-					</div>
+					<img src="art_photo/nap_cantwell.jpg" alt="Nap Cantwell">
+					<img src="art_photo/pinecone.jpg" alt="Pinecone">
+					<img src="art_photo/exit_38.jpg" alt="Exit 38">
+					<img src="art_photo/lotus.jpg" alt="Lotus">
+					<img src="art_photo/sunset_at_crater_lake.jpg" alt="Sunset at Crater Lake">
+					<img src="art_photo/mirror_balls.jpg" alt="Mirror Balls">
 				</div>
 			</div>
 		</div>

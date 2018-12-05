@@ -1,4 +1,17 @@
 <!DOCTYPE html>
+<!--
+	Stuff to do:
+
+	- Images need to expand when clicked
+		> interface for this needs to be planned
+	- Content for References and Miscellanea need to be populated
+	- Scrollbars ideally will be replaced with alternative graphics
+	- Menu headers should scale with view height
+	- Translation for opening animation doesn't always scale properly
+	- Colors need changing for most hover effects
+	- Add more stuff, always
+	- Hosting!
+-->
 <html>
 <head>
 	<title>Personal Website of Drew Barnett</title>
@@ -30,8 +43,8 @@
 
 		p {
 			font: 16px/1.25 'Varela Round', sans serif;
-			color: white;
-			text-shadow: 0 0 4px black;
+			color: black;
+			text-shadow: 0 0 4px white;
 		}
 
 		path { fill: white; }
@@ -149,6 +162,8 @@
 
 		.tab-button:hover h1 { text-shadow: 0 0 12px white; }
 
+		.tab-content input + label:hover h2 { text-shadow: 0 0 10px darkgreen; }
+
 		/* Conditional Style Definitions */
 
 		[name=menu-group]:checked + .tab-button:hover { transform: none; }
@@ -217,7 +232,7 @@
 	<div class="page-content">
 		<input type="radio" id="tab1" name="menu-group" checked>
 		<label for="tab1" class="tab-button">
-			<h1>Readme</h1>
+			<h1>ReadMe</h1>
 		</label>
 		<div class="tab-content">
 			<img src="Drew.jpg" alt="Portrait!" height="400">
@@ -226,7 +241,7 @@
 				<h2>?</h2>
 			</label>
 			<div class="rm-content">
-				<p>This section is the ReadMe. Content is mostly words, probably* words like "programmer", "creator", or maybe "just a really great all-around rad dude", if that's your flavor. Further sections include Logica, Creata, Referentia, and Miscellanea.</p>
+				<p>This section is the ReadMe. Content is mostly words, probably* words like "programmer", "creator", or maybe "just a really great all-around rad dude", if that's your flavor. Further sections include Quanta, Qualia, References, and Miscellanea.</p>
 				<p>* not actually</p>
 			</div>
 			<input type="radio" id="rm-two" name="rm-group">
@@ -234,7 +249,7 @@
 				<h2>??</h2>
 			</label>
 			<div class="rm-content">
-				<p>Logica covers work relating to logic, mathematics, programming, and computation. Creata covers work relating to art, music, writing, and philosophy. Referentia covers content links to various things that aren't mine, but I think are worth checking out. Miscellanea is, I believe, self-explanitory.</p>
+				<p>Quanta covers work relating to programming, mechanical design, and computation. Qualia covers work relating to visual art, music, and writing. References covers content links to various things that aren't mine, but I think are worth checking out. Miscellanea is, I believe, self-explanitory.</p>
 				<p>If you're reading this, it is probably because you are either (a) a friend of mine, (b) considering hiring me, or (c) interested in using some of my work for your own work. As such, this website will serve primarily as a place to collect various pieces of my work from over the years, and curate it all in one central place. In addition, all works collected here will (eventually) encode Creative Commons licenses to encourage their use by the general public. Beyond that, it will serve as a platform for the dissemination of curiosity, both practical and abstract. Stay tuned, and stay happy.</p>
 			</div>
 			<input type="radio" id="rm-three" name="rm-group">
@@ -250,31 +265,31 @@
 		</div>
 		<input type="radio" id="tab2" name="menu-group">
 		<label for="tab2" class="tab-button">
-			<h1>Logica</h1>
+			<h1>Quanta</h1>
 		</label>
 		<div class="tab-content">
-			<input type="checkbox" class="code-group" id="code-site">
+			<input type="radio" id="code-site" name="code-group" checked>
 			<label for="code-site" class="code-items">
 				<h2>Website</h2>
 			</label>
 			<div class="code-content">
-				<p>This website was coded by hand! It is built entirely with HTML5/CSS3, intentionally avoiding the use of any scripting. You can view the source code either by using your browser's inspector, or by checking out <a href="https://bitbucket.org/helioseven/h7_website">the git repository</a> online.</p>
+				<p>This website was coded by hand! As with all things on the web, it is a constant work in progress. Currently it is built entirely with HTML5/CSS3, intentionally avoiding the use of any scripting. You can view the source code either by using your browser's inspector, or by checking out <a href="https://bitbucket.org/helioseven/h7_website">the git repository</a> online.</p>
 			</div>
-			<input type="checkbox" class="code-group" id="code-AAA">
+			<input type="radio" id="code-AAA" name="code-group">
 			<label for="code-AAA" class="code-items">
 				<h2>AAA Project</h2>
 			</label>
 			<div class="code-content">
-				<p>An Angular Adventure is the working title of a 2D run-and-jump platformer game. AAA coalesced into a meaningful project in mid-2015, but has its origins in a series of collaborative artworks produced by my best friend and I, stretching back to high school in the late 2000s (see Creata > AAA). The game is being built on the Unity engine, and <a href="https://bitbucket.org/micaharvey/an_angular_adventure">the git repository</a> is available online.</p>
+				<p>An Angular Adventure is the working title of a 2D run-and-jump platformer game. AAA coalesced into a meaningful project in mid-2015, but has its origins in a series of collaborative artworks produced by my best friend and I, stretching back to high school in the late 2000s (see Qualia > AAA). The game is being built on the Unity engine, and <a href="https://bitbucket.org/micaharvey/an_angular_adventure">the git repository</a> is available online.</p>
 			</div>
-			<input type="checkbox" class="code-group" id="code-goai">
+			<input type="radio" id="code-goai" name="code-group">
 			<label for="code-goai" class="code-items">
 				<h2>Go AI</h2>
 			</label>
 			<div class="code-content">
-				<p>Link and info will go here.</p>
+				<p>I have been teaching at the <a href="http://www.seattlego.org">Seattle Go Center</a> for some while now, and will be teaching a new class related to machine learning in Go coming this new year. Our curriculum will be based on a <a href="https://www.manning.com/books/deep-learning-and-the-game-of-go">soon-to-be published book</a> and we hope to be recording lectures along with a communally-available git for those unable to attend in person to be able to follow. Our current launch date is set for January 9th, please be patient!</p>
 			</div>
-			<input type="checkbox" class="code-group" id="code-misc">
+			<input type="radio" id="code-misc" name="code-group">
 			<label for="code-misc" class="code-items">
 				<h2>Project Fragments</h2>
 			</label>
@@ -284,20 +299,21 @@
 		</div>
 		<input type="radio" id="tab3" name="menu-group">
 		<label for="tab3" class="tab-button">
-			<h1>Creata</h1>
+			<h1>Qualia</h1>
 		</label>
 		<div class="tab-content">
-			<input type="checkbox" class="art-group" id="art-feature">
+			<input type="radio" id="art-feature" name="art-group" checked>
 			<label for="art-feature" class="art-items">
 				<h2>Featured</h2>
 			</label>
 			<div class="art-content">
 				<img src="art_feature/dont_be_afraid_of_the_dark.png" alt="Don't Be Afraid Of the Dark">
-				<img src="art_feature/chaos.png" alt="Chaos">
+				<img src="art_feature/river_deaths.png" alt="River Deaths?">
 				<img src="art_feature/so_long_and_thanks_for_all_the_grunts.png" alt="So Long, and Thanks for All the Grunts">
-				<img src="art_feature/heaven_and_earth.png" alt="HEAVEN//EARTH">
+				<img src="art_feature/huynh_thanh_my.png" alt="Huynh Thanh My">
+				<img src="art_feature/sparrowhawk_final_texture.png" alt="Sparrowhawk Final">
 			</div>
-			<input type="checkbox" class="art-group" id="art-AAAt">
+			<input type="radio" id="art-AAAt" name="art-group">
 			<label for="art-AAAt" class="art-items">
 				<h2>AAA Tiles</h2>
 			</label>
@@ -309,18 +325,17 @@
 				<img src="art_AAA_tiles/tri_purple.png" alt="Purple Triangle">
 				<img src="art_AAA_tiles/wed_red.png" alt="Red Wedge">
 			</div>
-			<input type="checkbox" class="art-group" id="art-AAAo">
+			<input type="radio" id="art-AAAo" name="art-group">
 			<label for="art-AAAo" class="art-items">
 				<h2>AAA Originals</h2>
 			</label>
 			<div class="art-content">
-				<img src="art_AAA/river_deaths.png" alt="River Deaths?">
 				<img src="art_AAA/brain_drain.png" alt="Brain Drain">
 				<img src="art_AAA/blue_001.png" alt="Blue 001">
 				<img src="art_AAA/blue_002.png" alt="Blue 002">
 				<img src="art_AAA/orange_001.png" alt="Orange 001">
 			</div>
-			<input type="checkbox" class="art-group" id="art-render">
+			<input type="radio" id="art-render" name="art-group">
 			<label for="art-render" class="art-items">
 				<h2>3D Render</h2>
 			</label>
@@ -332,20 +347,21 @@
 				<img src="art_render/promethean.png" alt="Promethean">
 				<img src="art_render/odst_helmet.png" alt="ODST Helmet">
 			</div>
-			<input type="checkbox" class="art-group" id="art-drawn">
+			<input type="radio" id="art-drawn" name="art-group">
 			<label for="art-drawn" class="art-items">
 				<h2>Traditional Media</h2>
 			</label>
 			<div class="art-content">
 				<img src="art_drawn/holographic_chess.png" alt="Holographic Chess">
-				<img src="art_drawn/presenting.png" alt="Presenting">
+				<img src="art_drawn/heaven_and_earth.png" alt="HEAVEN//EARTH">
 				<img src="art_drawn/hummingbird.jpg" alt="Hummingbird">
+				<img src="art_drawn/chaos.png" alt="Chaos">
+				<img src="art_drawn/presenting.png" alt="Presenting">
 				<img src="art_drawn/morning_mists.png" alt="Morning Mists">
-				<img src="art_drawn/watching.png" alt="Watching">
 				<img src="art_drawn/stag.jpg" alt="Stag">
 				<img src="art_drawn/dreamweaver.png" alt="Dreamweaver">
 			</div>
-			<input type="checkbox" class="art-group" id="art-photo">
+			<input type="radio" id="art-photo" name="art-group">
 			<label for="art-photo" class="art-items">
 				<h2>Photography</h2>
 			</label>
@@ -360,7 +376,7 @@
 		</div>
 		<input type="radio" id="tab4" name="menu-group">
 		<label for="tab4" class="tab-button">
-			<h1>Referentia</h1>
+			<h1>References</h1>
 		</label>
 		<div class="tab-content">
 			<p>Some links go here at some point.</p>

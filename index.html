@@ -6,10 +6,10 @@
 		> interface for this needs to be planned
 	- Content for References and Miscellanea need to be populated
 	- Scrollbars ideally will be replaced with alternative graphics
-	- Menu headers should scale with view height
 	- Translation for opening animation doesn't always scale properly
-	- Colors need changing for most hover effects
-	- Add more stuff, always
+	- Build functionality for tab content menu headers having tooltip on hover
+	- Add more content, always
+	- Media queries for responsiveness
 	- Hosting!
 -->
 <html>
@@ -26,7 +26,7 @@
 		}
 
 		body, html {
-			background-color: black;
+			background-color: #000000;
 			margin: 0;
 			padding: 0;
 		}
@@ -37,17 +37,18 @@
 			display: block;
 			padding: 0;
 			margin: 10px auto;
-			border: 5px solid black;
-			box-shadow: 0 0 10px 4px white;
+			border: 5px solid #000000;
+			box-shadow: 0 0 10px 4px #ffffff;
+			transition: box-shadow 0.5 ease;
 		}
 
 		p {
-			font: 16px/1.25 'Varela Round', sans serif;
-			color: black;
-			text-shadow: 0 0 4px white;
+			font: 2vh/1.25 'Varela Round', sans serif;
+			color: #ffffff;
+			text-shadow: 0 0 0.75vh #000000;
 		}
 
-		path { fill: white; }
+		path { fill: #ffffff; }
 
 		/* Specific Style Definitions */
 
@@ -61,7 +62,7 @@
 			width: 60%;
 			height: 100%;
 			opacity: 0;
-			background-image: linear-gradient(to right, black, gray 50%, lightgray);
+			background-image: linear-gradient(to right, #000000, #1a1a1a 50%, #3f3f3f);
 			transition: opacity 1.5s linear 2s;
 		}
 
@@ -69,11 +70,11 @@
 
 		.tab-button h1 {
 			display: block;
-			padding: 12px;
+			padding: 1.89vh;
 			margin: 0;
-			font: bold 32px/1 'KoHo', sans serif;
-			color: black;
-			text-shadow: 0 0 12px silver;
+			font: bold 5vh/1 'KoHo', sans serif;
+			color: #000000;
+			text-shadow: 0 0 1.89vh #c0c0c0;
 			transition: all 0.5s ease;
 		}
 
@@ -102,15 +103,15 @@
 
 		.tab-content label {
 			flex: 0 0 auto;
-			margin: 1vh auto;
+			margin: 0.5vh auto;
 		}
 
 		.tab-content label h2 {
 			display: block;
-			padding: 6px;
+			padding: 0.94vh;
 			margin: 0;
-			font: 24px/1 'Nunito', sans serif;
-			text-shadow: 0 0 6px silver;
+			font: 3.75vh/1 'Nunito', sans serif;
+			text-shadow: 0 0 0.94vh #c0c0c0;
 			transition: all 0.5s ease;
 		}
 
@@ -156,22 +157,24 @@
 			border-color: transparent;
 		}
 
+		img:hover { box-shadow: 0 0 10px 4px #ccffcc; }
+
 		.logo:hover > #h7corona { transform: rotate(360deg); }
 
-		.tab-button:hover { transform: translateX(15px); }
+		.tab-button:hover { transform: translateX(2em); }
 
-		.tab-button:hover h1 { text-shadow: 0 0 12px white; }
+		.tab-button:hover h1 { text-shadow: 0 0 1.88vh #ffffff; }
 
-		.tab-content input + label:hover h2 { text-shadow: 0 0 10px darkgreen; }
+		.tab-content input + label:hover h2 { text-shadow: 0 0 1.56vh #8dc08d; }
 
 		/* Conditional Style Definitions */
 
 		[name=menu-group]:checked + .tab-button:hover { transform: none; }
 
 		[name=menu-group]:checked + .tab-button h1 {
-			padding: 24px;
-			font-size: 48px;
-			text-shadow: 0 0 24px white;
+			padding: 3.75vh;
+			font-size: 7.5vh;
+			text-shadow: 0 0 3.75vh #ffffff;
 			z-index: 2;
 		}
 
@@ -181,16 +184,18 @@
 		}
 
 		.tab-content input:checked + label h2 {
-			padding: 8px;
-			font-size: 28px;
+			padding: 0.63vh;
+			font-size: 4.38vh;
 			font-weight: bold;
-			text-shadow: 0 0 8px white;
+			text-shadow: 0 0 0.63vh #ffffff;
 		}
 
 		.tab-content input:checked + label + div {
 			display: block;
 			flex: 0 1 auto;
 		}
+
+		.tab-content input:checked + label:hover h2 { text-shadow: 0 0 0.63vh #ffcccc; }
 
 		#hidden-checkbox:checked ~ label .logo {
 			pointer-events: none;

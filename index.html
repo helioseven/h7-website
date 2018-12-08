@@ -4,8 +4,7 @@
 
 	- Images need to have their own fixed frame for expansion when clicked on
 		> interface for this needs to be planned (closing? cycling?)
-	- Translation for opening animation doesn't always scale properly
-	- Other parts of overall layout scaling need to be adjusted/fixed
+	- Flexbox layout for tab content items needs to be fixed for non-full-width items
 	- Build functionality for tab content menu headers having tooltip on hover
 	- Scrollbars ideally will be replaced with alternative graphics
 	- Content for Reference and Miscellanea need to be populated
@@ -22,29 +21,48 @@
 		/* General Style Definitions */
 
 		* {
+			margin: 0;
+			padding: 0;
 			box-sizing: border-box;
 			overflow: hidden;
 		}
 
-		body, html {
+		body {
+			display: grid;
+			grid-template: 50vh 50vh / 50vh 1fr 1fr;
 			background-color: #000000;
-			margin: 0;
-			padding: 0;
 		}
 
 		input { display: none; }
 
 		img {
 			display: block;
-			padding: 0;
-			margin: 10px auto;
 			border: 5px solid #000000;
+			margin: 10px;
 			box-shadow: 0 0 10px 4px #ffffff;
 			transition: box-shadow 0.5 ease;
 		}
 
+		h1 {
+			display: block;
+			padding: 1.89vh;
+			font: bold 5vh/1 'KoHo', sans serif;
+			color: #000000;
+			text-shadow: 0 0 1.89vh #c0c0c0;
+			transition: all 0.5s ease;
+		}
+
+		h2 {
+			display: block;
+			padding: 0.94vh;
+			font: 3.75vh/1 'Nunito', sans serif;
+			text-shadow: 0 0 0.94vh #c0c0c0;
+			transition: all 0.5s ease;
+		}
+
 		p {
-			font: 2vh/1.25 'Varela Round', sans serif;
+			padding: 0.4vh 0;
+			font: 1.6vh/1.25 'Varela Round', sans serif;
 			color: #ffffff;
 			text-shadow: 0 0 0.75vh #000000;
 		}
@@ -53,41 +71,39 @@
 
 		/* Specific Style Definitions */
 
-		.page-content {
+		.nav-menu {
 			display: flex;
 			flex-flow: column nowrap;
 			justify-content: center;
-			position: fixed;
-			top: 0;
-			right: 0;
-			width: 60%;
-			height: 100%;
+			grid-column: 1 / 2;
+			grid-row: 2 / 3;
+			opacity: 0;
+			transition: opacity 1.5s linear 2s;
+		}
+
+		.menu-tab {
+			flex: 0 0 auto;
+			transform: none;
+			transition: transform 0.5s ease;
+		}
+
+		.page-content {
+			grid-column: 2 / 4;
+			grid-row: 1 / 3;
+			padding: 10px;
 			opacity: 0;
 			background-image: linear-gradient(to right, #000000, #1a1a1a 50%, #3f3f3f);
 			transition: opacity 1.5s linear 2s;
 		}
 
-		.tab-button { transform: none; }
-
-		.tab-button h1 {
-			display: block;
-			padding: 1.89vh;
-			margin: 0;
-			font: bold 5vh/1 'KoHo', sans serif;
-			color: #000000;
-			text-shadow: 0 0 1.89vh #c0c0c0;
-			transition: all 0.5s ease;
-		}
-
 		.tab-content {
-			display: flex;
-			flex-flow: column nowrap;
-			justify-content: center;
 			position: absolute;
 			top: 0;
-			left: 320px;
-			right: 25px;
 			bottom: 0;
+			display: flex;
+			flex-flow: column nowrap;
+			align-items: center;
+			justify-content: center;
 			opacity: 0;
 			background: transparent;
 			text-align: center;
@@ -105,15 +121,6 @@
 		.tab-content label {
 			flex: 0 0 auto;
 			margin: 0.5vh auto;
-		}
-
-		.tab-content label h2 {
-			display: block;
-			padding: 0.94vh;
-			margin: 0;
-			font: 3.75vh/1 'Nunito', sans serif;
-			text-shadow: 0 0 0.94vh #c0c0c0;
-			transition: all 0.5s ease;
 		}
 
 		.tab-content label + div {
@@ -137,10 +144,10 @@
 			position: fixed;
 			top: 0;
 			left: 0;
+			right: 0;
 			height: 100vh;
 			width: auto;
-			transform-origin: center center;
-			transform: translate(calc(50vw - 50%), calc(50vh - 50%));
+			margin: 0 auto;
 		}
 
 		#h7button { transform-origin: inherit; }
@@ -153,6 +160,7 @@
 
 		/* Event-Triggered Style Definitions */
 
+		/* This bit exists because Chrome is dumb and defaults standardization is poorly done. */
 		*:focus {
 			outline: none;
 			box-shadow: none;
@@ -161,26 +169,38 @@
 
 		img:hover { box-shadow: 0 0 10px 4px #ccffcc; }
 
+		.menu-tab:hover { transform: translateX(2em); }
+
+		.menu-tab:hover h1 { text-shadow: 0 0 1.88vh #ffffff; }
+
+		.tab-content label:hover h2 { text-shadow: 0 0 1.56vh #8dc08d; }
+
 		.logo:hover > #h7corona { transform: rotate(360deg); }
-
-		.tab-button:hover { transform: translateX(2em); }
-
-		.tab-button:hover h1 { text-shadow: 0 0 1.88vh #ffffff; }
-
-		.tab-content input + label:hover h2 { text-shadow: 0 0 1.56vh #8dc08d; }
 
 		/* Conditional Style Definitions */
 
-		[name=menu-group]:checked + .tab-button:hover { transform: none; }
+		#tab1:checked ~ .nav-menu .readme:hover,
+		#tab2:checked ~ .nav-menu .quanta:hover,
+		#tab3:checked ~ .nav-menu .qualia:hover,
+		#tab4:checked ~ .nav-menu .ref:hover,
+		#tab5:checked ~ .nav-menu .misc:hover { transform: none; }
 
-		[name=menu-group]:checked + .tab-button h1 {
+		#tab1:checked ~ .nav-menu .readme h1,
+		#tab2:checked ~ .nav-menu .quanta h1,
+		#tab3:checked ~ .nav-menu .qualia h1,
+		#tab4:checked ~ .nav-menu .ref h1,
+		#tab5:checked ~ .nav-menu .misc h1 {
 			padding: 3.75vh;
 			font-size: 7.5vh;
 			text-shadow: 0 0 3.75vh #ffffff;
 			z-index: 2;
 		}
 
-		[name=menu-group]:checked + .tab-button + .tab-content {
+		#tab1:checked ~ .page-content .readme,
+		#tab2:checked ~ .page-content .quanta,
+		#tab3:checked ~ .page-content .qualia,
+		#tab4:checked ~ .page-content .ref,
+		#tab5:checked ~ .page-content .misc {
 			opacity: 1;
 			z-index: 1;
 		}
@@ -210,13 +230,14 @@
 
 		#hidden-checkbox:checked ~ label .logo > #h7corona { opacity: 0.0; }
 
-		#hidden-checkbox:checked + .page-content { opacity: 1.0; }
+		#hidden-checkbox:checked ~ .nav-menu,
+		#hidden-checkbox:checked ~ .page-content { opacity: 1.0; }
 
 		/* Keyframe Animations */
 
 		@keyframes unlock_spin {
-			from { transform: translateX(calc(50vw - 50%)) scale(1, 1) rotate(0deg); }
-			to { transform: translateX(calc(50vw - 50%)) scale(2, 2) rotate(360deg); }
+			from { transform: scale(1, 1) rotate(0deg); }
+			to { transform: scale(2, 2) rotate(360deg); }
 		}
 
 		@keyframes unlock_spin_inverse {
@@ -230,89 +251,113 @@
 		}
 
 		@keyframes slide_left {
-			from { transform: translateX(calc(50vw - 50%)); }
+			from { transform: none; }
 			/* the value used here is not precisely valid for all media */
-			to { transform: translateX(calc(50vw - 100%)); }
+			to { transform: translate(calc(25vh - 50vw), -25vh); }
 		}
 	</style>
 </head>
+
 <body>
-	<form autocomplete="off"><input type="checkbox" id="hidden-checkbox">
-	<div class="page-content">
-		<input type="radio" id="tab1" name="menu-group" checked>
-		<label for="tab1" class="tab-button">
+	<input type="radio" id="tab1" name="menu-group" checked>
+	<input type="radio" id="tab2" name="menu-group">
+	<input type="radio" id="tab3" name="menu-group">
+	<input type="radio" id="tab4" name="menu-group">
+	<input type="radio" id="tab5" name="menu-group">
+
+	<input type="checkbox" id="hidden-checkbox" autocomplete="off">
+
+	<div class="nav-menu">
+		<label for="tab1" class="menu-tab readme">
 			<h1>ReadMe</h1>
 		</label>
-		<div class="tab-content">
+		<label for="tab2" class="menu-tab quanta">
+			<h1>Quanta</h1>
+		</label>
+		<label for="tab3" class="menu-tab qualia">
+			<h1>Qualia</h1>
+		</label>
+		<label for="tab4" class="menu-tab ref">
+			<h1>Reference</h1>
+		</label>
+		<label for="tab5" class="menu-tab misc">
+			<h1>Miscellanea</h1>
+		</label>
+	</div>
+
+	<div class="page-content">
+		<div class="tab-content readme">
 			<img src="Drew.jpg" alt="Portrait!" height="400">
 			<input type="radio" id="rm-one" name="rm-group" checked>
-			<label for="rm-one" class="rm-items">
+			<label for="rm-one">
 				<h2>?</h2>
 			</label>
 			<div class="rm-content">
-				<p>This section is the ReadMe. Content is mostly words, probably* words like "programmer", "creator", or maybe "just a really great all-around rad dude", if that's your flavor. Further sections include Quanta, Qualia, Reference, and Miscellanea.</p>
-				<p>* not actually</p>
+				<p>Hello! You've found yourself a web page. I hope you enjoy it.</p>
+				<p>This section is the ReadMe. Further sections include Quanta, Qualia, Reference, and Miscellanea.</p>
 			</div>
 			<input type="radio" id="rm-two" name="rm-group">
-			<label for="rm-two" class="rm-items">
+			<label for="rm-two">
 				<h2>??</h2>
 			</label>
 			<div class="rm-content">
-				<p>Quanta covers work relating to programming, mechanical design, and computation. Qualia covers work relating to visual art, music, and writing. Reference covers content links to various things that aren't mine, but I think are worth checking out. Miscellanea is, I believe, self-explanitory.</p>
+				<p>Readme consists mostly of words, probably* words like "programmer", "creator", or maybe "just a really great all-around rad dude", if that's your flavor. Quanta covers work relating to programming, mechanical design, and computation. Qualia includes works in the visual, literary, and musical arts. Reference is a bunch of links to various things that aren't mine, but I think are worth checking out. Miscellanea is, I believe, self-explanitory.</p>
 				<p>If you're reading this, it is probably because you are either (a) a friend of mine, (b) considering hiring me, or (c) interested in using some of my work for your own work. As such, this website will serve primarily as a place to collect various pieces of my work from over the years, and curate it all in one central place. In addition, all works collected here will (eventually) encode Creative Commons licenses to encourage their use by the general public. Beyond that, it will serve as a platform for the dissemination of curiosity, both practical and abstract. Stay tuned, and stay happy.</p>
+				<p>* not actually</p>
 			</div>
 			<input type="radio" id="rm-three" name="rm-group">
-			<label for="rm-three" class="rm-items">
+			<label for="rm-three">
 				<h2>???</h2>
 			</label>
 			<div class="rm-content">
-				<p>Drew Emile Barnett. Originally born in 1992 on the east coast of the US, but grew up in and considers self native to Seattle, WA. Adventurer, ex-hippie, good-timer (weirdo? quite possibly), occasionally manic self-publicist, terrible bad at casual grammars, generally thought to be completely out to lunch. Might know a few things about what's really going on, but please don't tell anyone. Owns too many bicycles, and is ever so slightly worried about it, but sincerely hopes that you're not and that you manage to have a really great day nonetheless.</p>
+				<p>HelioSeven. Drew Barnett. Originally born in 1992, on the east coast of the US, however grew up in and considers self native to Seattle, WA. Adventurer, ex-hippie, good-timer (weirdo? quite possibly), occasionally manic self-publicist, terrible bad at casual grammars, generally thought to be completely out to lunch. Might know a few things about what's really going on, but please don't tell anyone. Owns too many bicycles, and is ever so slightly worried about it, but sincerely hopes that you're not and that you manage to have a really great day nonetheless.</p>
 				<p>True? Well, clearly some of it, but then some of it perhaps less clearly so. Some of it is also probably nonsense, that language that merely has yet to find the words that you'll understand. To quote Herbert Br&#252;n, "Anticommunication is an attempt at respectfully teaching language to say [something]." Thus I hope you can forgive the obfuscation, because talking about oneself is hard, and my doing so is an attempt to say something perhaps less intuitive, but no less meaningful.</p>
 				<p>Concomitant to all that, I have one decently meaningful self-descriptor: I'm a learner. By extension I am also a meta-learner, in both mechanical and organic media. I worked for several years in the public school system, and learned a lot about at-scale institutional practices in both pedagogy and assessment of today's children. I spent several years earning a degree at Evergreen, and I learned a great deal about the history and theory of computing and automation. And every day I'm reading books, chatting up strangers, and introspecting through contemplation, because I deeply and profoundly believe in John Dewey's "full meaning of the present life" being embodied with each and every day.</p>
 				<p>If all that isn't a reasonably good idea of who I am, then hopefully the rest of this website will be. Please, do poke around.</p>
 			</div>
+			<input type="radio" id="rm-four" name="rm-group">
+			<label for="rm-four">
+				<h2>Contact</h2>
+			</label>
+			<div class="rm-content">
+				<p>If you don't already have other forms of contact with me, <a href="mailto:lutrasis@gmail.com">send me an email</a>!</p>
+			</div>
 		</div>
-		<input type="radio" id="tab2" name="menu-group">
-		<label for="tab2" class="tab-button">
-			<h1>Quanta</h1>
-		</label>
-		<div class="tab-content">
+
+		<div class="tab-content quanta">
 			<input type="radio" id="code-site" name="code-group" checked>
-			<label for="code-site" class="code-items">
+			<label for="code-site">
 				<h2>Website</h2>
 			</label>
 			<div class="code-content">
-				<p>This website was written by hand with HTML5 and CSS3, intentionally avoiding the use of any scripting. As with all things on the web, it is a constant work in progress. You can view the source code either by using your browser's inspector, or by checking out <a href="https://bitbucket.org/helioseven/h7_website">the git repository</a>.</p>
+				<p>This website was written by hand with HTML5 and CSS3, intentionally avoiding the use of any scripting languages. As with all things on the web, it is a constant work in progress. You can view the source code either by using your browser's inspector, or by checking out <a href="https://bitbucket.org/helioseven/h7_website">the git repository</a>.</p>
 			</div>
 			<input type="radio" id="code-AAA" name="code-group">
-			<label for="code-AAA" class="code-items">
+			<label for="code-AAA">
 				<h2>AAA Project</h2>
 			</label>
 			<div class="code-content">
 				<p>An Angular Adventure is the working title of a 2D run-and-jump platformer game. AAA coalesced into a meaningful project in mid-2015, but has its origins in a series of collaborative artworks produced by my best friend and I, stretching back to high school in the late 2000s (see Qualia > AAA). The game is being built on the Unity engine, and <a href="https://bitbucket.org/micaharvey/an_angular_adventure">the git repository</a> is available.</p>
 			</div>
 			<input type="radio" id="code-goai" name="code-group">
-			<label for="code-goai" class="code-items">
+			<label for="code-goai">
 				<h2>Go AI</h2>
 			</label>
 			<div class="code-content">
 				<p>I have been teaching at the <a href="http://www.seattlego.org">Seattle Go Center</a> for some while now, and will be teaching a new class related to machine learning in Go coming this new year. Our curriculum will be based on a <a href="https://www.manning.com/books/deep-learning-and-the-game-of-go">soon-to-be published book</a> and we hope to be recording lectures along with a communally-driven code repository for those unable to attend our sessions in person to be able to follow along. Our current launch date is set for January 9th, so please be patient!</p>
 			</div>
 			<input type="radio" id="code-misc" name="code-group">
-			<label for="code-misc" class="code-items">
+			<label for="code-misc">
 				<h2>Project Fragments</h2>
 			</label>
 			<div class="code-content">
 				<p>Content for this section needs to be fetched from old machines, so it may be a bit before these is content here.</p>
 			</div>
 		</div>
-		<input type="radio" id="tab3" name="menu-group">
-		<label for="tab3" class="tab-button">
-			<h1>Qualia</h1>
-		</label>
-		<div class="tab-content">
+
+		<div class="tab-content qualia">
 			<input type="radio" id="art-feature" name="art-group" checked>
-			<label for="art-feature" class="art-items">
+			<label for="art-feature">
 				<h2>Featured</h2>
 			</label>
 			<div class="art-content">
@@ -322,21 +367,9 @@
 				<img src="art_feature/so_long_and_thanks_for_all_the_grunts.png" alt="So Long, and Thanks for All the Grunts">
 				<img src="art_feature/huynh_thanh_my.png" alt="Huynh Thanh My">
 			</div>
-			<input type="radio" id="art-AAAt" name="art-group">
-			<label for="art-AAAt" class="art-items">
-				<h2>AAA Tiles</h2>
-			</label>
-			<div class="art-content">
-				<img src="art_AAA_tiles/dia_blue.png" alt="Blue Diamond">
-				<img src="art_AAA_tiles/hex_brown.png" alt="Brown Hexagon">
-				<img src="art_AAA_tiles/sqr_green.png" alt="Green Square">
-				<img src="art_AAA_tiles/trap_orange.png" alt="Orange Trapezoid">
-				<img src="art_AAA_tiles/tri_purple.png" alt="Purple Triangle">
-				<img src="art_AAA_tiles/wed_red.png" alt="Red Wedge">
-			</div>
-			<input type="radio" id="art-AAAo" name="art-group">
-			<label for="art-AAAo" class="art-items">
-				<h2>AAA Originals</h2>
+			<input type="radio" id="art-AAA" name="art-group">
+			<label for="art-AAA">
+				<h2>AAA Art &#38; Tiles</h2>
 			</label>
 			<div class="art-content">
 				<img src="art_AAA/brain_drain.png" alt="Brain Drain">
@@ -344,9 +377,15 @@
 				<img src="art_AAA/blue_01.png" alt="Brown 03">
 				<img src="art_AAA/blue_02.png" alt="Blue 02">
 				<img src="art_AAA/orange_01.png" alt="Orange 01">
+				<img src="art_AAA/dia_blue.png" alt="Blue Diamond">
+				<img src="art_AAA/hex_brown.png" alt="Brown Hexagon">
+				<img src="art_AAA/sqr_green.png" alt="Green Square">
+				<img src="art_AAA/trap_orange.png" alt="Orange Trapezoid">
+				<img src="art_AAA/tri_purple.png" alt="Purple Triangle">
+				<img src="art_AAA/wed_red.png" alt="Red Wedge">
 			</div>
 			<input type="radio" id="art-render" name="art-group">
-			<label for="art-render" class="art-items">
+			<label for="art-render">
 				<h2>3D Render</h2>
 			</label>
 			<div class="art-content">
@@ -359,7 +398,7 @@
 				<img src="art_render/odst_helmet.png" alt="ODST Helmet">
 			</div>
 			<input type="radio" id="art-drawn" name="art-group">
-			<label for="art-drawn" class="art-items">
+			<label for="art-drawn">
 				<h2>Ink &#38; Graphite</h2>
 			</label>
 			<div class="art-content">
@@ -373,7 +412,7 @@
 				<img src="art_drawn/dreamweaver.png" alt="Dreamweaver">
 			</div>
 			<input type="radio" id="art-photo" name="art-group">
-			<label for="art-photo" class="art-items">
+			<label for="art-photo">
 				<h2>Photography</h2>
 			</label>
 			<div class="art-content">
@@ -384,21 +423,16 @@
 				<img src="art_photo/mirror_balls.jpg" alt="Mirror Balls">
 			</div>
 		</div>
-		<input type="radio" id="tab4" name="menu-group">
-		<label for="tab4" class="tab-button">
-			<h1>Reference</h1>
-		</label>
-		<div class="tab-content">
+
+		<div class="tab-content ref">
 			<p>Some links will go here at some point.</p>
 		</div>
-		<input type="radio" id="tab5" name="menu-group">
-		<label for="tab5" class="tab-button">
-			<h1>Miscellanea</h1>
-		</label>
-		<div class="tab-content">
+
+		<div class="tab-content misc">
 			<p>Once, a goose clapped.</p>
 		</div>
 	</div>
+
 	<label for="hidden-checkbox">
 		<!-- SVG Created with Inkscape (http://www.inkscape.org/) -->
 		<svg class="logo" id="h7logo" width="1024" height="1024" viewBox="0 0 1024 1024" tabindex="1">
@@ -406,6 +440,6 @@
 			<path id="h7button" d="m435.8 632.61c0-0.61552 9.45-17.381 21-37.256s20.93-37.597 20.845-39.381c-0.085-1.7841-4.8197-10.894-10.521-20.244l-10.367-17h-43.934l-32.247 56-21.629 0.5701c-19.477 0.5134-21.502 0.23934-20.353-2.7547 1.5779-4.1118 115.11-201.16 117.26-203.52 1.62-1.777 21.98 31.002 21.903 35.264-0.0242 1.3413-9.4427 18.639-20.93 38.439l-20.886 36 20.842 0.56676c20.143 0.54776 20.967 0.74896 24.575 6 5.1045 7.4286 37.886 64.584 39.548 68.954 0.9127 2.3992-4.5756 13.866-17.23 36-27.611 48.295-22.404 43.479-47.011 43.479-11.475 0-20.864-0.5036-20.864-1.1191zm98.304 19.457c-5.6672-9.8196-10.304-18.423-10.304-19.12s23.807-42.468 52.903-92.827c29.097-50.359 53.5-93.116 54.229-95.016 1.2349-3.218-1.6679-3.4179-42.347-2.9152l-43.673 0.53964-10.179 17.456c-5.5982 9.6007-10.607 17.884-11.131 18.408-0.52372 0.52372-5.7843-7.3147-11.69-17.419l-10.738-18.371 6.6367-12.037c3.6502-6.6204 8.7522-15.412 11.338-19.537l4.701-7.5 130.95 0.0752 10.613 18.423c5.837 10.133 10.243 19.837 9.7914 21.564-0.87426 3.3432-126.65 221.83-129.26 224.53-0.84644 0.8778-6.1758-6.4382-11.843-16.258zm20.061 50.468c71.72-16.185 128.1-70.728 147-142.21 6.7257-25.44 7.5357-64.809 1.8433-89.593-16.867-73.438-70.489-129.23-142.61-148.39-16.811-4.4651-23.71-5.2039-48.593-5.2039-24.867 0-31.786 0.74-48.547 5.1923-69.037 18.338-122.51 71.682-140.74 140.4-4.577 17.254-5.3053 23.981-5.3053 49 0 24.867 0.74 31.786 5.1923 48.547 20.446 76.97 82.903 132.82 162.57 145.38 15.974 2.5173 51.269 0.92632 69.196-3.1191z"/>
 			<path id="h7corona" d="m572.61 249.51c5.0519-5.619 9.1853-11.25 9.1853-12.514 0-1.2636-6.4098-10.391-14.244-20.284-16.415-20.727-26.412-40.138-31.216-60.609-1.8557-7.9072-3.8613-14.371-4.4568-14.364-2.6853 0.0314-17.332 28.894-21.307 41.987-4.2541 14.013-3.4253 23.19 3.3344 36.92 3.4667 7.0419 6.6049 17.207 7.254 23.496l1.144 11.084 16.246 1.9507c8.9353 1.0729 18.188 2.0853 20.561 2.2498 2.876 0.1994 7.3774-3.1074 13.5-9.9172zm-163.22 40.843c21.971-10.332 56.647-19.704 80.407-21.731 9.35-0.7977 17.661-2.4504 18.469-3.6727 3.1457-4.7575 1.3421-26.227-3.0626-36.457-6.0883-14.14-14.687-20.753-41.407-31.842-26.589-11.035-43.947-22.51-56.576-37.399-13.947-16.443-17.298-24.733-18.583-45.981-0.61708-10.199-2.4434-22.264-4.0585-26.812-4.9045-13.811-33.667-38.691-48.192-41.687l-6.4099-1.322 6.0601 12.127c13.273 26.562 11.275 42.747-10.019 81.151-15.656 28.237-18.941 39.072-19.097 63-0.173 26.482 2.9923 33.67 22.07 50.117 8.2189 7.0856 17.052 16.483 19.63 20.883 5.5796 9.5252 9.1759 25.16 9.1759 39.894v10.697l16.5-11.11c9.075-6.1104 24.867-15.045 35.093-19.854zm-77.55 38.874 14.287-14.5-1.2314-10.916c-2.4548-21.762-0.0322-20.084-28.995-20.084-33.014 0-51.142-4.4004-80.546-19.552-2.1569-1.1114 5.153 19.139 11.257 31.184 2.9383 5.7985 9.5823 14.866 14.764 20.149 8.2948 8.4572 11.216 10.031 24.422 13.159 8.604 2.0378 18.411 5.9678 23 9.2167 4.4 3.1153 8.1701 5.7042 8.3781 5.7533 0.20794 0.049 6.8072-6.4358 14.665-14.411zm384.62 16.865c10.348-9.9445 16.61-21.388 18.086-33.056 0.97456-7.704-0.26962-14.879-6.069-35-5.9934-20.794-7.3214-28.699-7.4436-44.309-0.2671-34.138 5.7833-49.494 26.893-68.256 19.547-17.373 22.48-23.592 23.456-49.744 0.65456-17.541 0.1268-22.647-3.2036-31l-3.9872-10-1.4344 6c-2.0912 8.7473-10.444 22.917-18.483 31.355-9.0119 9.4592-22.52 14.388-56.479 20.606-30.429 5.5725-48.94 13.32-64.454 26.976-15.103 13.294-19.229 22.343-20.664 45.321-1.8508 29.626-4.6876 36.522-22.13 53.796l-14.793 14.65 11.521 3.2381c41.544 11.676 82.805 36.382 109.52 65.577 13.976 15.273 17.322 15.707 29.664 3.8461zm61.207 24.135c6.7343-26.972 16.234-47.633 29.144-63.388 3.8415-4.688 6.9845-9.0834 6.9845-9.7676 0-0.68422-2.925-0.7751-6.5-0.20198-43.194 6.9245-55.502 13.245-65.554 33.665-3.4285 6.9643-9.7689 16.114-14.09 20.334-4.3208 4.2192-7.8561 8.3404-7.8561 9.1583 0 3.411 20.24 32.746 23.478 34.027 1.9373 0.76642 9.036 1.4567 15.775 1.534l12.252 0.1406 6.3668-25.5zm-505.72 95.5c5.4283-29.208 20.663-66.167 36.778-89.219 10.54-15.077 10.252-17.022-3.9606-26.801-22.219-15.287-36.49-14.399-71.06 4.4211-26.824 14.604-44.289 19.631-67.776 19.511-20.965-0.1074-28.05-2.5104-45.519-15.437-15.755-11.659-26.337-15.109-41.096-13.4-16.103 1.8652-35.851 8.2777-42.52 13.807l-6 4.9741 6 0.0936c9.1646 0.143 23.199 4.9747 34.137 11.752 12.127 7.5147 18.547 17.435 32.306 49.922 13.469 31.802 24.137 45.86 45.271 59.659 13.823 9.0258 23.002 10.686 40.717 7.365 31.01-5.8135 46.33-2.4994 69.569 15.05l8 6.0412 1.3689-17.37c0.7529-9.5533 2.4561-23.22 3.7849-30.37zm534.27 96.413c4.3004-2.9774 15.048-15.313 23.884-27.413 18.183-24.901 32.578-38.123 52.229-47.978 17.953-9.0029 27.852-10.287 48.177-6.2505 25.619 5.0879 37.059 1.6426 60.857-18.328 5.8123-4.8776 12.356-12.373 14.541-16.656 2.1852-4.2831 3.7297-7.7739 3.4323-7.7573-0.2973 0.016-4.1407 1.3271-8.5407 2.9122-4.4 1.5852-15.005 2.9216-23.566 2.9699-20.244 0.1142-28.454-4.0051-55.723-27.959-24.461-21.488-39.756-30.616-58.773-35.077-25.089-5.8855-37.415-2.6985-61.926 16.012-16.853 12.864-32.979 15.262-61.512 9.1455-4.125-0.88424-7.5-1.328-7.5-0.98612s1.9045 4.9712 4.2322 10.287c6.8347 15.609 15.438 47.31 17.956 66.165 2.2135 16.573 1.5561 50.732-1.3984 72.666-1.1722 8.7024-0.94558 9.2785 4.4878 11.407 9.0103 3.5298 14.785 4.1736 28.523 3.1803 9.6536-0.69802 14.723-2.2565 20.62-6.3391zm-593.68 21.686c2.75-1.0456 10.234-5.8758 16.63-10.734 6.3966-4.8581 15.897-9.9674 21.113-11.354 9.4343-2.5084 9.4772-2.5584 8.3793-9.7662-0.60694-3.9847-1.7242-13.051-2.4828-20.148l-1.3793-12.903-12.52-7.8255c-14.716-9.1982-13.045-9.91-31.993 13.632-15.921 19.782-28.892 30.658-49.14 41.207-8.609 4.485-15.336 8.4716-14.948 8.8591 0.38756 0.38756 8.3312 2.9584 17.653 5.7129 17.761 5.2484 39.684 6.7434 48.688 3.3201zm574.02 48.199c24.972-11.779 45.139-17 65.742-17.02 8.525-8e-3 15.5-0.67348 15.5-1.4786 0-3.273-24.972-23.76-36.36-29.83-13.475-7.1819-22.186-8.1564-39.212-4.3866-6.0042 1.3294-15.725 1.8021-22.5 1.094-10.794-1.1282-11.935-0.88672-11.997 2.5382-0.0378 2.0817-2.7181 10.502-5.9561 18.713l-5.8873 14.928 8.191 12.572c4.5051 6.9147 9.0281 12.572 10.051 12.572 1.0231 0 11.116-4.3659 22.428-9.7021zm-657.44 139.75c14.449-5.4118 23.317-4.6249 59.242 5.256 31.699 8.7185 52.851 9.5054 74.133 2.7576 16.594-5.2614 27.113-14.925 37.075-34.062 12.833-24.651 19.393-29.328 57.526-41.013 1.2615-0.38654-6.5526-9.6422-17.364-20.568-28.82-29.124-51.554-66.434-61.007-100.12-1.954-6.9639-4.8763-13.17-6.494-13.79-4.8744-1.8705-22.806 3.5573-33.035 9.9997-13.144 8.2779-18.675 19.814-23.611 49.243-4.6127 27.503-9.3137 40.5-21.245 58.736-12.745 19.479-22.672 26.824-45.14 33.401-10.277 3.0081-21.573 7.605-25.104 10.215-12.005 8.8755-28.294 40.064-28.294 54.173v7.7741l10.818-8.8111c5.9497-4.8461 16.075-10.78 22.5-13.187zm235.89 40.965c14.896-14.606 18.381-22.234 18.553-40.612 0.0844-9.0123 1.5578-17.607 4.1423-24.164l4.0113-10.177-6.4478-3.3343c-3.5463-1.8339-11.254-6.5256-17.129-10.426l-10.681-7.0917-13.925 4.7409c-7.659 2.6075-14.277 5.3099-14.707 6.0053-0.4298 0.69544 1.4366 11.52 4.1477 24.055 5.7671 26.665 6.5124 55.11 1.8863 71.99-1.658 6.05-3.0253 11.667-3.0384 12.482-0.0516 3.2252 21.522-12.031 33.187-23.468zm290.96 17.316c-0.1168-32.946-3.5004-42.067-20.585-55.49-7.4489-5.8522-13.48-12.624-16.165-18.151-2.3558-4.8489-5.215-8.5544-6.3537-8.2344-1.1387 0.3199-9.908 3.222-19.487 6.4491-18.823 6.341-18.599 6.1051-24.397 25.668l-2.8368 9.5708 22.324 11.196c26.913 13.497 42.72 25.3 54.913 41.002 5.2827 6.8026 9.8689 11.006 10.892 9.9826 0.97208-0.9721 1.7352-10.869 1.6957-21.992zm219.83 25.836 5-1.4362-6.1037-3.2109c-7.2459-3.8117-20.034-17.346-26.947-28.518-4.8515-7.8414-4.9524-8.8527-5.0861-51-0.1556-49.094-2.3961-60.059-16.354-80.038-9.7895-14.012-16.72-18.504-36.961-23.952-23.813-6.4098-31.734-11.729-43.365-29.119-5.4305-8.1192-10.494-16.716-11.252-19.104-1.196-3.7684-2.2374-2.7335-7.8833 7.8335-18.534 34.69-52.091 70.335-85.883 91.23-10.541 6.518-19.146 12.818-19.122 14 0.1118 5.47 8.5684 19.975 16.737 28.708 12.354 13.208 21.197 15.346 55.901 13.518 30.385-1.6007 48.034 1.1378 68.225 10.586 17.368 8.1276 25.464 16.062 34.905 34.209 5.1849 9.966 11.005 17.972 15.712 21.613 15.494 11.986 46.495 19.271 62.476 14.68zm-402.83 142.33c0.27942-30.022 7.1824-40.745 43.064-66.894 11.442-8.3385 24.911-19.552 29.932-24.92 11.546-12.344 21.625-32.68 23.741-47.9 1.5054-10.831 1.0753-13.164-5.306-28.786-10.541-25.806-11.74-33.395-7.7715-49.194 1.8364-7.3106 5.1641-16.87 7.3949-21.243s3.6621-8.3445 3.1805-8.8261-4.8194 0.072-9.6395 1.2308c-14.62 3.5139-57.216 4.7738-76.076 2.25-20.808-2.7843-42.402-8.2908-58.688-14.965-11.191-4.5864-12.247-4.696-15.665-1.6258-5.3077 4.7677-9.5005 15.64-11.328 29.373-2.2007 16.539 3.0465 27.637 24.415 51.638 19.01 21.351 27.498 35.907 33.437 57.336 5.9782 21.573 5.417 28.885-3.8584 50.271-4.4 10.145-8 21.526-8 25.292 0 16.499 10.612 41.084 23.726 54.963 3.8974 4.125 7.1341 7.5 7.1928 7.5 0.0586 0 0.1716-6.975 0.25092-15.5z"/>
 		</svg>
-	</label></form>
+	</label>
 </body>
 </html>

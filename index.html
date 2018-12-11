@@ -40,6 +40,7 @@
 			display: block;
 			border: 5px solid #000000;
 			margin: 10px;
+			background-color: #ffffff;
 			box-shadow: 0 0 10px 4px #ffffff;
 			transition: box-shadow 0.5 ease;
 		}
@@ -146,7 +147,30 @@
 			margin: 2vh 2vh;
 		}
 
-		.imgbox-targets { display: none; }
+		.imgbox-targets {
+			pointer-events: none;
+			position: fixed;
+			top: 0;
+			left: 0;
+			width: 100vw;
+			height: 100vh;
+			z-index: 9;
+			text-align: center;
+		}
+
+		.imgbox-targets img {
+			display: none;
+			position: relative;
+			top: 50%;
+			width: auto;
+			height: auto;
+			max-width: 90vw;
+			max-height: 90vh;
+			border: none;
+			margin: -45vh auto auto;
+			box-shadow: none;
+			transition: none;
+		}
 
 		.logo {
 			position: fixed;
@@ -168,7 +192,7 @@
 
 		/* Event-Triggered Style Definitions */
 
-		/* This bit exists because Chrome is dumb and defaults standardization is poorly done. */
+		/* This bit exists to circumvent Chrome accessibility defaults. */
 		*:focus {
 			outline: none;
 			box-shadow: none;
@@ -182,6 +206,12 @@
 		.menu-tab:hover h1 { text-shadow: 0 0 1.88vh #ffffff; }
 
 		.tab-content label:hover h2 { text-shadow: 0 0 1.56vh #8dc08d; }
+
+		.imgbox-targets img:target {
+			display: block;
+			outline: none;
+			box-shadow: none;
+		}
 
 		.logo:hover > #h7corona { transform: rotate(360deg); }
 
@@ -514,45 +544,45 @@
 	<div class="imgbox-targets">
 		<img src="Drew.jpg">
 
-		<img src="art_feature/dont_be_afraid_of_the_dark.png">
-		<img src="art_feature/river_deaths.png">
-		<img src="art_feature/nap_cantwell.jpg">
-		<img src="art_feature/so_long_and_thanks_for_all_the_grunts.png">
-		<img src="art_feature/huynh_thanh_my.png">
+		<img src="art_feature/dont_be_afraid_of_the_dark.png" id="feat1">
+		<img src="art_feature/river_deaths.png" id="feat2">
+		<img src="art_feature/nap_cantwell.jpg" id="feat3">
+		<img src="art_feature/so_long_and_thanks_for_all_the_grunts.png" id="feat4">
+		<img src="art_feature/huynh_thanh_my.png" id="feat5">
 
-		<img src="art_AAA/brain_drain.png">
-		<img src="art_AAA/blue_01.png">
-		<img src="art_AAA/blue_01.png">
-		<img src="art_AAA/blue_02.png">
-		<img src="art_AAA/orange_01.png">
-		<img src="art_AAA/dia_blue.png">
-		<img src="art_AAA/hex_brown.png">
-		<img src="art_AAA/sqr_green.png">
-		<img src="art_AAA/trap_orange.png">
-		<img src="art_AAA/tri_purple.png">
-		<img src="art_AAA/wed_red.png">
+		<img src="art_AAA/brain_drain.png" id="aaa1">
+		<img src="art_AAA/blue_01.png" id="aaa2">
+		<img src="art_AAA/blue_01.png" id="aaa3">
+		<img src="art_AAA/blue_02.png" id="aaa4">
+		<img src="art_AAA/orange_01.png" id="aaa5">
+		<img src="art_AAA/dia_blue.png" id="aaa6">
+		<img src="art_AAA/hex_brown.png" id="aaa7">
+		<img src="art_AAA/sqr_green.png" id="aaa8">
+		<img src="art_AAA/trap_orange.png" id="aaa9">
+		<img src="art_AAA/tri_purple.png" id="aaa10">
+		<img src="art_AAA/wed_red.png" id="aaa11">
 
-		<img src="art_render/sparrowhawk_final_texture.png">
-		<img src="art_render/falcon_high_poly.png">
-		<img src="art_render/scorpion_high_poly.png">
-		<img src="art_render/cubic_chess_set.png">
-		<img src="art_render/inspector.png">
-		<img src="art_render/promethean.png">
-		<img src="art_render/odst_helmet.png">
+		<img src="art_render/sparrowhawk_final_texture.png" id="rndr1">
+		<img src="art_render/falcon_high_poly.png" id="rndr2">
+		<img src="art_render/scorpion_high_poly.png" id="rndr3">
+		<img src="art_render/cubic_chess_set.png" id="rndr4">
+		<img src="art_render/inspector.png" id="rndr5">
+		<img src="art_render/promethean.png" id="rndr6">
+		<img src="art_render/odst_helmet.png" id="rndr7">
 
-		<img src="art_drawn/holographic_chess.png">
-		<img src="art_drawn/heaven_and_earth.png">
-		<img src="art_drawn/hummingbird.jpg">
-		<img src="art_drawn/chaos.png">
-		<img src="art_drawn/presenting.png">
-		<img src="art_drawn/morning_mists.png">
-		<img src="art_drawn/dreamweaver.png">
+		<img src="art_drawn/holographic_chess.png" id="draw1">
+		<img src="art_drawn/heaven_and_earth.png" id="draw2">
+		<img src="art_drawn/hummingbird.jpg" id="draw3">
+		<img src="art_drawn/chaos.png" id="draw4">
+		<img src="art_drawn/presenting.png" id="draw5">
+		<img src="art_drawn/morning_mists.png" id="draw6">
+		<img src="art_drawn/dreamweaver.png" id="draw7">
 
-		<img src="art_photo/pinecone.jpg">
-		<img src="art_photo/exit_38.jpg">
-		<img src="art_photo/lotus.jpg">
-		<img src="art_photo/sunset_at_crater_lake.jpg">
-		<img src="art_photo/mirror_balls.jpg">
+		<img src="art_photo/pinecone.jpg" id="photo1">
+		<img src="art_photo/exit_38.jpg" id="photo2">
+		<img src="art_photo/lotus.jpg" id="photo3">
+		<img src="art_photo/sunset_at_crater_lake.jpg" id="photo4">
+		<img src="art_photo/mirror_balls.jpg" id="photo5">
 	</div>
 
 	<label for="hidden-checkbox">

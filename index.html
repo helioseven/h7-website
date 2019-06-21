@@ -104,14 +104,6 @@
 			transition: opacity 0.5s linear;
 		}
 
-		.tab-content > a > img {
-			flex: 0 0 auto;
-			width: 200px;
-			height: 200px;
-			object-fit: cover;
-			border-radius: 50%;
-		}
-
 		.tab-content label {
 			flex: 0 0 auto;
 			margin: 0.5vh;
@@ -124,14 +116,22 @@
 			transition: flex-basis 1s ease;
 		}
 
-		.art-content img {
-			flex: 0 0 280px;
-			width: 250px;
-			height: 250px;
+		.tab-content div img {
+			flex: 0 0 175px;
+			width: 125px;
+			height: 125px;
 			object-fit: cover;
-			border-radius: 50%;
+			border-radius: 25%;
 			padding: 0;
 			margin: 2vh 2vh;
+		}
+
+		.rm-content > a > img {
+			flex: 0 0 auto;
+			width: 200px;
+			height: 200px;
+			object-fit: cover;
+			border-radius: 50%;
 		}
 
 		.imgbox-targets {
@@ -241,14 +241,12 @@
 		#tab1:checked ~ .nav-menu .readme:hover,
 		#tab2:checked ~ .nav-menu .quanta:hover,
 		#tab3:checked ~ .nav-menu .qualia:hover,
-		#tab4:checked ~ .nav-menu .ref:hover,
-		#tab5:checked ~ .nav-menu .misc:hover { transform: none; }
+		#tab4:checked ~ .nav-menu .misc:hover { transform: none; }
 
 		#tab1:checked ~ .nav-menu .readme h1,
 		#tab2:checked ~ .nav-menu .quanta h1,
 		#tab3:checked ~ .nav-menu .qualia h1,
-		#tab4:checked ~ .nav-menu .ref h1,
-		#tab5:checked ~ .nav-menu .misc h1 {
+		#tab4:checked ~ .nav-menu .misc h1 {
 			padding: 3.75vh;
 			font-size: 7.5vh;
 			text-shadow: 0 0 3.75vh #ffffff;
@@ -258,8 +256,7 @@
 		#tab1:checked ~ .page-content .readme,
 		#tab2:checked ~ .page-content .quanta,
 		#tab3:checked ~ .page-content .qualia,
-		#tab4:checked ~ .page-content .ref,
-		#tab5:checked ~ .page-content .misc {
+		#tab4:checked ~ .page-content .misc {
 			opacity: 1;
 			z-index: 1;
 		}
@@ -318,11 +315,10 @@
 </head>
 
 <body>
-	<input type="radio" id="tab1" name="menu-group" checked>
+	<input type="radio" id="tab1" name="menu-group">
 	<input type="radio" id="tab2" name="menu-group">
-	<input type="radio" id="tab3" name="menu-group">
+	<input type="radio" id="tab3" name="menu-group" checked>
 	<input type="radio" id="tab4" name="menu-group">
-	<input type="radio" id="tab5" name="menu-group">
 
 	<input type="checkbox" id="hidden-checkbox" autocomplete="off">
 
@@ -336,52 +332,41 @@
 		<label for="tab3" class="menu-tab qualia">
 			<h1>Aesthetic</h1>
 		</label>
-		<label for="tab4" class="menu-tab ref">
-			<h1>Reference</h1>
-		</label>
-		<label for="tab5" class="menu-tab misc">
+		<label for="tab4" class="menu-tab misc">
 			<h1>Miscellanea</h1>
 		</label>
 	</div>
 
 	<div class="page-content">
 		<div class="tab-content readme">
-			<a href="#ptrt">
-				<img src="Drew.jpg" alt="Portrait!">
-			</a>
 			<input type="radio" id="rm-one" name="rm-group" checked>
 			<label for="rm-one">
-				<h2>?</h2>
+				<h2>Introduction</h2>
 			</label>
 			<div class="rm-content">
-				<p>Hello! You've found yourself a web page. I hope you enjoy it.</p>
-				<p>This section is the ReadMe. Further sections include Function, Aesthetic, Reference, and Miscellanea.</p>
+				<p>If you're reading this, it is probably because you are either (a) a friend of mine, (b) considering hiring me, or (c) interested in using some of my work for your own work. As such, this website will serve primarily as a place to collect various pieces of my work from over the years, and curate it all in one central place. In addition, all works collected here will (eventually) encode Creative Commons licenses to encourage their use by the general public. Beyond that, it will serve as a platform for the dissemination of curiosity, both practical and abstract.</p>
+				<p>This Readme consists mostly of words, probably* words like "programmer", "creator", or maybe "just a really great all-around rad dude", if that's your flavor. Function covers work relating to programming, mechanical design, and computation. Aesthetic includes works in the visual, literary, and musical arts. Miscellanea is, I believe, self-explanitory.</p>
+				<p>* not actually</p>
 			</div>
 			<input type="radio" id="rm-two" name="rm-group">
 			<label for="rm-two">
-				<h2>??</h2>
+				<h2>Background</h2>
 			</label>
 			<div class="rm-content">
-				<p>Readme consists mostly of words, probably* words like "programmer", "creator", or maybe "just a really great all-around rad dude", if that's your flavor. Function covers work relating to programming, mechanical design, and computation. Aesthetic includes works in the visual, literary, and musical arts. Reference is a bunch of links to various things that aren't mine, but I think are worth checking out. Miscellanea is, I believe, self-explanitory.</p>
-				<p>If you're reading this, it is probably because you are either (a) a friend of mine, (b) considering hiring me, or (c) interested in using some of my work for your own work. As such, this website will serve primarily as a place to collect various pieces of my work from over the years, and curate it all in one central place. In addition, all works collected here will (eventually) encode Creative Commons licenses to encourage their use by the general public. Beyond that, it will serve as a platform for the dissemination of curiosity, both practical and abstract. Stay tuned, and stay happy.</p>
-				<p>* not actually</p>
+				<a href="#ptrt">
+					<img src="Drew.jpg" alt="Portrait!">
+				</a>
+				<p>HelioSeven. Drew Barnett. Originally born in 1992, on the eastern seaboard of the US, but grew up in and considers self native to Seattle, WA. Adventurer, ex-hippie, good-timer (weirdo? quite possibly), occasionally manic self-publicist, terrible bad at casual grammars, and generally thought to be completely out to lunch. May know a thing or two about what's really going on, but doesn't want to admit to it. Owns too many bicycles, and worries about it occasionally, but hopes that you don't and that you manage to have a really great day regardless.</p>
+				<p>Some of that, I hope, is true. Some of it is also probably nonsense, recognizing that nonsense has its own kind of value. When Herbert Br&#252;n said "anticommunication is an attempt at respectfully teaching language to say [something]," language had yet to teach me identity. I find talking about myself hard in part because I see identity as a coversation, not merely a statement.</p>
+				<p>To over-simplify, I'm a learner; by extension I am also a meta-learner, of both mechanical and organic systems. I worked for several years in the public school system, and learned a lot about at-scale institutional practices in both pedagogy and assessment of today's children. I spent several years earning a degree at Evergreen, and I learned a great deal about the history and theory of computing and automation. And every day I'm reading books, chatting up strangers, and engaging in contemplative introspection, because I deeply and profoundly believe in John Dewey's "full meaning of the present life" being embodied with each and every day.</p>
+				<p>If that doesn't tell you who I am, then hopefully the rest of this website will. Please, do poke around.</p>
 			</div>
 			<input type="radio" id="rm-three" name="rm-group">
 			<label for="rm-three">
-				<h2>???</h2>
-			</label>
-			<div class="rm-content">
-				<p>HelioSeven. Drew Barnett. Originally born in 1992, on the east coast of the US, however grew up in and considers self native to Seattle, WA. Adventurer, ex-hippie, good-timer (weirdo? quite possibly), occasionally manic self-publicist, terrible bad at casual grammars, generally thought to be completely out to lunch. Might know a few things about what's really going on, but please don't tell anyone. Owns too many bicycles, and is ever so slightly worried about it, but sincerely hopes that you're not and that you manage to have a really great day nonetheless.</p>
-				<p>True? Well, clearly some of it, but then some of it perhaps less clearly so. Some of it is also probably nonsense, that language that merely has yet to find the words that you'll understand. To quote Herbert Br&#252;n, "Anticommunication is an attempt at respectfully teaching language to say [something]." Thus I hope you can forgive the obfuscation, because talking about oneself is hard, and my doing so is an attempt to say something perhaps less intuitive, but no less meaningful.</p>
-				<p>Concomitant to all that, I have one decently meaningful self-descriptor: I'm a learner. By extension I am also a meta-learner, in both mechanical and organic media. I worked for several years in the public school system, and learned a lot about at-scale institutional practices in both pedagogy and assessment of today's children. I spent several years earning a degree at Evergreen, and I learned a great deal about the history and theory of computing and automation. And every day I'm reading books, chatting up strangers, and introspecting through contemplation, because I deeply and profoundly believe in John Dewey's "full meaning of the present life" being embodied with each and every day.</p>
-				<p>If all that isn't a reasonably good idea of who I am, then hopefully the rest of this website will be. Please, do poke around.</p>
-			</div>
-			<input type="radio" id="rm-four" name="rm-group">
-			<label for="rm-four">
 				<h2>Contact</h2>
 			</label>
 			<div class="rm-content">
-				<p>If you don't already have other forms of contact with me, <a href="mailto:lutrasis@gmail.com">send me an email</a>!</p>
+				<p>If you don't already have some other form of contact with me, <a href="mailto:lutrasis@gmail.com">an email</a> would do nicely!</p>
 			</div>
 		</div>
 
@@ -391,28 +376,31 @@
 				<h2>Website</h2>
 			</label>
 			<div class="code-content">
-				<p>This website was written by hand with HTML5 and CSS3, intentionally avoiding the use of any scripting languages. As with all things on the web, it is a constant work in progress. You can view the source code either by using your browser's inspector, or by checking out <a href="https://bitbucket.org/helioseven/h7_website">the git repository</a>.</p>
+				<p>This website was written with basic HTML5 and CSS3, intentionally avoiding any scripting languages. As with all things on the web, it is a constant work in progress. You can view the source code either by using your browser's inspector, or by checking out <a href="https://bitbucket.org/helioseven/h7_website">the git repository</a>.</p>
 			</div>
 			<input type="radio" id="code-AAA" name="code-group">
 			<label for="code-AAA">
 				<h2>AAA Project</h2>
 			</label>
 			<div class="code-content">
-				<p>An Angular Adventure is the working title of a 2D run-and-jump platformer game. AAA coalesced into a meaningful project in mid-2015, but has its origins in a series of collaborative artworks produced by my best friend and I, stretching back to high school in the late 2000s (see Aesthetic > AAA). The game is being built on the Unity engine, and <a href="https://bitbucket.org/micaharvey/an_angular_adventure">the git repository</a> is available.</p>
+				<p>An Angular Adventure is the working title of a 2D run-and-jump platformer game. AAA coalesced into a meaningful project in mid-2015, but has its origins in a series of collaborative artworks produced by my best friend and I, stretching back to high school in the late 2000s (see Aesthetic > AAA). The game is being built on the Unity engine, and we have <a href="https://bitbucket.org/micaharvey/an_angular_adventure">a git repository</a> publicly available.</p>
 			</div>
 			<input type="radio" id="code-goai" name="code-group">
 			<label for="code-goai">
 				<h2>Go AI</h2>
 			</label>
 			<div class="code-content">
-				<p>I have been teaching at the <a href="http://www.seattlego.org">Seattle Go Center</a> for some while now, and will be teaching a new class related to machine learning in Go coming this new year. Our curriculum will be based on a <a href="https://www.manning.com/books/deep-learning-and-the-game-of-go">soon-to-be published book</a> and we hope to be recording lectures along with a communally-driven code repository for those unable to attend our sessions in person to be able to follow along. Our current launch date is set for January 16th, so please be patient!</p>
+				<p>I teach regularly with the <a href="http://www.seattlego.org">Seattle Go Center</a>, both about the game itself and machine learning programming in relation to Go bots. Over the last six months, with a curriculum formed from a <a href="https://www.manning.com/books/deep-learning-and-the-game-of-go">recently published book</a> on the subject, I ran an informal class with a pilot group of students from within our club. The group's various experiments and codebase modifications have been collected and made available as a <a href="https://github.com/eric-downes/deep_learning_and_the_game_of_go/">fork of the author's git repository</a>, which includes my contributions. Based on the class' popularity, we are currently planning a more formal public offering, slated for a September launch date. I hope to have additional content to share then.</p>
+				<p><a class="imgbox" href="#code1">
+					<img src="code_goai/test_history.png" alt="Convolutional NN Training">
+				</a></p>
 			</div>
 			<input type="radio" id="code-misc" name="code-group">
 			<label for="code-misc">
 				<h2>Project Fragments</h2>
 			</label>
 			<div class="code-content">
-				<p>Content for this section needs to be fetched from old machines, so it may be a bit before it shows up here.</p>
+				<p>Content for this section needs to be fetched from old machines, so it may be a while before it shows up here.</p>
 			</div>
 		</div>
 
@@ -440,7 +428,7 @@
 			</div>
 			<input type="radio" id="art-AAA" name="art-group">
 			<label for="art-AAA">
-				<h2>AAA Art &#38; Tiles</h2>
+				<h2>AAA</h2>
 			</label>
 			<div class="art-content">
 				<a class="imgbox" href="#aaa1">
@@ -554,10 +542,6 @@
 			</div>
 		</div>
 
-		<div class="tab-content ref">
-			<p>Some links will go here at some point.</p>
-		</div>
-
 		<div class="tab-content misc">
 			<p>Once, a goose clapped.</p>
 		</div>
@@ -606,6 +590,8 @@
 		<img src="art_photo/sunset_at_crater_lake.jpg" id="photo4">
 		<img src="art_photo/mirror_balls.jpg" id="photo5">
 
+		<img src="code_goai/test_history.png" id="code1">
+
 
 		<div class="imgbox-backdrop"></div>
 		<div class="imgbox-exit"><a href="#">
@@ -627,11 +613,11 @@
 
 	- Still have some scaling bugs with smaller imgbox images
 	- Need to add minimums for various scaling elements, notably font size
-	- Interface for cycling through imgbox images needs to be implemented
+	- Interface for cycling through imgbox images could be implemented
 	- .tab-content width/position works as intended but shouldn't be using absolute positioning
-	- Build functionality for tab content menu headers having tooltip on hover
+	? Build functionality for tab content menu headers having tooltip on hover
 	- Scrollbars ideally will be replaced with alternative graphics
-	- Content for Reference and Miscellanea needs to be populated
+	- Content for Miscellanea needs to be populated
 	- Add page icon to HTML header
 	- Media queries for mobile devices
 -->

@@ -207,7 +207,7 @@
 		#h7corona {
 			opacity: 1.0;
 			transform-origin: inherit;
-			transition: transform 60s linear, opacity 1.5s linear;
+			transition: transform 60s linear, opacity 1s linear;
 		}
 
 		/* Event-Triggered Style Definitions */
@@ -279,10 +279,10 @@
 
 		#hidden-checkbox:checked ~ label .logo {
 			pointer-events: none;
-			animation: unlock_spin 1.5s linear 1 normal, slide_left 2s ease 1.5s 1 forwards;
+			animation: unlock_spin 1s linear 1 normal, slide_left 2s ease 1s 1 forwards;
 		}
 
-		#hidden-checkbox:checked ~ label .logo > #h7button { animation: unlock_spin_inverse 1.5s linear 1; }
+		#hidden-checkbox:checked ~ label .logo > #h7button { animation: unlock_spin_inverse 1s linear 1; }
 
 		#hidden-checkbox:checked ~ label .logo > #h7corona { opacity: 0.0; }
 
@@ -383,24 +383,23 @@
 				<h2>AAA Project</h2>
 			</label>
 			<div class="code-content">
-				<p>An Angular Adventure is the working title of a 2D run-and-jump platformer game. AAA coalesced into a meaningful project in mid-2015, but has its origins in a series of collaborative artworks produced by my best friend and I, stretching back to high school in the late 2000s (see Aesthetic > AAA). The game is being built on the Unity engine, and we have <a href="https://bitbucket.org/micaharvey/an_angular_adventure">a git repository</a> publicly available.</p>
+				<p>An Angular Adventure is the working title of a 2D run-and-jump platformer game. AAA coalesced into a meaningful project in mid-2015, but has its origins in a series of collaborative artworks produced by my best friend and I, stretching back to high school in the late 2000s (see Aesthetic > AAA). The game is being built on the Unity engine, and we have a public <a href="https://bitbucket.org/micaharvey/an_angular_adventure">repository</a> available.</p>
 			</div>
 			<input type="radio" id="code-goai" name="code-group">
 			<label for="code-goai">
 				<h2>Go AI</h2>
 			</label>
 			<div class="code-content">
-				<p>I teach regularly with the <a href="http://www.seattlego.org">Seattle Go Center</a>, both about the game itself and machine learning programming in relation to Go bots. Over the last six months, with a curriculum formed from a <a href="https://www.manning.com/books/deep-learning-and-the-game-of-go">recently published book</a> on the subject, I ran an informal class with a pilot group of students from within our club. The group's various experiments and codebase modifications have been collected and made available as a <a href="https://github.com/eric-downes/deep_learning_and_the_game_of_go/">fork of the author's git repository</a>, which includes my contributions. Based on the class' popularity, we are currently planning a more formal public offering, slated for a September launch date. I hope to have additional content to share then.</p>
-				<p><a class="imgbox" href="#code1">
-					<img src="code_goai/test_history.png" alt="Convolutional NN Training">
-				</a></p>
+				<p>I teach regularly with the <a href="http://www.seattlego.org">Seattle Go Center</a>, both about the game itself and machine learning programming in relation to Go bots. In Dec of 2018, the authors of the open-source betago program published a book (available from <a href="https://www.manning.com/books/deep-learning-and-the-game-of-go">Manning</a>), and we've since then been using a <a href="https://github.com/eric-downes/deep_learning_and_the_game_of_go/">fork</a> of the author's repository as a toolkit and playground for teaching ML at the Go Center. As a simple example, I have built a sample Heroku app to run a naive prediction agent trained on a few hundred semi-randomly chosen human games from a popular online server, KGS. If you play Go, you will quickly find this bot is not actually very strong; a few common moves however, will reveal that it does play things that look interestingly like joseki. Try it out:</p>
+				<hr>
+				<iframe height="600px" width="90%" src="https://h7bot-betago.herokuapp.com/static/play_predict_19.html" name="go-app"></iframe>
 			</div>
 			<input type="radio" id="code-misc" name="code-group">
 			<label for="code-misc">
 				<h2>Project Fragments</h2>
 			</label>
 			<div class="code-content">
-				<p>Content for this section needs to be fetched from old machines, so it may be a while before it shows up here.</p>
+				<p>Oops.</p>
 			</div>
 		</div>
 

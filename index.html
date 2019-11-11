@@ -383,14 +383,20 @@
 				<h2>AAA Project</h2>
 			</label>
 			<div class="code-content">
-				<p>An Angular Adventure is the working title of a 2D run-and-jump platformer game. AAA coalesced into a meaningful project in mid-2015, but has its origins in a series of collaborative artworks produced by my best friend and I, stretching back to high school in the late 2000s (see Aesthetic > AAA). The game is being built on the Unity engine, and we have a public <a href="https://bitbucket.org/micaharvey/an_angular_adventure">repository</a> available.</p>
+				<p>An Angular Adventure is the working title of a 2D run-and-jump platformer game. AAA coalesced into a meaningful project in mid-2015, but has its origins in a series of collaborative artworks produced by my best friend and I, stretching back to high school in the late 2000s (see Aesthetic > AAA). The game is being built on the Unity engine, and we have a public <a href="https://bitbucket.org/micaharvey/an_angular_adventure">repository</a> available. Below are a couple of development screenshots showing the basic concept of the game:</p>
+				<p><a class="imgbox" href="#code1">
+					<img src="code_AAA/aaa_1.png" alt="AAA WIP Screenshot 1">
+				</a>
+				<a class="imgbox" href="#code2">
+					<img src="code_AAA/aaa_2.png" alt="AAA WIP Screenshot 2">
+				</a></p>
 			</div>
 			<input type="radio" id="code-goai" name="code-group">
 			<label for="code-goai">
 				<h2>Go AI</h2>
 			</label>
 			<div class="code-content">
-				<p>I teach regularly with the <a href="http://www.seattlego.org">Seattle Go Center</a>, both about the game itself and machine learning programming in relation to Go bots. In Dec of 2018, the authors of the open-source betago program published a book (available from <a href="https://www.manning.com/books/deep-learning-and-the-game-of-go">Manning</a>), and we've since then been using a <a href="https://github.com/eric-downes/deep_learning_and_the_game_of_go/">fork</a> of the author's repository as a toolkit and playground for teaching ML at the Go Center. As a simple example, I have built a sample Heroku app to run a naive prediction agent trained on a few hundred semi-randomly chosen human games from a popular online server, KGS. If you play Go, you will quickly find this bot is not actually very strong; a few common moves however, will reveal that it does play things that look interestingly like joseki. Try it out:</p>
+				<p>I teach regularly with the <a href="http://www.seattlego.org">Seattle Go Center</a>, both about the game itself and machine learning programming in relation to Go bots. In Dec of 2018, the authors of the open-source betago program published a book (available from <a href="https://www.manning.com/books/deep-learning-and-the-game-of-go">Manning</a>), and we've since then been using a <a href="https://github.com/eric-downes/deep_learning_and_the_game_of_go/">fork</a> of the author's repository as a toolkit and playground for teaching ML at the Go Center. As a simple example, I have built a sample Heroku app to run a naive prediction agent from a small CNN (<1M params) trained on a thousand semi-randomly chosen human games from a popular online server, KGS. If you play Go, you will quickly find this bot is not actually very strong; a few common moves however, will reveal that it does play things that look interestingly like joseki. Try it out:</p>
 				<hr>
 				<iframe height="600px" width="90%" src="https://h7bot-betago.herokuapp.com/static/play_predict_19.html" name="go-app"></iframe>
 			</div>
@@ -399,7 +405,11 @@
 				<h2>Project Fragments</h2>
 			</label>
 			<div class="code-content">
-				<p>Oops.</p>
+				<p><h3>Digital Media Academy</h3></p>
+				<p>In the summer of 2019, I taught introductory ML and AI to a group of teenagers through <a href="https://www.digitalmediaacademy.org/">DMA</a>'s summer camp programs. While having to deal with an extremely wide range in student's ability and a less than entirely coherent curriculum, I was nonetheless incredibly proud of what the students were able to accomplish in such a limited time span. Our work focused on data mining large data sets (mostly from Kaggle) and AI experimentation in OpenAI's gym environments; both my sample code and student's work were collected in a <a href="https://github.com/helioseven/DMA_ML-AI">repository</a>. For an added bit of fun, I modified the DQN agent script I wrote during the course to produce a .gif of its successful completion (after approximately 7k episodes) of the Lunar Lander game:</p>
+				<p><a class="imgbox" href="#code3">
+					<img src="code_misc/dqn-lunarlander.gif" alt="Lunar Lander DQN Agent">
+				</a></p>
 			</div>
 		</div>
 

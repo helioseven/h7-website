@@ -14,6 +14,22 @@
 			overflow: hidden;
 		}
 
+		a:link {
+			color: #228B22;
+		}
+
+		a:visited {
+			color: #B22222;
+		}
+
+		a:hover {
+			color: #ADFF2F;
+		}
+
+		a:active {
+			color: #DAA520;
+		}
+
 		body {
 			display: grid;
 			grid-template: 50vh 50vh / 50vh 1fr 1fr;
@@ -70,7 +86,7 @@
 			transition: opacity 1.5s linear 2s;
 		}
 
-		.menu-tab {
+		.menu-item {
 			flex: 0 0 auto;
 			text-align: center;
 			transform: none;
@@ -221,9 +237,9 @@
 
 		img:hover { box-shadow: 0 0 10px 4px #ccffcc; }
 
-		.menu-tab:hover { transform: translateX(2em); }
+		.menu-item:hover { transform: translateX(2em); }
 
-		.menu-tab:hover h1 { text-shadow: 0 0 1.88vh #ffffff; }
+		.menu-item:hover h1 { text-shadow: 0 0 1.88vh #ffffff; }
 
 		.tab-content label:hover h2 { text-shadow: 0 0 1.56vh #8dc08d; }
 
@@ -323,16 +339,16 @@
 	<input type="checkbox" id="hidden-checkbox" autocomplete="off">
 
 	<div class="nav-menu">
-		<label for="tab1" class="menu-tab readme">
+		<label for="tab1" class="menu-item readme">
 			<h1>ReadMe</h1>
 		</label>
-		<label for="tab2" class="menu-tab quanta">
+		<label for="tab2" class="menu-item quanta">
 			<h1>Function</h1>
 		</label>
-		<label for="tab3" class="menu-tab qualia">
+		<label for="tab3" class="menu-item qualia">
 			<h1>Aesthetic</h1>
 		</label>
-		<label for="tab4" class="menu-tab misc">
+		<label for="tab4" class="menu-item misc">
 			<h1>Miscellanea</h1>
 		</label>
 	</div>
@@ -384,19 +400,19 @@
 			</label>
 			<div class="code-content">
 				<p>An Angular Adventure is the working title of a 2D run-and-jump platformer game. AAA coalesced into a meaningful project in mid-2015, but has its origins in a series of collaborative artworks produced by my best friend and I, stretching back to high school in the late 2000s (see Aesthetic > AAA). The game is being built on the Unity engine, and we have a public <a href="https://bitbucket.org/micaharvey/an_angular_adventure">repository</a> available. Below are a couple of development screenshots showing the basic concept of the game:</p>
-				<p><a class="imgbox" href="#code1">
+				<a class="imgbox" href="#code1">
 					<img src="code_AAA/aaa_1.png" alt="AAA WIP Screenshot 1">
 				</a>
 				<a class="imgbox" href="#code2">
 					<img src="code_AAA/aaa_2.png" alt="AAA WIP Screenshot 2">
-				</a></p>
+				</a>
 			</div>
 			<input type="radio" id="code-goai" name="code-group">
 			<label for="code-goai">
 				<h2>Go AI</h2>
 			</label>
 			<div class="code-content">
-				<p>I teach regularly with the <a href="http://www.seattlego.org">Seattle Go Center</a>, both about the game itself and machine learning programming in relation to Go bots. In Dec of 2018, the authors of the open-source betago program published a book (available from <a href="https://www.manning.com/books/deep-learning-and-the-game-of-go">Manning</a>), and we've since then been using a <a href="https://github.com/eric-downes/deep_learning_and_the_game_of_go/">fork</a> of the author's repository as a toolkit and playground for teaching ML at the Go Center. As a simple example, I have built a sample Heroku app to run a naive prediction agent from a small CNN (<1M params) trained on a thousand semi-randomly chosen human games from a popular online server, KGS. If you play Go, you will quickly find this bot is not actually very strong; a few common moves however, will reveal that it does play things that look interestingly like joseki. Try it out:</p>
+				<p>I teach regularly with the <a href="http://www.seattlego.org">Seattle Go Center</a>, both about the game itself and machine learning programming in relation to Go bots. In Dec of 2018, the authors of the open-source betago program published a book (available from <a href="https://www.manning.com/books/deep-learning-and-the-game-of-go">Manning</a>), and we've since then been using a <a href="https://github.com/eric-downes/deep_learning_and_the_game_of_go/">fork</a> of the author's repository as a toolkit and playground for teaching ML at the Go Center. As a simple example, I have built a sample Heroku app to run a naive prediction agent from a small CNN (<1M params) trained on a thousand semi-randomly chosen human games from a popular online server, KGS. If you play Go, you will quickly find this bot is not actually very strong; a few common moves however, will reveal that it does play things that look interestingly like joseki. Try it out (please note Heroku may take 5-10 seconds to start up before responding):</p>
 				<hr>
 				<iframe height="600px" width="90%" src="https://h7bot-betago.herokuapp.com/static/play_predict_19.html" name="go-app"></iframe>
 			</div>

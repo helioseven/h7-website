@@ -43,8 +43,8 @@
 			display: block;
 			border: 5px solid #000000;
 			margin: 10px;
-			background-color: #ffffff;
-			box-shadow: 0 0 10px 4px #ffffff;
+			background-color: #FFFFFF;
+			box-shadow: 0 0 10px 4px #FFFFFF;
 			transition: box-shadow 0.5 ease;
 		}
 
@@ -65,14 +65,22 @@
 			transition: all 0.5s ease;
 		}
 
-		p {
-			padding: 0.4vh 0;
-			font: 1.6vh/1.25 'Varela Round', sans serif;
-			color: #ffffff;
+		h3 {
+			display: block;
+			padding: 0.86vh;
+			font: 2.4vh/1.5 'Varela Round', sans serif;
+			color: #FFFFFF;
 			text-shadow: 0 0 2.5vh #000000;
 		}
 
-		path { fill: #ffffff; }
+		p {
+			padding: 0.4vh 0;
+			font: 1.6vh/1.25 'Varela Round', sans serif;
+			color: #FFFFFF;
+			text-shadow: 0 0 2.5vh #000000;
+		}
+
+		path { fill: #FFFFFF; }
 
 		/* Specific Style Definitions */
 
@@ -239,7 +247,7 @@
 
 		.menu-item:hover { transform: translateX(2em); }
 
-		.menu-item:hover h1 { text-shadow: 0 0 1.88vh #ffffff; }
+		.menu-item:hover h1 { text-shadow: 0 0 1.88vh #FFFFFF; }
 
 		.tab-content label:hover h2 { text-shadow: 0 0 1.56vh #8dc08d; }
 
@@ -265,7 +273,7 @@
 		#tab4:checked ~ .nav-menu .misc h1 {
 			padding: 3.75vh;
 			font-size: 7.5vh;
-			text-shadow: 0 0 3.75vh #ffffff;
+			text-shadow: 0 0 3.75vh #FFFFFF;
 			z-index: 2;
 		}
 
@@ -281,7 +289,7 @@
 			padding: 0.63vh;
 			font-size: 4.38vh;
 			font-weight: bold;
-			text-shadow: 0 0 0.63vh #ffffff;
+			text-shadow: 0 0 0.63vh #FFFFFF;
 		}
 
 		.tab-content input:checked + label + div {
@@ -372,9 +380,8 @@
 				<a href="#ptrt">
 					<img src="Drew.jpg" alt="Portrait!">
 				</a>
-				<p>HelioSeven. Drew Barnett. Originally born in 1992, on the eastern seaboard of the US, but grew up in and considers self native to Seattle, WA. Adventurer, ex-hippie, good-timer (weirdo? quite possibly), occasionally manic self-publicist, terrible bad at casual grammars, and generally thought to be completely out to lunch. May know a thing or two about what's really going on, but doesn't want to admit to it. Owns too many bicycles, and worries about it occasionally, but hopes that you don't and that you manage to have a really great day regardless.</p>
-				<p>Some of that, I hope, is true. Some of it is also probably nonsense, recognizing that nonsense has its own kind of value. When Herbert Br&#252;n said "anticommunication is an attempt at respectfully teaching language to say [something]," language had yet to teach me identity. So if I find talking about myself difficult, it's that I'd rather identity were a coversation and not just some lonely statement.</p>
-				<p>To back way up and vastly over-simplify, I'll say this: I'm a learner; by extension I am also engaged in meta-learning, of both mechanical and organic systems. I worked for several years in the public school system, and learned a lot about at-scale institutional practices in both pedagogy and assessment of today's children. I spent several years earning a degree at Evergreen, and I learned a great deal about the history and theory of computing and automation. And every day I'm reading books, chatting up strangers, and engaging in whatever contemplative introspection I can muster, because I deeply and profoundly believe in John Dewey's "full meaning of the present life" being embodied with each and every day.</p>
+				<p>HelioSeven. Drew Barnett. Originally born in 1992, on the eastern seaboard of the US, but grew up in and considers self native to Seattle, WA. Adventurer, ex-hippie, good-timer (weirdo? quite possibly), occasionally manic self-publicist, terrible bad at casual grammars, and generally thought to be completely out to lunch. Owns too many bicycles, worries about it occasionally, but then somehow always finds reasons to build more. May know a thing or two about what's really going on, but won't admit to it.</p>
+				<p>On a less esoteric note, I can at least say this about myself: I'm a learner; by extension I am also engaged in meta-learning, of both mechanical and organic systems. I worked for several years in the public school system, and learned a lot about at-scale institutional practices in both pedagogy and assessment of today's children. I spent several years earning a degree at Evergreen, and learned a great deal about the history and theory of computing and automation. And every day I'm reading, chatting up strangers, and spending a few minutes on contemplative meditation, because I deeply and profoundly believe in John Dewey's "full meaning of the present life" being embodied with each and every day.</p>
 				<p>As a final word, anyone taking the time to read this or look through any part of this website already has a special place in my heart. Please do poke around, and I hope you find something interesting.</p>
 			</div>
 			<input type="radio" id="rm-three" name="rm-group">
@@ -392,14 +399,14 @@
 				<h2>Website</h2>
 			</label>
 			<div class="code-content">
-				<p>This website was written with basic HTML5 and CSS3, intentionally avoiding any scripting languages. As with all things on the web, it is a constant work in progress. You can view the source code either by using your browser's inspector, or by checking out <a href="https://bitbucket.org/helioseven/h7_website">the git repository</a>.</p>
+				<p>This website was written with basic HTML5 and CSS3, intentionally avoiding any scripting languages. As with all things on the web, it is a constant work in progress. You can view the source code either by using your browser's inspector, or by checking out the <a href="https://bitbucket.org/helioseven/h7_website">repository</a>.</p>
 			</div>
 			<input type="radio" id="code-AAA" name="code-group">
 			<label for="code-AAA">
 				<h2>AAA Project</h2>
 			</label>
 			<div class="code-content">
-				<p>An Angular Adventure is the working title of a 2D run-and-jump platformer game. AAA coalesced into a meaningful project in mid-2015, but has its origins in a series of collaborative artworks produced by my best friend and I, stretching back to high school in the late 2000s (see Aesthetic > AAA). The game is being built on the Unity engine, and we have a public <a href="https://bitbucket.org/micaharvey/an_angular_adventure">repository</a> available. Below are a couple of development screenshots showing the basic concept of the game:</p>
+				<p>An Angular Adventure is the working title of a 2D run-and-jump platformer game. AAA coalesced into a meaningful project in mid-2015, but has its origins in a series of collaborative artworks produced by my best friend and I, stretching back to high school in the late 2000s (see Aesthetic > AAA). The game is being built on the Unity engine, and we have a public <a href="https://bitbucket.org/micaharvey/an_angular_adventure">repository</a> available. Below are a couple of early development screenshots showing the basic concept of the game:</p>
 				<a class="imgbox" href="#code1">
 					<img src="code_AAA/aaa_1.png" alt="AAA WIP Screenshot 1">
 				</a>
@@ -412,7 +419,7 @@
 				<h2>Go AI</h2>
 			</label>
 			<div class="code-content">
-				<p>I teach regularly with the <a href="http://www.seattlego.org">Seattle Go Center</a>, both about the game itself and machine learning programming in relation to Go bots. In Dec of 2018, the authors of the open-source betago program published a book (available from <a href="https://www.manning.com/books/deep-learning-and-the-game-of-go">Manning</a>), and we've since then been using a <a href="https://github.com/eric-downes/deep_learning_and_the_game_of_go/">fork</a> of the author's repository as a toolkit and playground for teaching ML at the Go Center. As a simple example, I have built a sample Heroku app to run a naive prediction agent from a small CNN (<1M params) trained on a thousand semi-randomly chosen human games from a popular online server, KGS. If you play Go, you will quickly find this bot is not actually very strong; a few common moves however, will reveal that it does play things that look interestingly like joseki. Try it out (please note Heroku may take 5-10 seconds to start up before responding):</p>
+				<p>I teach regularly with the <a href="http://www.seattlego.org">Seattle Go Center</a>, both about the game itself and machine learning programming in relation to Go bots. In Dec of 2018, the authors of the open-source betago program published a book (available from <a href="https://www.manning.com/books/deep-learning-and-the-game-of-go">Manning</a>), and we've since then been using a <a href="https://github.com/eric-downes/deep_learning_and_the_game_of_go/">fork</a> of the author's repository as a toolkit and playground for teaching ML at the Go Center. As a simple example, I have built a sample Heroku app to run a naive prediction agent from a small CNN (<1M params) trained on a thousand semi-randomly chosen human games from a popular online server, KGS. If you play Go, you will quickly find this bot is not actually very strong; a few common moves however, will reveal that it does play things that look interestingly like joseki. Try it out:</p>
 				<hr>
 				<iframe height="600px" width="90%" src="https://h7bot-betago.herokuapp.com/static/play_predict_19.html" name="go-app"></iframe>
 			</div>
@@ -665,7 +672,9 @@
 		<img src="art_photo/sunset_at_crater_lake.jpg" id="photo4">
 		<img src="art_photo/mirror_balls.jpg" id="photo5">
 
-		<img src="code_goai/test_history.png" id="code1">
+		<img src="code_AAA/aaa_1.png" id="code1">
+		<img src="code_AAA/aaa_2.png" id="code2">
+		<img src="code_misc/dqn-lunarlander.gif" id="code3">
 
 		<img src="misc_bikes/specialized_sirrus.jpg" id="bike1">
 		<img src="misc_bikes/look_kg96.jpg" id="bike2">

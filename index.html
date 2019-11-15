@@ -158,7 +158,7 @@
 			border-radius: 50%;
 		}
 
-		.imgbox-targets {
+		.imgbox {
 			pointer-events: none;
 			position: fixed;
 			top: 0;
@@ -169,7 +169,7 @@
 			z-index: 9;
 		}
 
-		.imgbox-targets .imgbox-backdrop {
+		.imgbox .imgbox-backdrop {
 			position: absolute;
 			top: 0;
 			width: 100vw;
@@ -180,7 +180,7 @@
 			transition: opacity 0.5s linear;
 		}
 
-		.imgbox-targets > img {
+		.imgbox > img {
 			display: none;
 			position: relative;
 			top: 50%;
@@ -251,11 +251,11 @@
 
 		.tab-content label:hover h2 { text-shadow: 0 0 1.56vh #8dc08d; }
 
-		.imgbox-targets > img:target ~ .imgbox-backdrop { opacity: 0.4; }
+		.imgbox > img:target ~ .imgbox-backdrop { opacity: 0.4; }
 
-		.imgbox-targets > img:target { display: block; }
+		.imgbox > img:target { display: block; }
 
-		.imgbox-targets > img:target ~ .imgbox-exit a img { display: block; }
+		.imgbox > img:target ~ .imgbox-exit a img { display: block; }
 
 		.logo:hover > #h7corona { transform: rotate(360deg); }
 
@@ -520,9 +520,6 @@
 				<a class="imgbox" href="#rndr6">
 					<img src="art_render/promethean.png" alt="Promethean">
 				</a>
-				<a class="imgbox" href="#rndr7">
-					<img src="art_render/odst_helmet.png" alt="ODST Helmet">
-				</a>
 			</div>
 			<input type="radio" id="art-drawn" name="art-group">
 			<label for="art-drawn">
@@ -629,7 +626,7 @@
 		</div>
 	</div>
 
-	<div class="imgbox-targets">
+	<div class="imgbox">
 		<img src="Drew.jpg" id="ptrt">
 
 		<img src="art_feature/dont_be_afraid_of_the_dark.png" id="feat1">
@@ -656,7 +653,6 @@
 		<img src="art_render/cubic_chess_set.png" id="rndr4">
 		<img src="art_render/inspector.png" id="rndr5">
 		<img src="art_render/promethean.png" id="rndr6">
-		<img src="art_render/odst_helmet.png" id="rndr7">
 
 		<img src="art_drawn/holographic_chess.png" id="draw1">
 		<img src="art_drawn/heaven_and_earth.png" id="draw2">

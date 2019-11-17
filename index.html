@@ -61,17 +61,6 @@
 			text-shadow: 0 0 2.5vh #000000;
 		}
 
-		img {
-			display: block;
-			border: 5px solid #000000;
-			margin: 10px;
-			background-color: #FFFFFF;
-			box-shadow: 0 0 10px 4px #FFFFFF;
-			transition: box-shadow 0.5 ease;
-		}
-
-		img:hover { box-shadow: 0 0 10px 4px #ccffcc; }
-
 		input { display: none; }
 
 		p {
@@ -135,20 +124,23 @@
 			transition: opacity 0.5s linear;
 		}
 
-		.tab-content a > label {
-			width: 100%;
-			height: 100%;
-		}
-
-		.tab-content div img {
+		.tab-content img {
+			display: block;
+			background-color: #000000;
 			flex: 0 0 175px;
 			width: 125px;
 			height: 125px;
+			border: 5px solid #000000;
+			margin: 10px;
 			object-fit: cover;
 			border-radius: 25%;
 			padding: 0;
 			margin: 2vh 2vh;
+			box-shadow: 0 0 10px 4px #FFFFFF;
+			transition: box-shadow 0.5 ease;
 		}
+
+		.tab-content img:hover { box-shadow: 0 0 10px 4px #ccffcc; }
 
 		.tab-content input:checked + label h2 {
 			padding: 0.63vh;
@@ -180,7 +172,7 @@
 
 		.tab-content > label:hover h2 { text-shadow: 0 0 1.56vh #8dc08d; }
 
-		.rm-content > a > img {
+		#readme > label > img {
 			flex: 0 0 auto;
 			width: 200px;
 			height: 200px;
@@ -226,8 +218,9 @@
 		}
 
 		.imgbox .imgbox-backdrop {
-			position: absolute;
+			position: fixed;
 			top: 0;
+			left: 0;
 			width: 100vw;
 			height: 100vh;
 			opacity: 0;
@@ -237,10 +230,9 @@
 		}
 
 		.imgbox-exit {
-			pointer-events: auto;
 			position: fixed;
-			top: 10px;
-			right: 10px;
+			top: 0;
+			right: 0;
 			width: 5vw;
 			height: 5vw;
 			margin: 0;
@@ -258,11 +250,16 @@
 			z-index: 8;
 		}
 
-		.imgbox > div:target ~ .imgbox-backdrop { opacity: 0.4; }
+		.imgbox > input:not(:checked) ~ .imgbox-backdrop { opacity: 0.5; }
 
-		.imgbox > div:target { display: block; }
-
-		.imgbox > div:target ~ .imgbox-exit a img { display: block; }
+		.imgbox > input:not(:checked) + .carousel {
+			pointer-events: auto;
+			display: inline-block;
+		}
+		.imgbox > input:not(:checked) + .carousel + .imgbox-exit img {
+			pointer-events: auto;
+			display: block;
+		}
 
 		/* Carousel Style Definitions */
 
@@ -270,27 +267,20 @@
 			display: none;
 			position: relative;
 			top: 50%;
-			width: auto;
-			height: auto;
 			max-width: 90vw;
 			max-height: 90vh;
-			border: 10px solid white;
-			margin: -45vh auto auto;
+			margin: auto;
 			outline: none;
 			box-shadow: 0px 0px 40px #000000;
 			z-index: inherit;
-			transition: none;
+			transform: translateY(-50%);
 		}
-
-		.carousel:target { pointer-events: auto; }
 
 		.carousel > img {
 			display: none;
-			width: 100%;
-			border: none;
-			margin: 0px;
-			box-shadow: none;
-			transition: none;
+			max-width: 90vw;
+			max-height: 90vh;
+			border: 10px solid #DDDDDD;
 		}
 
 		.carousel > input,
@@ -450,9 +440,9 @@
 		<div class="tab-content readme">
 			<input type="radio" id="rm-one" name="rm-group" checked>
 			<label for="rm-one">
-				<h2>Introduction</h2>
+				<h2>Overview</h2>
 			</label>
-			<div class="rm-content">
+			<div>
 				<p>If you're reading this, it is probably because you are either (a) a friend of mine, (b) considering hiring me, or (c) interested in using some of my work for your own work. As such, this website will serve primarily as a place to collect various personal and collaborative endeavours from over the years, and create one central curation. In addition, my hope is all works collected here will eventually encode Creative Commons licenses to encourage their use by the general public. Beyond that, it will serve as a platform for the dissemination of curiosity, both practical and abstract.</p>
 				<p>This Readme consists mostly of words, probably* words like "programmer", "creator", or maybe "just a really great all-around rad dude", if that's your flavor. Function covers work relating to programming, mechanical design, and computation. Aesthetic includes works in the visual, literary, and musical arts. Miscellanea is, I believe, self-explanitory.</p>
 				<p>* not actually</p>
@@ -461,19 +451,19 @@
 			<label for="rm-two">
 				<h2>Background</h2>
 			</label>
-			<div class="rm-content">
-				<a href="#ptrt">
+			<div id="readme">
+				<label for="ptrt1">
 					<img src="Drew.jpg" alt="Portrait!">
-				</a>
+				</label>
 				<p>HelioSeven. Drew Barnett. Originally born in 1992, on the eastern seaboard of the US, but grew up in and considers self native to Seattle, WA. Adventurer, ex-hippie, good-timer (weirdo? quite possibly), occasionally manic self-publicist, terrible bad at casual grammars, and generally thought to be completely out to lunch. Owns too many bicycles, worries about it occasionally, but then somehow always finds reasons to build more. May know a thing or two about what's really going on, but won't admit to it.</p>
-				<p>On a less esoteric note, I can at least say this about myself: I'm a learner; by extension I am also engaged in meta-learning, of both mechanical and organic systems. I worked for several years in the public school system, and learned a lot about at-scale institutional practices in both pedagogy and assessment of today's children. I spent several years earning a degree at Evergreen, and learned a great deal about the history and theory of computing and automation. And every day I'm reading, chatting up strangers, and spending a few minutes on contemplative meditation, because I deeply and profoundly believe in John Dewey's "full meaning of the present life" being embodied with each and every day.</p>
+				<p>If pressed to say something more serious about myself, I will say that foremost I am a learner; by extension I am also engaged in meta-learning, of both mechanical and organic systems. I worked for several years in the public school system, and learned a lot about at-scale institutional practices in both pedagogy and assessment of today's children. I studied for several years at Evergreen earning my degree, and learned a great deal about the history and theory of computing and automation. And for every day that I live, I will be exploring my unknown, chatting up strangers, and creating new things, because I deeply and profoundly believe in John Dewey's "full meaning of the present life" being embodied with each and every day.</p>
 				<p>As a final word, anyone taking the time to read this or look through any part of this website already has a special place in my heart. Please do poke around, and I hope you find something interesting.</p>
 			</div>
 			<input type="radio" id="rm-three" name="rm-group">
 			<label for="rm-three">
 				<h2>Contact</h2>
 			</label>
-			<div class="rm-content">
+			<div>
 				<p>If you don't already have some other form of contact with me, <a href="mailto:lutrasis@gmail.com">an email</a> would do nicely!</p>
 			</div>
 		</div>
@@ -483,27 +473,27 @@
 			<label for="code-site">
 				<h2>Website</h2>
 			</label>
-			<div class="code-content">
+			<div>
 				<p>This website was written with basic HTML5 and CSS3, intentionally avoiding any scripting languages. As with all things on the web, it is a constant work in progress. You can view the source code either by using your browser's inspector, or by checking out the <a href="https://bitbucket.org/helioseven/h7_website">repository</a>.</p>
 			</div>
 			<input type="radio" id="code-AAA" name="code-group">
 			<label for="code-AAA">
 				<h2>AAA Project</h2>
 			</label>
-			<div class="code-content">
+			<div>
 				<p>An Angular Adventure is the working title of a 2D run-and-jump platformer game. AAA coalesced into a meaningful project in mid-2015, but has its origins in a series of collaborative artworks produced by my best friend and I, stretching back to high school in the late 2000s (see Aesthetic > AAA). The game is being built on the Unity engine, and we have a public <a href="https://bitbucket.org/micaharvey/an_angular_adventure">repository</a> available. Below are a couple of early development screenshots showing the basic concept of the game:</p>
-				<a href="#code1">
+				<label for="code1">
 					<img src="code_AAA/aaa_1.png" alt="AAA WIP Screenshot 1">
-				</a>
-				<a href="#code2">
+				</label>
+				<label for="code2">
 					<img src="code_AAA/aaa_2.png" alt="AAA WIP Screenshot 2">
-				</a>
+				</label>
 			</div>
 			<input type="radio" id="code-goai" name="code-group">
 			<label for="code-goai">
 				<h2>Go AI</h2>
 			</label>
-			<div class="code-content">
+			<div>
 				<p>I teach regularly with the <a href="http://www.seattlego.org">Seattle Go Center</a>, both about the game itself and machine learning programming in relation to Go bots. In Dec of 2018, the authors of the open-source betago program published a book (available from <a href="https://www.manning.com/books/deep-learning-and-the-game-of-go">Manning</a>), and we've since then been using a <a href="https://github.com/eric-downes/deep_learning_and_the_game_of_go/">fork</a> of the author's repository as a toolkit and playground for teaching ML at the Go Center. As a simple example, I have built a sample Heroku app to run a naive prediction agent from a small CNN (<1M params) trained on a thousand semi-randomly chosen human games from a popular online server, KGS. If you play Go, you will quickly find this bot is not actually very strong; a few common moves however, will reveal that it does play things that look interestingly like joseki. Try it out:</p>
 				<hr>
 				<iframe height="600px" width="90%" src="https://h7bot-betago.herokuapp.com/static/play_predict_19.html" name="go-app"></iframe>
@@ -512,12 +502,12 @@
 			<label for="code-misc">
 				<h2>Project Fragments</h2>
 			</label>
-			<div class="code-content">
+			<div>
 				<p><h3>Digital Media Academy</h3></p>
-				<p>In the summer of 2019, I taught introductory ML and AI to a group of teenagers through <a href="https://www.digitalmediaacademy.org/">DMA</a>'s summer camp programs. While having to deal with an extremely wide range in student's ability and a less than entirely coherent curriculum, I was nonetheless incredibly proud of what the students were able to accomplish in such a limited time span. Our work focused on data mining large data sets (mostly from Kaggle) and AI experimentation in OpenAI's gym environments; both my sample code and student's work were collected in a <a href="https://github.com/helioseven/DMA_ML-AI">repository</a>. For an added bit of fun, I modified the DQN agent script I wrote during the course to produce a .gif of its successful completion (after approximately 7k episodes) of the Lunar Lander game:</p>
-				<p><a href="#code3">
+				<p>In the summer of 2019, I taught introductory ML and AI to a group of teenagers through <a href="https://www.digitalmediaacademy.org/">DMA</a>'s summer camp programs. While having to deal with an extremely wide range in student's ability and a less than entirely coherent curriculum, I was nonetheless incredibly proud of what the students were able to accomplish in such a limited time span. Our work focused on data mining large data sets (mostly from Kaggle) and AI experimentation in OpenAI's gym environments; both my sample code and student's work were collected in a <a href="https://github.com/helioseven/DMA_ML-AI">repository</a>. The .gif below is a small illustration, the successful completion (after approximately 7k episodes) of the Lunar Lander game by a DQN agent:</p>
+				<p><label for="code3">
 					<img src="code_misc/dqn-lunarlander.gif" alt="Lunar Lander DQN Agent">
-				</a></p>
+				</label></p>
 			</div>
 		</div>
 
@@ -526,200 +516,132 @@
 			<label for="art-feature">
 				<h2>Featured</h2>
 			</label>
-			<div class="art-content">
+			<div>
 				<label for="feat1">
-					<a href="#art_feat">
-						<img src="art_feature/dont_be_afraid_of_the_dark-125.png" alt="Don't Be Afraid Of the Dark">
-					</a>
+					<img src="art_feature/dont_be_afraid_of_the_dark-125.png" alt="Don't Be Afraid Of the Dark">
 				</label>
 				<label for="feat2">
-					<a href="#art_feat">
-						<img src="art_feature/river_deaths-125.png" alt="River Deaths?">
-					</a>
+					<img src="art_feature/river_deaths-125.png" alt="River Deaths?">
 				</label>
 				<label for="feat3">
-					<a href="#art_feat">
-						<img src="art_feature/nap_cantwell-125.png" alt="Nap Cantwell">
-					</a>
+					<img src="art_feature/nap_cantwell-125.png" alt="Nap Cantwell">
 				</label>
 				<label for="feat4">
-					<a href="#art_feat">
-						<img src="art_feature/so_long_and_thanks_for_all_the_grunts-125.png" alt="So Long, and Thanks for All the Grunts">
-					</a>
+					<img src="art_feature/so_long_and_thanks_for_all_the_grunts-125.png" alt="So Long, and Thanks for All the Grunts">
 				</label>
 				<label for="feat5">
-					<a href="#art_feat">
-						<img src="art_feature/huynh_thanh_my-125.png" alt="Huynh Thanh My">
-					</a>
+					<img src="art_feature/huynh_thanh_my-125.png" alt="Huynh Thanh My">
 				</label>
 			</div>
 			<input type="radio" id="art-AAA" name="art-group">
 			<label for="art-AAA">
 				<h2>AAA</h2>
 			</label>
-			<div class="art-content">
+			<div>
 				<label for="aaa1">
-					<a href="#art_AAA">
-						<img src="art_AAA/brain_drain-125.png" alt="Brain Drain">
-					</a>
+					<img src="art_AAA/brain_drain-125.png" alt="Brain Drain">
 				</label>
 				<label for="aaa2">
-					<a href="#art_AAA">
-						<img src="art_AAA/blue_01-125.png" alt="Blue 01">
-					</a>
+					<img src="art_AAA/blue_01-125.png" alt="Blue 01">
 				</label>
 				<label for="aaa3">
-					<a href="#art_AAA">
-						<img src="art_AAA/brown_03-125.png" alt="Brown 03">
-					</a>
+					<img src="art_AAA/brown_03-125.png" alt="Brown 03">
 				</label>
 				<label for="aaa4">
-					<a href="#art_AAA">
-						<img src="art_AAA/blue_02-125.png" alt="Blue 02">
-					</a>
+					<img src="art_AAA/blue_02-125.png" alt="Blue 02">
 				</label>
 				<label for="aaa5">
-					<a href="#art_AAA">
-						<img src="art_AAA/orange_01-125.png" alt="Orange 01">
-					</a>
+					<img src="art_AAA/orange_01-125.png" alt="Orange 01">
 				</label>
 				<label for="aaa6">
-					<a href="#art_AAA">
-						<img src="art_AAA/dia_blue-125.png" alt="Blue Diamond">
-					</a>
+					<img src="art_AAA/dia_blue-125.png" alt="Blue Diamond">
 				</label>
 				<label for="aaa7">
-					<a href="#art_AAA">
-						<img src="art_AAA/hex_brown-125.png" alt="Brown Hexagon">
-					</a>
+					<img src="art_AAA/hex_brown-125.png" alt="Brown Hexagon">
 				</label>
 				<label for="aaa8">
-					<a href="#art_AAA">
-						<img src="art_AAA/sqr_green-125.png" alt="Green Square">
-					</a>
+					<img src="art_AAA/sqr_green-125.png" alt="Green Square">
 				</label>
 				<label for="aaa9">
-					<a href="#art_AAA">
-						<img src="art_AAA/trap_orange-125.png" alt="Orange Trapezoid">
-					</a>
+					<img src="art_AAA/trap_orange-125.png" alt="Orange Trapezoid">
 				</label>
 				<label for="aaa10">
-					<a href="#art_AAA">
-						<img src="art_AAA/tri_purple-125.png" alt="Purple Triangle">
-					</a>
+					<img src="art_AAA/tri_purple-125.png" alt="Purple Triangle">
 				</label>
 				<label for="aaa11">
-					<a href="#art_AAA">
-						<img src="art_AAA/wed_red-125.png" alt="Red Wedge">
-					</a>
+					<img src="art_AAA/wed_red-125.png" alt="Red Wedge">
 				</label>
 			</div>
 			<input type="radio" id="art-render" name="art-group">
 			<label for="art-render">
 				<h2>3D Render</h2>
 			</label>
-			<div class="art-content">
+			<div>
 				<label for="rndr1">
-					<a href="#art_render">
-						<img src="art_render/sparrowhawk_final_texture-125.png" alt="Sparrowhawk Final">
-					</a>
+					<img src="art_render/sparrowhawk_final_texture-125.png" alt="Sparrowhawk Final">
 				</label>
 				<label for="rndr2">
-					<a href="#art_render">
-						<img src="art_render/falcon_high_poly-125.png" alt="Halo Falcon (High Poly)">
-					</a>
+					<img src="art_render/falcon_high_poly-125.png" alt="Halo Falcon (High Poly)">
 				</label>
 				<label for="rndr3">
-					<a href="#art_render">
-						<img src="art_render/scorpion_high_poly-125.png" alt="Halo Scorpion (High Poly)">
-					</a>
+					<img src="art_render/scorpion_high_poly-125.png" alt="Halo Scorpion (High Poly)">
 				</label>
 				<label for="rndr4">
-					<a href="#art_render">
-						<img src="art_render/cubic_chess_set-125.png" alt="Cubic Chess Set">
-					</a>
+					<img src="art_render/cubic_chess_set-125.png" alt="Cubic Chess Set">
 				</label>
 				<label for="rndr5">
-					<a href="#art_render">
-						<img src="art_render/inspector-125.png" alt="Inspector">
-					</a>
+					<img src="art_render/inspector-125.png" alt="Inspector">
 				</label>
 				<label for="rndr6">
-					<a href="#art_render">
-						<img src="art_render/promethean-125.png" alt="Promethean">
-					</a>
+					<img src="art_render/promethean-125.png" alt="Promethean">
 				</label>
 			</div>
 			<input type="radio" id="art-drawn" name="art-group">
 			<label for="art-drawn">
 				<h2>Ink &#38; Graphite</h2>
 			</label>
-			<div class="art-content">
+			<div>
 				<label for="draw1">
-					<a href="#art_drawn">
-						<img src="art_drawn/holographic_chess-125.png" alt="Holographic Chess">
-					</a>
+					<img src="art_drawn/holographic_chess-125.png" alt="Holographic Chess">
 				</label>
 				<label for="draw2">
-					<a href="#art_drawn">
-						<img src="art_drawn/heaven_and_earth-125.png" alt="HEAVEN//EARTH">
-					</a>
+					<img src="art_drawn/heaven_and_earth-125.png" alt="HEAVEN//EARTH">
 				</label>
 				<label for="draw3">
-					<a href="#art_drawn">
-						<img src="art_drawn/hummingbird-125.png" alt="Hummingbird">
-					</a>
+					<img src="art_drawn/hummingbird-125.png" alt="Hummingbird">
 				</label>
 				<label for="draw4">
-					<a href="#art_drawn">
-						<img src="art_drawn/chaos-125.png" alt="Chaos">
-					</a>
+					<img src="art_drawn/chaos-125.png" alt="Chaos">
 				</label>
 				<label for="draw5">
-					<a href="#art_drawn">
-						<img src="art_drawn/presenting-125.png" alt="Presenting">
-					</a>
+					<img src="art_drawn/presenting-125.png" alt="Presenting">
 				</label>
 				<label for="draw6">
-					<a href="#art_drawn">
-						<img src="art_drawn/morning_mists-125.png" alt="Morning Mists">
-					</a>
+					<img src="art_drawn/morning_mists-125.png" alt="Morning Mists">
 				</label>
 				<label for="draw7">
-					<a href="#art_drawn">
-						<img src="art_drawn/dreamweaver-125.png" alt="Dreamweaver">
-					</a>
+					<img src="art_drawn/dreamweaver-125.png" alt="Dreamweaver">
 				</label>
 			</div>
 			<input type="radio" id="art-photo" name="art-group">
 			<label for="art-photo">
 				<h2>Photography</h2>
 			</label>
-			<div class="art-content">
+			<div>
 				<label for="photo1">
-					<a href="#art_photo">
-						<img src="art_photo/pinecone-125.png" alt="Pinecone">
-					</a>
+					<img src="art_photo/pinecone-125.png" alt="Pinecone">
 				</label>
 				<label for="photo2">
-					<a href="#art_photo">
-						<img src="art_photo/exit_38-125.png" alt="Exit 38">
-					</a>
+					<img src="art_photo/exit_38-125.png" alt="Exit 38">
 				</label>
 				<label for="photo3">
-					<a href="#art_photo">
-						<img src="art_photo/lotus-125.png" alt="Lotus">
-					</a>
+					<img src="art_photo/lotus-125.png" alt="Lotus">
 				</label>
 				<label for="photo4">
-					<a href="#art_photo">
-						<img src="art_photo/sunset_at_crater_lake-125.png" alt="Sunset at Crater Lake">
-					</a>
+					<img src="art_photo/sunset_at_crater_lake-125.png" alt="Sunset at Crater Lake">
 				</label>
 				<label for="photo5">
-					<a href="#art_photo">
-						<img src="art_photo/mirror_balls-125.png" alt="Mirror Balls">
-					</a>
+					<img src="art_photo/mirror_balls-125.png" alt="Mirror Balls">
 				</label>
 			</div>
 		</div>
@@ -729,93 +651,72 @@
 			<label for="misc-bike">
 				<h2>Bicycles &#38; Wheels</h2>
 			</label>
-			<div class="misc-content">
+			<div>
 				<label for="bike1">
-					<a href="#misc_bikes">
-						<img src="misc_bikes/specialized_sirrus-125.png" alt="Specialized Sirrus">
-					</a>
+					<img src="misc_bikes/specialized_sirrus-125.png" alt="Specialized Sirrus">
 				</label>
 				<label for="bike2">
-					<a href="#misc_bikes">
-						<img src="misc_bikes/look_kg96-125.png" alt="Look KG96">
-					</a>
+					<img src="misc_bikes/look_kg96-125.png" alt="Look KG96">
 				</label>
 				<label for="bike3">
-					<a href="#misc_bikes">
-						<img src="misc_bikes/look_kg96_drivetrain-125.png" alt="Look KG96 drivetrain">
-					</a>
+					<img src="misc_bikes/look_kg96_drivetrain-125.png" alt="Look KG96 drivetrain">
 				</label>
 				<label for="bike4">
-					<a href="#misc_bikes">
-						<img src="misc_bikes/specialized_epic-125.png" alt="Specialized Epic">
-					</a>
+					<img src="misc_bikes/specialized_epic-125.png" alt="Specialized Epic">
 				</label>
 				<label for="bike5">
-					<a href="#misc_bikes">
-						<img src="misc_bikes/kestrel_airfoil-125.png" alt="Kestrel Airfoil">
-					</a>
+					<img src="misc_bikes/kestrel_airfoil-125.png" alt="Kestrel Airfoil">
 				</label>
 				<label for="bike6">
-					<a href="#misc_bikes">
-						<img src="misc_bikes/kestrel_airfoil_headon-125.png" alt="Kestrel Airfoil headon">
-					</a>
+					<img src="misc_bikes/kestrel_airfoil_headon-125.png" alt="Kestrel Airfoil headon">
 				</label>
 				<label for="bike7">
-					<a href="#misc_bikes">
-						<img src="misc_bikes/all-city_nature_boy-125.png" alt="All-City Nature Boy">
-					</a>
+					<img src="misc_bikes/all-city_nature_boy-125.png" alt="All-City Nature Boy">
 				</label>
 				<label for="bike8">
-					<a href="#misc_bikes">
-						<img src="misc_bikes/all-city_nature_boy_drivetrain-125.png" alt="All-City Nature Boy drivetrain">
-					</a>
+					<img src="misc_bikes/all-city_nature_boy_drivetrain-125.png" alt="All-City Nature Boy drivetrain">
 				</label>
 				<label for="bike9">
-					<a href="#misc_bikes">
-						<img src="misc_bikes/state_track-125.png" alt="State Co. Track">
-					</a>
+					<img src="misc_bikes/state_track-125.png" alt="State Co. Track">
 				</label>
 				<label for="bike10">
-					<a href="#misc_bikes">
-						<img src="misc_bikes/state_track_drivetrain-125.png" alt="State Co. Track drivetrain">
-					</a>
+					<img src="misc_bikes/state_track_drivetrain-125.png" alt="State Co. Track drivetrain">
 				</label>
 				<label for="bike11">
-					<a href="#misc_bikes">
-						<img src="misc_bikes/odd_wheel-125.png" alt="2-Leading, 2-Trailing Twisted Spokes">
-					</a>
+					<img src="misc_bikes/odd_wheel-125.png" alt="2-Leading, 2-Trailing Twisted Spokes">
 				</label>
 				<label for="bike12">
-					<a href="#misc_bikes">
-						<img src="misc_bikes/look_kg96_frontwheel-125.png" alt="Look KG96 front wheel">
-					</a>
+					<img src="misc_bikes/look_kg96_frontwheel-125.png" alt="Look KG96 front wheel">
 				</label>
 				<label for="bike13">
-					<a href="#misc_bikes">
-						<img src="misc_bikes/look_kg96_rearwheel-125.png" alt="Look KG96 rear wheel">
-					</a>
+					<img src="misc_bikes/look_kg96_rearwheel-125.png" alt="Look KG96 rear wheel">
 				</label>
 				<label for="bike14">
-					<a href="#misc_bikes">
-						<img src="misc_bikes/look_kg96_repair-125.png" alt="Look KG96 repair">
-					</a>
+					<img src="misc_bikes/look_kg96_repair-125.png" alt="Look KG96 repair">
 				</label>
 				<label for="bike15">
-					<a href="#misc_bikes">
-						<img src="misc_bikes/state_track_glamour-125.png" alt="State Co. Track glamour">
-					</a>
+					<img src="misc_bikes/state_track_glamour-125.png" alt="State Co. Track glamour">
 				</label>
 			</div>
 		</div>
 	</div>
 
 	<div class="imgbox">
+		<input id="ptrt0" type="radio" name="ptrt-selector" checked="checked">
 		<div class="carousel" id="ptrt">
+			<input id="ptrt1" type="radio" name="ptrt-selector">
+			<label style="display: none;"></label>
 			<img src="Drew.jpg">
 		</div>
+		<div class="imgbox-exit">
+			<label for="ptrt0">
+				<img src="small_x.png">
+			</label>
+		</div>
 
+		<input id="feat0" type="radio" name="feat-selector" checked="checked">
 		<div class="carousel" id="art_feature">
-			<input id="feat1" type="radio" name="feat-selector" checked="checked">
+			<input id="feat1" type="radio" name="feat-selector">
 			<label style="display: none;"></label>
 			<img src="art_feature/dont_be_afraid_of_the_dark.png">
 
@@ -837,9 +738,15 @@
 		
 			<label for="feat5">Image 5</label>
 		</div>
+		<div class="imgbox-exit">
+			<label for="feat0">
+				<img src="small_x.png">
+			</label>
+		</div>
 
+		<input id="aaa0" type="radio" name="aaa-selector" checked="checked">
 		<div class="carousel" id="art_AAA">
-			<input id="aaa1" type="radio" name="aaa-selector" checked="checked">
+			<input id="aaa1" type="radio" name="aaa-selector">
 			<label style="display: none;"></label>
 			<img src="art_AAA/brain_drain.png">
 
@@ -885,9 +792,15 @@
 		
 			<label for="aaa11">Image 11</label>
 		</div>
+		<div class="imgbox-exit">
+			<label for="aaa0">
+				<img src="small_x.png">
+			</label>
+		</div>
 
+		<input id="rndr0" type="radio" name="rndr-selector" checked="checked">
 		<div class="carousel" id="art_render">
-			<input id="rndr1" type="radio" name="rndr-selector" checked="checked">
+			<input id="rndr1" type="radio" name="rndr-selector">
 			<label style="display: none;"></label>
 			<img src="art_render/sparrowhawk_final_texture.png">
 
@@ -913,9 +826,15 @@
 		
 			<label for="rndr6">Image 6</label>
 		</div>
+		<div class="imgbox-exit">
+			<label for="rndr0">
+				<img src="small_x.png">
+			</label>
+		</div>
 
+		<input id="draw0" type="radio" name="draw-selector" checked="checked">
 		<div class="carousel" id="art_drawn">
-			<input id="draw1" type="radio" name="draw-selector" checked="checked">
+			<input id="draw1" type="radio" name="draw-selector">
 			<label style="display: none;"></label>
 			<img src="art_drawn/holographic_chess.png">
 
@@ -945,9 +864,15 @@
 		
 			<label for="draw7">Image 7</label>
 		</div>
+		<div class="imgbox-exit">
+			<label for="draw0">
+				<img src="small_x.png">
+			</label>
+		</div>
 
+		<input id="photo0" type="radio" name="photo-selector" checked="checked">
 		<div class="carousel" id="art_photo">
-			<input id="photo1" type="radio" name="photo-selector" checked="checked">
+			<input id="photo1" type="radio" name="photo-selector">
 			<label style="display: none;"></label>
 			<img src="art_photo/pinecone.jpg">
 
@@ -969,9 +894,15 @@
 		
 			<label for="photo5">Image 5</label>
 		</div>
+		<div class="imgbox-exit">
+			<label for="photo0">
+				<img src="small_x.png">
+			</label>
+		</div>
 
+		<input id="code0" type="radio" name="code-selector" checked="checked">
 		<div class="carousel" id="code">
-			<input id="code1" type="radio" name="code-selector" checked="checked">
+			<input id="code1" type="radio" name="code-selector">
 			<label style="display: none;"></label>
 			<img src="code_AAA/aaa_1.png">
 
@@ -985,9 +916,15 @@
 		
 			<label for="code3">Image 3</label>
 		</div>
+		<div class="imgbox-exit">
+			<label for="code0">
+				<img src="small_x.png">
+			</label>
+		</div>
 
+		<input id="bike0" type="radio" name="bike-selector" checked="checked">
 		<div class="carousel" id="misc_bikes">
-			<input id="bike1" type="radio" name="bike-selector" checked="checked">
+			<input id="bike1" type="radio" name="bike-selector">
 			<label style="display: none;"></label>
 			<img src="misc_bikes/specialized_sirrus.jpg">
 
@@ -1049,11 +986,13 @@
 		
 			<label for="bike15">Image 15</label>
 		</div>
+		<div class="imgbox-exit">
+			<label for="bike0">
+				<img src="small_x.png">
+			</label>
+		</div>
 
 		<div class="imgbox-backdrop"></div>
-		<div class="imgbox-exit"><a href="#">
-			<img src="small_x.png">
-		</a></div>
 	</div>
 
 	<label for="hidden-checkbox">
@@ -1068,14 +1007,10 @@
 <!--
 	Stuff to do:
 
-	- Still have some scaling bugs with smaller imgbox images
 	- Need to add minimums for various scaling elements, notably font size
-	- Interface for cycling through imgbox images could be implemented
 	- .tab-content width/position works as intended but shouldn't be using absolute positioning
 	? Build functionality for tab content menu headers having tooltip on hover
 	- Scrollbars ideally will be replaced with alternative graphics
-	- Content for Miscellanea needs to be populated
-	- Add page icon to HTML header
 	- Media queries for mobile devices
 -->
 </html>

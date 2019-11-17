@@ -14,22 +14,26 @@
 			overflow: hidden;
 		}
 
+		/* This bit exists to circumvent Chrome accessibility defaults. */
+		*:focus {
+			outline: none;
+			box-shadow: none;
+			border-color: transparent;
+		}
+
+		a:link { color: #228B22; }
+
+		a:visited { color: #B22222; }
+
+		a:hover { color: #ADFF2F; }
+
+		a:active { color: #DAA520; }
+
 		body {
 			display: grid;
 			grid-template: 50vh 50vh / 50vh 1fr 1fr;
 			justify-content: center;
 			background-color: #000000;
-		}
-
-		input { display: none; }
-
-		img {
-			display: block;
-			border: 5px solid #000000;
-			margin: 10px;
-			background-color: #ffffff;
-			box-shadow: 0 0 10px 4px #ffffff;
-			transition: box-shadow 0.5 ease;
 		}
 
 		h1 {
@@ -49,16 +53,26 @@
 			transition: all 0.5s ease;
 		}
 
-		p {
-			padding: 0.4vh 0;
-			font: 1.6vh/1.25 'Varela Round', sans serif;
-			color: #ffffff;
+		h3 {
+			display: block;
+			padding: 0.86vh;
+			font: 2.4vh/1.5 'Varela Round', sans serif;
+			color: #FFFFFF;
 			text-shadow: 0 0 2.5vh #000000;
 		}
 
-		path { fill: #ffffff; }
+		input { display: none; }
 
-		/* Specific Style Definitions */
+		p {
+			padding: 0.4vh 0;
+			font: 1.6vh/1.25 'Varela Round', sans serif;
+			color: #FFFFFF;
+			text-shadow: 0 0 2.5vh #000000;
+		}
+
+		path { fill: #FFFFFF; }
+
+		/* Main Menu Style Definitions */
 
 		.nav-menu {
 			display: flex;
@@ -70,12 +84,18 @@
 			transition: opacity 1.5s linear 2s;
 		}
 
-		.menu-tab {
+		.menu-item {
 			flex: 0 0 auto;
 			text-align: center;
 			transform: none;
 			transition: transform 0.5s ease;
 		}
+
+		.menu-item:hover { transform: translateX(2em); }
+
+		.menu-item:hover h1 { text-shadow: 0 0 1.88vh #FFFFFF; }
+
+		/* Content Page Style Definitions */
 
 		.page-content {
 			grid-column: 2 / 4;
@@ -104,29 +124,55 @@
 			transition: opacity 0.5s linear;
 		}
 
-		.tab-content label {
+		.tab-content img {
+			display: block;
+			background-color: #000000;
+			flex: 0 0 175px;
+			width: 125px;
+			height: 125px;
+			border: 5px solid #000000;
+			margin: 10px;
+			object-fit: cover;
+			border-radius: 25%;
+			padding: 0;
+			margin: 2vh 2vh;
+			box-shadow: 0 0 10px 4px #FFFFFF;
+			transition: box-shadow 0.5 ease;
+		}
+
+		.tab-content img:hover { box-shadow: 0 0 10px 4px #ccffcc; }
+
+		.tab-content input:checked + label h2 {
+			padding: 0.63vh;
+			font-size: 4.38vh;
+			font-weight: bold;
+			text-shadow: 0 0 0.63vh #FFFFFF;
+		}
+
+		.tab-content input:checked + label + div {
+			display: flex;
+			flex-flow: row wrap;
+			justify-content: center;
+			flex: 0 1 auto;
+		}
+
+		.tab-content input:checked + label:hover h2 { text-shadow: 0 0 0.63vh #ffcccc; }
+
+		.tab-content > label {
 			flex: 0 0 auto;
 			margin: 0.5vh;
 		}
 
-		.tab-content label + div {
+		.tab-content > label + div {
 			display: none;
 			flex: 0 1 1px;
 			overflow-y: auto;
 			transition: flex-basis 1s ease;
 		}
 
-		.tab-content div img {
-			flex: 0 0 175px;
-			width: 125px;
-			height: 125px;
-			object-fit: cover;
-			border-radius: 25%;
-			padding: 0;
-			margin: 2vh 2vh;
-		}
+		.tab-content > label:hover h2 { text-shadow: 0 0 1.56vh #8dc08d; }
 
-		.rm-content > a > img {
+		#readme > label > img {
 			flex: 0 0 auto;
 			width: 200px;
 			height: 200px;
@@ -134,7 +180,33 @@
 			border-radius: 50%;
 		}
 
-		.imgbox-targets {
+		/* These are pretty wack and the HTML structure is less than ideal, but it works fine. */
+		#tab1:checked ~ .nav-menu .readme:hover,
+		#tab2:checked ~ .nav-menu .quanta:hover,
+		#tab3:checked ~ .nav-menu .qualia:hover,
+		#tab4:checked ~ .nav-menu .misc:hover { transform: none; }
+
+		#tab1:checked ~ .nav-menu .readme h1,
+		#tab2:checked ~ .nav-menu .quanta h1,
+		#tab3:checked ~ .nav-menu .qualia h1,
+		#tab4:checked ~ .nav-menu .misc h1 {
+			padding: 3.75vh;
+			font-size: 7.5vh;
+			text-shadow: 0 0 3.75vh #FFFFFF;
+			z-index: 2;
+		}
+
+		#tab1:checked ~ .page-content .readme,
+		#tab2:checked ~ .page-content .quanta,
+		#tab3:checked ~ .page-content .qualia,
+		#tab4:checked ~ .page-content .misc {
+			opacity: 1;
+			z-index: 1;
+		}
+
+		/* Imgbox Style Definitions */
+
+		.imgbox {
 			pointer-events: none;
 			position: fixed;
 			top: 0;
@@ -145,9 +217,10 @@
 			z-index: 9;
 		}
 
-		.imgbox-targets .imgbox-backdrop {
-			position: absolute;
+		.imgbox .imgbox-backdrop {
+			position: fixed;
 			top: 0;
+			left: 0;
 			width: 100vw;
 			height: 100vh;
 			opacity: 0;
@@ -156,25 +229,10 @@
 			transition: opacity 0.5s linear;
 		}
 
-		.imgbox-targets > img {
-			display: none;
-			position: relative;
-			top: 50%;
-			width: auto;
-			height: auto;
-			max-width: 90vw;
-			max-height: 90vh;
-			margin: -45vh auto auto;
-			outline: none;
-			z-index: inherit;
-			transition: none;
-		}
-
 		.imgbox-exit {
-			pointer-events: auto;
 			position: fixed;
-			top: 10px;
-			right: 10px;
+			top: 0;
+			right: 0;
 			width: 5vw;
 			height: 5vw;
 			margin: 0;
@@ -192,6 +250,112 @@
 			z-index: 8;
 		}
 
+		.imgbox > input:not(:checked) ~ .imgbox-backdrop { opacity: 0.5; }
+
+		.imgbox > input:not(:checked) + .carousel {
+			pointer-events: auto;
+			display: inline-block;
+		}
+		.imgbox > input:not(:checked) + .carousel + .imgbox-exit img {
+			pointer-events: auto;
+			display: block;
+		}
+
+		/* Carousel Style Definitions */
+
+		.carousel {
+			display: none;
+			position: relative;
+			top: 50%;
+			max-width: 90vw;
+			max-height: 90vh;
+			margin: auto;
+			outline: none;
+			box-shadow: 0px 0px 40px #000000;
+			z-index: inherit;
+			transform: translateY(-50%);
+		}
+
+		.carousel > img {
+			display: none;
+			max-width: 90vw;
+			max-height: 90vh;
+			border: 10px solid #DDDDDD;
+		}
+
+		.carousel > input,
+		.carousel > label,
+		.carousel > input:checked ~ label ~ label ~ label ~ label {
+			display: none;
+		}
+
+		.carousel > input:checked + label + img {
+			display: block;
+		}
+
+		.carousel > input:checked + label {
+			display: block;
+			left: 0;
+		}
+
+		.carousel > input:checked ~ label ~ label ~ label {
+			display: block;
+			right: 0;
+		}
+
+		.carousel > label {
+			position: absolute;
+			top: 0;
+			width: 25%;
+			height: 100%;
+			visibility: hidden;
+		}
+
+		.carousel > label:before {
+			content: "";
+			display: block;
+			position: absolute;
+			width: 100%;
+			height: 100%;
+			visibility: visible;
+		}
+
+		.carousel > label:after {
+			display: block;
+			position: absolute;
+			top: 50%;
+			width: 25px;
+			height: 25px;
+			line-height: 22px;
+			margin: -15px 10px 0 10px;
+			background-color: black;
+			color: white;
+			font-family: "Arial";
+			font-weight: bold;
+			font-size: 18px;
+			text-align: center;
+			visibility: hidden;
+			border: 2px solid white;
+			border-radius: 20px;
+			box-shadow: 0 3px 4px black;
+		}
+
+		.carousel > label:hover:after {
+			visibility: visible;
+		}
+
+		.carousel > input:checked + label:after {
+			left: 0;
+			content: "\00AB";
+		}
+
+		.carousel > input:checked ~ label ~ label ~ label:after {
+			right: 0;
+			content: "\00BB";
+		}
+
+		/* Logo Style Definitions */
+
 		.logo {
 			position: fixed;
 			top: 0;
@@ -202,87 +366,22 @@
 			margin: 0 auto;
 		}
 
+		.logo:hover > #h7corona { transform: rotate(360deg); }
+
 		#h7button { transform-origin: inherit; }
 
 		#h7corona {
 			opacity: 1.0;
 			transform-origin: inherit;
-			transition: transform 60s linear, opacity 1.5s linear;
+			transition: transform 60s linear, opacity 1s linear;
 		}
-
-		/* Event-Triggered Style Definitions */
-
-		/* This bit exists to circumvent Chrome accessibility defaults. */
-		*:focus {
-			outline: none;
-			box-shadow: none;
-			border-color: transparent;
-		}
-
-		img:hover { box-shadow: 0 0 10px 4px #ccffcc; }
-
-		.menu-tab:hover { transform: translateX(2em); }
-
-		.menu-tab:hover h1 { text-shadow: 0 0 1.88vh #ffffff; }
-
-		.tab-content label:hover h2 { text-shadow: 0 0 1.56vh #8dc08d; }
-
-		.imgbox-targets > img:target ~ .imgbox-backdrop { opacity: 0.4; }
-
-		.imgbox-targets > img:target { display: block; }
-
-		.imgbox-targets > img:target ~ .imgbox-exit a img { display: block; }
-
-		.logo:hover > #h7corona { transform: rotate(360deg); }
-
-		/* Conditional Style Definitions */
-
-		/* These are pretty wack and the HTML structure is less than ideal, but it works fine. */
-		#tab1:checked ~ .nav-menu .readme:hover,
-		#tab2:checked ~ .nav-menu .quanta:hover,
-		#tab3:checked ~ .nav-menu .qualia:hover,
-		#tab4:checked ~ .nav-menu .misc:hover { transform: none; }
-
-		#tab1:checked ~ .nav-menu .readme h1,
-		#tab2:checked ~ .nav-menu .quanta h1,
-		#tab3:checked ~ .nav-menu .qualia h1,
-		#tab4:checked ~ .nav-menu .misc h1 {
-			padding: 3.75vh;
-			font-size: 7.5vh;
-			text-shadow: 0 0 3.75vh #ffffff;
-			z-index: 2;
-		}
-
-		#tab1:checked ~ .page-content .readme,
-		#tab2:checked ~ .page-content .quanta,
-		#tab3:checked ~ .page-content .qualia,
-		#tab4:checked ~ .page-content .misc {
-			opacity: 1;
-			z-index: 1;
-		}
-
-		.tab-content input:checked + label h2 {
-			padding: 0.63vh;
-			font-size: 4.38vh;
-			font-weight: bold;
-			text-shadow: 0 0 0.63vh #ffffff;
-		}
-
-		.tab-content input:checked + label + div {
-			display: flex;
-			flex-flow: row wrap;
-			justify-content: center;
-			flex: 0 1 auto;
-		}
-
-		.tab-content input:checked + label:hover h2 { text-shadow: 0 0 0.63vh #ffcccc; }
 
 		#hidden-checkbox:checked ~ label .logo {
 			pointer-events: none;
-			animation: unlock_spin 1.5s linear 1 normal, slide_left 2s ease 1.5s 1 forwards;
+			animation: unlock_spin 1s linear 1 normal, slide_left 2s ease 1s 1 forwards;
 		}
 
-		#hidden-checkbox:checked ~ label .logo > #h7button { animation: unlock_spin_inverse 1.5s linear 1; }
+		#hidden-checkbox:checked ~ label .logo > #h7button { animation: unlock_spin_inverse 1s linear 1; }
 
 		#hidden-checkbox:checked ~ label .logo > #h7corona { opacity: 0.0; }
 
@@ -323,16 +422,16 @@
 	<input type="checkbox" id="hidden-checkbox" autocomplete="off">
 
 	<div class="nav-menu">
-		<label for="tab1" class="menu-tab readme">
+		<label for="tab1" class="menu-item readme">
 			<h1>ReadMe</h1>
 		</label>
-		<label for="tab2" class="menu-tab quanta">
+		<label for="tab2" class="menu-item quanta">
 			<h1>Function</h1>
 		</label>
-		<label for="tab3" class="menu-tab qualia">
+		<label for="tab3" class="menu-item qualia">
 			<h1>Aesthetic</h1>
 		</label>
-		<label for="tab4" class="menu-tab misc">
+		<label for="tab4" class="menu-item misc">
 			<h1>Miscellanea</h1>
 		</label>
 	</div>
@@ -341,9 +440,9 @@
 		<div class="tab-content readme">
 			<input type="radio" id="rm-one" name="rm-group" checked>
 			<label for="rm-one">
-				<h2>Introduction</h2>
+				<h2>Overview</h2>
 			</label>
-			<div class="rm-content">
+			<div>
 				<p>If you're reading this, it is probably because you are either (a) a friend of mine, (b) considering hiring me, or (c) interested in using some of my work for your own work. As such, this website will serve primarily as a place to collect various personal and collaborative endeavours from over the years, and create one central curation. In addition, my hope is all works collected here will eventually encode Creative Commons licenses to encourage their use by the general public. Beyond that, it will serve as a platform for the dissemination of curiosity, both practical and abstract.</p>
 				<p>This Readme consists mostly of words, probably* words like "programmer", "creator", or maybe "just a really great all-around rad dude", if that's your flavor. Function covers work relating to programming, mechanical design, and computation. Aesthetic includes works in the visual, literary, and musical arts. Miscellanea is, I believe, self-explanitory.</p>
 				<p>* not actually</p>
@@ -352,20 +451,19 @@
 			<label for="rm-two">
 				<h2>Background</h2>
 			</label>
-			<div class="rm-content">
-				<a href="#ptrt">
+			<div id="readme">
+				<label for="ptrt1">
 					<img src="Drew.jpg" alt="Portrait!">
-				</a>
-				<p>HelioSeven. Drew Barnett. Originally born in 1992, on the eastern seaboard of the US, but grew up in and considers self native to Seattle, WA. Adventurer, ex-hippie, good-timer (weirdo? quite possibly), occasionally manic self-publicist, terrible bad at casual grammars, and generally thought to be completely out to lunch. May know a thing or two about what's really going on, but doesn't want to admit to it. Owns too many bicycles, and worries about it occasionally, but hopes that you don't and that you manage to have a really great day regardless.</p>
-				<p>Some of that, I hope, is true. Some of it is also probably nonsense, recognizing that nonsense has its own kind of value. When Herbert Br&#252;n said "anticommunication is an attempt at respectfully teaching language to say [something]," language had yet to teach me identity. So if I find talking about myself difficult, it's that I'd rather identity were a coversation and not just some lonely statement.</p>
-				<p>To back way up and vastly over-simplify, I'll say this: I'm a learner; by extension I am also engaged in meta-learning, of both mechanical and organic systems. I worked for several years in the public school system, and learned a lot about at-scale institutional practices in both pedagogy and assessment of today's children. I spent several years earning a degree at Evergreen, and I learned a great deal about the history and theory of computing and automation. And every day I'm reading books, chatting up strangers, and engaging in whatever contemplative introspection I can muster, because I deeply and profoundly believe in John Dewey's "full meaning of the present life" being embodied with each and every day.</p>
+				</label>
+				<p>HelioSeven. Drew Barnett. Originally born in 1992, on the eastern seaboard of the US, but grew up in and considers self native to Seattle, WA. Adventurer, ex-hippie, good-timer (weirdo? quite possibly), occasionally manic self-publicist, terrible bad at casual grammars, and generally thought to be completely out to lunch. Owns too many bicycles, worries about it occasionally, but then somehow always finds reasons to build more. May know a thing or two about what's really going on, but won't admit to it.</p>
+				<p>If pressed to say something more serious about myself, I will say that foremost I am a learner; by extension I am also engaged in meta-learning, of both mechanical and organic systems. I worked for several years in the public school system, and learned a lot about at-scale institutional practices in both pedagogy and assessment of today's children. I studied for several years at Evergreen earning my degree, and learned a great deal about the history and theory of computing and automation. And for every day that I live, I will be exploring my unknown, chatting up strangers, and creating new things, because I deeply and profoundly believe in John Dewey's "full meaning of the present life" being embodied with each and every day.</p>
 				<p>As a final word, anyone taking the time to read this or look through any part of this website already has a special place in my heart. Please do poke around, and I hope you find something interesting.</p>
 			</div>
 			<input type="radio" id="rm-three" name="rm-group">
 			<label for="rm-three">
 				<h2>Contact</h2>
 			</label>
-			<div class="rm-content">
+			<div>
 				<p>If you don't already have some other form of contact with me, <a href="mailto:lutrasis@gmail.com">an email</a> would do nicely!</p>
 			</div>
 		</div>
@@ -375,32 +473,41 @@
 			<label for="code-site">
 				<h2>Website</h2>
 			</label>
-			<div class="code-content">
-				<p>This website was written with basic HTML5 and CSS3, intentionally avoiding any scripting languages. As with all things on the web, it is a constant work in progress. You can view the source code either by using your browser's inspector, or by checking out <a href="https://bitbucket.org/helioseven/h7_website">the git repository</a>.</p>
+			<div>
+				<p>This website was written with basic HTML5 and CSS3, intentionally avoiding any scripting languages. As with all things on the web, it is a constant work in progress. You can view the source code either by using your browser's inspector, or by checking out the <a href="https://bitbucket.org/helioseven/h7_website">repository</a>.</p>
 			</div>
 			<input type="radio" id="code-AAA" name="code-group">
 			<label for="code-AAA">
 				<h2>AAA Project</h2>
 			</label>
-			<div class="code-content">
-				<p>An Angular Adventure is the working title of a 2D run-and-jump platformer game. AAA coalesced into a meaningful project in mid-2015, but has its origins in a series of collaborative artworks produced by my best friend and I, stretching back to high school in the late 2000s (see Aesthetic > AAA). The game is being built on the Unity engine, and we have <a href="https://bitbucket.org/micaharvey/an_angular_adventure">a git repository</a> publicly available.</p>
+			<div>
+				<p>An Angular Adventure is the working title of a 2D run-and-jump platformer game. AAA coalesced into a meaningful project in mid-2015, but has its origins in a series of collaborative artworks produced by my best friend and I, stretching back to high school in the late 2000s (see Aesthetic > AAA). The game is being built on the Unity engine, and we have a public <a href="https://bitbucket.org/micaharvey/an_angular_adventure">repository</a> available. Below are a couple of early development screenshots showing the basic concept of the game:</p>
+				<label for="code1">
+					<img src="code_AAA/aaa_1.png" alt="AAA WIP Screenshot 1">
+				</label>
+				<label for="code2">
+					<img src="code_AAA/aaa_2.png" alt="AAA WIP Screenshot 2">
+				</label>
 			</div>
 			<input type="radio" id="code-goai" name="code-group">
 			<label for="code-goai">
 				<h2>Go AI</h2>
 			</label>
-			<div class="code-content">
-				<p>I teach regularly with the <a href="http://www.seattlego.org">Seattle Go Center</a>, both about the game itself and machine learning programming in relation to Go bots. Over the last six months, with a curriculum formed from a <a href="https://www.manning.com/books/deep-learning-and-the-game-of-go">recently published book</a> on the subject, I ran an informal class with a pilot group of students from within our club. The group's various experiments and codebase modifications have been collected and made available as a <a href="https://github.com/eric-downes/deep_learning_and_the_game_of_go/">fork of the author's git repository</a>, which includes my contributions. Based on the class' popularity, we are currently planning a more formal public offering, slated for a September launch date. I hope to have additional content to share then.</p>
-				<p><a href="#code1">
-					<img src="code_goai/test_history.png" alt="Convolutional NN Training">
-				</a></p>
+			<div>
+				<p>I teach regularly with the <a href="http://www.seattlego.org">Seattle Go Center</a>, both about the game itself and machine learning programming in relation to Go bots. In Dec of 2018, the authors of the open-source betago program published a book (available from <a href="https://www.manning.com/books/deep-learning-and-the-game-of-go">Manning</a>), and we've since then been using a <a href="https://github.com/eric-downes/deep_learning_and_the_game_of_go/">fork</a> of the author's repository as a toolkit and playground for teaching ML at the Go Center. As a simple example, I have built a sample Heroku app to run a naive prediction agent from a small CNN (<1M params) trained on a thousand semi-randomly chosen human games from a popular online server, KGS. If you play Go, you will quickly find this bot is not actually very strong; a few common moves however, will reveal that it does play things that look interestingly like joseki. Try it out:</p>
+				<hr>
+				<iframe height="600px" width="90%" src="https://h7bot-betago.herokuapp.com/static/play_predict_19.html" name="go-app"></iframe>
 			</div>
 			<input type="radio" id="code-misc" name="code-group">
 			<label for="code-misc">
 				<h2>Project Fragments</h2>
 			</label>
-			<div class="code-content">
-				<p>Content for this section needs to be fetched from old machines, so it may be a while before it shows up here.</p>
+			<div>
+				<p><h3>Digital Media Academy</h3></p>
+				<p>In the summer of 2019, I taught introductory ML and AI to a group of teenagers through <a href="https://www.digitalmediaacademy.org/">DMA</a>'s summer camp programs. While having to deal with an extremely wide range in student's ability and a less than entirely coherent curriculum, I was nonetheless incredibly proud of what the students were able to accomplish in such a limited time span. Our work focused on data mining large data sets (mostly from Kaggle) and AI experimentation in OpenAI's gym environments; both my sample code and student's work were collected in a <a href="https://github.com/helioseven/DMA_ML-AI">repository</a>. The .gif below is a small illustration, the successful completion (after approximately 7k episodes) of the Lunar Lander game by a DQN agent:</p>
+				<p><label for="code3">
+					<img src="code_misc/dqn-lunarlander.gif" alt="Lunar Lander DQN Agent">
+				</label></p>
 			</div>
 		</div>
 
@@ -409,136 +516,133 @@
 			<label for="art-feature">
 				<h2>Featured</h2>
 			</label>
-			<div class="art-content">
-				<a href="#feat1">
-					<img src="art_feature/dont_be_afraid_of_the_dark.png" alt="Don't Be Afraid Of the Dark">
-				</a>
-				<a href="#feat2">
-					<img src="art_feature/river_deaths.png" alt="River Deaths?">
-				</a>
-				<a href="#feat3">
-					<img src="art_feature/nap_cantwell.jpg" alt="Nap Cantwell">
-				</a>
-				<a href="#feat4">
-					<img src="art_feature/so_long_and_thanks_for_all_the_grunts.png" alt="So Long, and Thanks for All the Grunts">
-				</a>
-				<a href="#feat5">
-					<img src="art_feature/huynh_thanh_my.png" alt="Huynh Thanh My">
-				</a>
+			<div>
+				<label for="feat1">
+					<img src="art_feature/dont_be_afraid_of_the_dark-125.png" alt="Don't Be Afraid Of the Dark">
+				</label>
+				<label for="feat2">
+					<img src="art_feature/river_deaths-125.png" alt="River Deaths?">
+				</label>
+				<label for="feat3">
+					<img src="art_feature/nap_cantwell-125.png" alt="Nap Cantwell">
+				</label>
+				<label for="feat4">
+					<img src="art_feature/so_long_and_thanks_for_all_the_grunts-125.png" alt="So Long, and Thanks for All the Grunts">
+				</label>
+				<label for="feat5">
+					<img src="art_feature/huynh_thanh_my-125.png" alt="Huynh Thanh My">
+				</label>
 			</div>
 			<input type="radio" id="art-AAA" name="art-group">
 			<label for="art-AAA">
 				<h2>AAA</h2>
 			</label>
-			<div class="art-content">
-				<a href="#aaa1">
-					<img src="art_AAA/brain_drain.png" alt="Brain Drain">
-				</a>
-				<a href="#aaa2">
-					<img src="art_AAA/blue_01.png" alt="Blue 01">
-				</a>
-				<a href="#aaa3">
-					<img src="art_AAA/brown_03.png" alt="Brown 03">
-				</a>
-				<a href="#aaa4">
-					<img src="art_AAA/blue_02.png" alt="Blue 02">
-				</a>
-				<a href="#aaa5">
-					<img src="art_AAA/orange_01.png" alt="Orange 01">
-				</a>
-				<a href="#aaa6">
-					<img src="art_AAA/dia_blue.png" alt="Blue Diamond">
-				</a>
-				<a href="#aaa7">
-					<img src="art_AAA/hex_brown.png" alt="Brown Hexagon">
-				</a>
-				<a href="#aaa8">
-					<img src="art_AAA/sqr_green.png" alt="Green Square">
-				</a>
-				<a href="#aaa9">
-					<img src="art_AAA/trap_orange.png" alt="Orange Trapezoid">
-				</a>
-				<a href="#aaa10">
-					<img src="art_AAA/tri_purple.png" alt="Purple Triangle">
-				</a>
-				<a href="#aaa11">
-					<img src="art_AAA/wed_red.png" alt="Red Wedge">
-				</a>
+			<div>
+				<label for="aaa1">
+					<img src="art_AAA/brain_drain-125.png" alt="Brain Drain">
+				</label>
+				<label for="aaa2">
+					<img src="art_AAA/blue_01-125.png" alt="Blue 01">
+				</label>
+				<label for="aaa3">
+					<img src="art_AAA/brown_03-125.png" alt="Brown 03">
+				</label>
+				<label for="aaa4">
+					<img src="art_AAA/blue_02-125.png" alt="Blue 02">
+				</label>
+				<label for="aaa5">
+					<img src="art_AAA/orange_01-125.png" alt="Orange 01">
+				</label>
+				<label for="aaa6">
+					<img src="art_AAA/dia_blue-125.png" alt="Blue Diamond">
+				</label>
+				<label for="aaa7">
+					<img src="art_AAA/hex_brown-125.png" alt="Brown Hexagon">
+				</label>
+				<label for="aaa8">
+					<img src="art_AAA/sqr_green-125.png" alt="Green Square">
+				</label>
+				<label for="aaa9">
+					<img src="art_AAA/trap_orange-125.png" alt="Orange Trapezoid">
+				</label>
+				<label for="aaa10">
+					<img src="art_AAA/tri_purple-125.png" alt="Purple Triangle">
+				</label>
+				<label for="aaa11">
+					<img src="art_AAA/wed_red-125.png" alt="Red Wedge">
+				</label>
 			</div>
 			<input type="radio" id="art-render" name="art-group">
 			<label for="art-render">
 				<h2>3D Render</h2>
 			</label>
-			<div class="art-content">
-				<a href="#rndr1">
-					<img src="art_render/sparrowhawk_final_texture.png" alt="Sparrowhawk Final">
-				</a>
-				<a href="#rndr2">
-					<img src="art_render/falcon_high_poly.png" alt="Halo Falcon (High Poly)">
-				</a>
-				<a href="#rndr3">
-					<img src="art_render/scorpion_high_poly.png" alt="Halo Scorpion (High Poly)">
-				</a>
-				<a href="#rndr4">
-					<img src="art_render/cubic_chess_set.png" alt="Cubic Chess Set">
-				</a>
-				<a href="#rndr5">
-					<img src="art_render/inspector.png" alt="Inspector">
-				</a>
-				<a href="#rndr6">
-					<img src="art_render/promethean.png" alt="Promethean">
-				</a>
-				<a href="#rndr7">
-					<img src="art_render/odst_helmet.png" alt="ODST Helmet">
-				</a>
+			<div>
+				<label for="rndr1">
+					<img src="art_render/sparrowhawk_final_texture-125.png" alt="Sparrowhawk Final">
+				</label>
+				<label for="rndr2">
+					<img src="art_render/falcon_high_poly-125.png" alt="Halo Falcon (High Poly)">
+				</label>
+				<label for="rndr3">
+					<img src="art_render/scorpion_high_poly-125.png" alt="Halo Scorpion (High Poly)">
+				</label>
+				<label for="rndr4">
+					<img src="art_render/cubic_chess_set-125.png" alt="Cubic Chess Set">
+				</label>
+				<label for="rndr5">
+					<img src="art_render/inspector-125.png" alt="Inspector">
+				</label>
+				<label for="rndr6">
+					<img src="art_render/promethean-125.png" alt="Promethean">
+				</label>
 			</div>
 			<input type="radio" id="art-drawn" name="art-group">
 			<label for="art-drawn">
 				<h2>Ink &#38; Graphite</h2>
 			</label>
-			<div class="art-content">
-				<a href="#draw1">
-					<img src="art_drawn/holographic_chess.png" alt="Holographic Chess">
-				</a>
-				<a href="#draw2">
-					<img src="art_drawn/heaven_and_earth.png" alt="HEAVEN//EARTH">
-				</a>
-				<a href="#draw3">
-					<img src="art_drawn/hummingbird.jpg" alt="Hummingbird">
-				</a>
-				<a href="#draw4">
-					<img src="art_drawn/chaos.png" alt="Chaos">
-				</a>
-				<a href="#draw5">
-					<img src="art_drawn/presenting.png" alt="Presenting">
-				</a>
-				<a href="#draw6">
-					<img src="art_drawn/morning_mists.png" alt="Morning Mists">
-				</a>
-				<a href="#draw7">
-					<img src="art_drawn/dreamweaver.png" alt="Dreamweaver">
-				</a>
+			<div>
+				<label for="draw1">
+					<img src="art_drawn/holographic_chess-125.png" alt="Holographic Chess">
+				</label>
+				<label for="draw2">
+					<img src="art_drawn/heaven_and_earth-125.png" alt="HEAVEN//EARTH">
+				</label>
+				<label for="draw3">
+					<img src="art_drawn/hummingbird-125.png" alt="Hummingbird">
+				</label>
+				<label for="draw4">
+					<img src="art_drawn/chaos-125.png" alt="Chaos">
+				</label>
+				<label for="draw5">
+					<img src="art_drawn/presenting-125.png" alt="Presenting">
+				</label>
+				<label for="draw6">
+					<img src="art_drawn/morning_mists-125.png" alt="Morning Mists">
+				</label>
+				<label for="draw7">
+					<img src="art_drawn/dreamweaver-125.png" alt="Dreamweaver">
+				</label>
 			</div>
 			<input type="radio" id="art-photo" name="art-group">
 			<label for="art-photo">
 				<h2>Photography</h2>
 			</label>
-			<div class="art-content">
-				<a href="#photo1">
-					<img src="art_photo/pinecone.jpg" alt="Pinecone">
-				</a>
-				<a href="#photo2">
-					<img src="art_photo/exit_38.jpg" alt="Exit 38">
-				</a>
-				<a href="#photo3">
-					<img src="art_photo/lotus.jpg" alt="Lotus">
-				</a>
-				<a href="#photo4">
-					<img src="art_photo/sunset_at_crater_lake.jpg" alt="Sunset at Crater Lake">
-				</a>
-				<a href="#photo5">
-					<img src="art_photo/mirror_balls.jpg" alt="Mirror Balls">
-				</a>
+			<div>
+				<label for="photo1">
+					<img src="art_photo/pinecone-125.png" alt="Pinecone">
+				</label>
+				<label for="photo2">
+					<img src="art_photo/exit_38-125.png" alt="Exit 38">
+				</label>
+				<label for="photo3">
+					<img src="art_photo/lotus-125.png" alt="Lotus">
+				</label>
+				<label for="photo4">
+					<img src="art_photo/sunset_at_crater_lake-125.png" alt="Sunset at Crater Lake">
+				</label>
+				<label for="photo5">
+					<img src="art_photo/mirror_balls-125.png" alt="Mirror Balls">
+				</label>
 			</div>
 		</div>
 
@@ -547,122 +651,348 @@
 			<label for="misc-bike">
 				<h2>Bicycles &#38; Wheels</h2>
 			</label>
-			<div class="misc-content">
-				<a href="#bike1">
-					<img src="misc_bikes/specialized_sirrus.jpg" alt="Specialized Sirrus">
-				</a>
-				<a href="#bike2">
-					<img src="misc_bikes/look_kg96.jpg" alt="Look KG96">
-				</a>
-				<a href="#bike3">
-					<img src="misc_bikes/look_kg96_drivetrain.jpg" alt="Look KG96 drivetrain">
-				</a>
-				<a href="#bike4">
-					<img src="misc_bikes/specialized_epic.jpg" alt="Specialized Epic">
-				</a>
-				<a href="#bike5">
-					<img src="misc_bikes/kestrel_airfoil.jpg" alt="Kestrel Airfoil">
-				</a>
-				<a href="#bike6">
-					<img src="misc_bikes/kestrel_airfoil_headon.jpg" alt="Kestrel Airfoil headon">
-				</a>
-				<a href="#bike7">
-					<img src="misc_bikes/all-city_nature_boy.jpg" alt="All-City Nature Boy">
-				</a>
-				<a href="#bike8">
-					<img src="misc_bikes/all-city_nature_boy_drivetrain.jpg" alt="All-City Nature Boy drivetrain">
-				</a>
-				<a href="#bike9">
-					<img src="misc_bikes/state_track.jpg" alt="State Co. Track">
-				</a>
-				<a href="#bike10">
-					<img src="misc_bikes/state_track_drivetrain.jpg" alt="State Co. Track drivetrain">
-				</a>
-				<a href="#bike11">
-					<img src="misc_bikes/odd_wheel.jpg" alt="2-Leading, 2-Trailing Twisted Spokes">
-				</a>
-				<a href="#bike12">
-					<img src="misc_bikes/look_kg96_frontwheel.jpg" alt="Look KG96 front wheel">
-				</a>
-				<a href="#bike13">
-					<img src="misc_bikes/look_kg96_rearwheel.jpg" alt="Look KG96 rear wheel">
-				</a>
-				<a href="#bike14">
-					<img src="misc_bikes/look_kg96_repair.jpg" alt="Look KG96 repair">
-				</a>
-				<a href="#bike15">
-					<img src="misc_bikes/state_track_glamour.jpg" alt="State Co. Track glamour">
-				</a>
+			<div>
+				<label for="bike1">
+					<img src="misc_bikes/specialized_sirrus-125.png" alt="Specialized Sirrus">
+				</label>
+				<label for="bike2">
+					<img src="misc_bikes/look_kg96-125.png" alt="Look KG96">
+				</label>
+				<label for="bike3">
+					<img src="misc_bikes/look_kg96_drivetrain-125.png" alt="Look KG96 drivetrain">
+				</label>
+				<label for="bike4">
+					<img src="misc_bikes/specialized_epic-125.png" alt="Specialized Epic">
+				</label>
+				<label for="bike5">
+					<img src="misc_bikes/kestrel_airfoil-125.png" alt="Kestrel Airfoil">
+				</label>
+				<label for="bike6">
+					<img src="misc_bikes/kestrel_airfoil_headon-125.png" alt="Kestrel Airfoil headon">
+				</label>
+				<label for="bike7">
+					<img src="misc_bikes/all-city_nature_boy-125.png" alt="All-City Nature Boy">
+				</label>
+				<label for="bike8">
+					<img src="misc_bikes/all-city_nature_boy_drivetrain-125.png" alt="All-City Nature Boy drivetrain">
+				</label>
+				<label for="bike9">
+					<img src="misc_bikes/state_track-125.png" alt="State Co. Track">
+				</label>
+				<label for="bike10">
+					<img src="misc_bikes/state_track_drivetrain-125.png" alt="State Co. Track drivetrain">
+				</label>
+				<label for="bike11">
+					<img src="misc_bikes/odd_wheel-125.png" alt="2-Leading, 2-Trailing Twisted Spokes">
+				</label>
+				<label for="bike12">
+					<img src="misc_bikes/look_kg96_frontwheel-125.png" alt="Look KG96 front wheel">
+				</label>
+				<label for="bike13">
+					<img src="misc_bikes/look_kg96_rearwheel-125.png" alt="Look KG96 rear wheel">
+				</label>
+				<label for="bike14">
+					<img src="misc_bikes/look_kg96_repair-125.png" alt="Look KG96 repair">
+				</label>
+				<label for="bike15">
+					<img src="misc_bikes/state_track_glamour-125.png" alt="State Co. Track glamour">
+				</label>
 			</div>
 		</div>
 	</div>
 
-	<div class="imgbox-targets">
-		<img src="Drew.jpg" id="ptrt">
+	<div class="imgbox">
+		<input id="ptrt0" type="radio" name="ptrt-selector" checked="checked">
+		<div class="carousel" id="ptrt">
+			<input id="ptrt1" type="radio" name="ptrt-selector">
+			<label style="display: none;"></label>
+			<img src="Drew.jpg">
+		</div>
+		<div class="imgbox-exit">
+			<label for="ptrt0">
+				<img src="small_x.png">
+			</label>
+		</div>
 
-		<img src="art_feature/dont_be_afraid_of_the_dark.png" id="feat1">
-		<img src="art_feature/river_deaths.png" id="feat2">
-		<img src="art_feature/nap_cantwell.jpg" id="feat3">
-		<img src="art_feature/so_long_and_thanks_for_all_the_grunts.png" id="feat4">
-		<img src="art_feature/huynh_thanh_my.png" id="feat5">
+		<input id="feat0" type="radio" name="feat-selector" checked="checked">
+		<div class="carousel" id="art_feature">
+			<input id="feat1" type="radio" name="feat-selector">
+			<label style="display: none;"></label>
+			<img src="art_feature/dont_be_afraid_of_the_dark.png">
 
-		<img src="art_AAA/brain_drain.png" id="aaa1">
-		<img src="art_AAA/blue_01.png" id="aaa2">
-		<img src="art_AAA/brown_03.png" id="aaa3">
-		<img src="art_AAA/blue_02.png" id="aaa4">
-		<img src="art_AAA/orange_01.png" id="aaa5">
-		<img src="art_AAA/dia_blue.png" id="aaa6">
-		<img src="art_AAA/hex_brown.png" id="aaa7">
-		<img src="art_AAA/sqr_green.png" id="aaa8">
-		<img src="art_AAA/trap_orange.png" id="aaa9">
-		<img src="art_AAA/tri_purple.png" id="aaa10">
-		<img src="art_AAA/wed_red.png" id="aaa11">
+			<input id="feat2" type="radio" name="feat-selector">
+			<label for="feat1">Image 1</label>
+			<img src="art_feature/river_deaths.png">
 
-		<img src="art_render/sparrowhawk_final_texture.png" id="rndr1">
-		<img src="art_render/falcon_high_poly.png" id="rndr2">
-		<img src="art_render/scorpion_high_poly.png" id="rndr3">
-		<img src="art_render/cubic_chess_set.png" id="rndr4">
-		<img src="art_render/inspector.png" id="rndr5">
-		<img src="art_render/promethean.png" id="rndr6">
-		<img src="art_render/odst_helmet.png" id="rndr7">
+			<input id="feat3" type="radio" name="feat-selector">
+			<label for="feat2">Image 2</label>
+			<img src="art_feature/nap_cantwell.jpg">
 
-		<img src="art_drawn/holographic_chess.png" id="draw1">
-		<img src="art_drawn/heaven_and_earth.png" id="draw2">
-		<img src="art_drawn/hummingbird.jpg" id="draw3">
-		<img src="art_drawn/chaos.png" id="draw4">
-		<img src="art_drawn/presenting.png" id="draw5">
-		<img src="art_drawn/morning_mists.png" id="draw6">
-		<img src="art_drawn/dreamweaver.png" id="draw7">
+			<input id="feat4" type="radio" name="feat-selector">
+			<label for="feat3">Image 3</label>
+			<img src="art_feature/so_long_and_thanks_for_all_the_grunts.png">
 
-		<img src="art_photo/pinecone.jpg" id="photo1">
-		<img src="art_photo/exit_38.jpg" id="photo2">
-		<img src="art_photo/lotus.jpg" id="photo3">
-		<img src="art_photo/sunset_at_crater_lake.jpg" id="photo4">
-		<img src="art_photo/mirror_balls.jpg" id="photo5">
+			<input id="feat5" type="radio" name="feat-selector">
+			<label for="feat4">Image 4</label>
+			<img src="art_feature/huynh_thanh_my.png">
+		
+			<label for="feat5">Image 5</label>
+		</div>
+		<div class="imgbox-exit">
+			<label for="feat0">
+				<img src="small_x.png">
+			</label>
+		</div>
 
-		<img src="code_goai/test_history.png" id="code1">
+		<input id="aaa0" type="radio" name="aaa-selector" checked="checked">
+		<div class="carousel" id="art_AAA">
+			<input id="aaa1" type="radio" name="aaa-selector">
+			<label style="display: none;"></label>
+			<img src="art_AAA/brain_drain.png">
 
-		<img src="misc_bikes/specialized_sirrus.jpg" id="bike1">
-		<img src="misc_bikes/look_kg96.jpg" id="bike2">
-		<img src="misc_bikes/look_kg96_drivetrain.jpg" id="bike3">
-		<img src="misc_bikes/specialized_epic.jpg" id="bike4">
-		<img src="misc_bikes/kestrel_airfoil.jpg" id="bike5">
-		<img src="misc_bikes/kestrel_airfoil_headon.jpg" id="bike6">
-		<img src="misc_bikes/all-city_nature_boy.jpg" id="bike7">
-		<img src="misc_bikes/all-city_nature_boy_drivetrain.jpg" id="bike8">
-		<img src="misc_bikes/state_track.jpg" id="bike9">
-		<img src="misc_bikes/state_track_drivetrain.jpg" id="bike10">
-		<img src="misc_bikes/odd_wheel.jpg" id="bike11">
-		<img src="misc_bikes/look_kg96_frontwheel.jpg" id="bike12">
-		<img src="misc_bikes/look_kg96_rearwheel.jpg" id="bike13">
-		<img src="misc_bikes/look_kg96_repair.jpg" id="bike14">
-		<img src="misc_bikes/state_track_glamour.jpg" id="bike15">
+			<input id="aaa2" type="radio" name="aaa-selector">
+			<label for="aaa1">Image 1</label>
+			<img src="art_AAA/blue_01.png">
 
+			<input id="aaa3" type="radio" name="aaa-selector">
+			<label for="aaa2">Image 2</label>
+			<img src="art_AAA/brown_03.png">
+
+			<input id="aaa4" type="radio" name="aaa-selector">
+			<label for="aaa3">Image 3</label>
+			<img src="art_AAA/blue_02.png">
+
+			<input id="aaa5" type="radio" name="aaa-selector">
+			<label for="aaa4">Image 4</label>
+			<img src="art_AAA/orange_01.png">
+
+			<input id="aaa6" type="radio" name="aaa-selector">
+			<label for="aaa5">Image 5</label>
+			<img src="art_AAA/dia_blue.png">
+
+			<input id="aaa7" type="radio" name="aaa-selector">
+			<label for="aaa6">Image 6</label>
+			<img src="art_AAA/hex_brown.png">
+
+			<input id="aaa8" type="radio" name="aaa-selector">
+			<label for="aaa7">Image 7</label>
+			<img src="art_AAA/sqr_green.png">
+
+			<input id="aaa9" type="radio" name="aaa-selector">
+			<label for="aaa8">Image 8</label>
+			<img src="art_AAA/trap_orange.png">
+
+			<input id="aaa10" type="radio" name="aaa-selector">
+			<label for="aaa9">Image 9</label>
+			<img src="art_AAA/tri_purple.png">
+
+			<input id="aaa11" type="radio" name="aaa-selector">
+			<label for="aaa10">Image 10</label>
+			<img src="art_AAA/wed_red.png">
+		
+			<label for="aaa11">Image 11</label>
+		</div>
+		<div class="imgbox-exit">
+			<label for="aaa0">
+				<img src="small_x.png">
+			</label>
+		</div>
+
+		<input id="rndr0" type="radio" name="rndr-selector" checked="checked">
+		<div class="carousel" id="art_render">
+			<input id="rndr1" type="radio" name="rndr-selector">
+			<label style="display: none;"></label>
+			<img src="art_render/sparrowhawk_final_texture.png">
+
+			<input id="rndr2" type="radio" name="rndr-selector">
+			<label for="rndr1">Image 1</label>
+			<img src="art_render/falcon_high_poly.png">
+
+			<input id="rndr3" type="radio" name="rndr-selector">
+			<label for="rndr2">Image 2</label>
+			<img src="art_render/scorpion_high_poly.png">
+
+			<input id="rndr4" type="radio" name="rndr-selector">
+			<label for="rndr3">Image 3</label>
+			<img src="art_render/cubic_chess_set.png">
+
+			<input id="rndr5" type="radio" name="rndr-selector">
+			<label for="rndr4">Image 4</label>
+			<img src="art_render/inspector.png">
+
+			<input id="rndr6" type="radio" name="rndr-selector">
+			<label for="rndr5">Image 5</label>
+			<img src="art_render/promethean.png">
+		
+			<label for="rndr6">Image 6</label>
+		</div>
+		<div class="imgbox-exit">
+			<label for="rndr0">
+				<img src="small_x.png">
+			</label>
+		</div>
+
+		<input id="draw0" type="radio" name="draw-selector" checked="checked">
+		<div class="carousel" id="art_drawn">
+			<input id="draw1" type="radio" name="draw-selector">
+			<label style="display: none;"></label>
+			<img src="art_drawn/holographic_chess.png">
+
+			<input id="draw2" type="radio" name="draw-selector">
+			<label for="draw1">Image 1</label>
+			<img src="art_drawn/heaven_and_earth.png">
+
+			<input id="draw3" type="radio" name="draw-selector">
+			<label for="draw2">Image 2</label>
+			<img src="art_drawn/hummingbird.jpg">
+
+			<input id="draw4" type="radio" name="draw-selector">
+			<label for="draw3">Image 3</label>
+			<img src="art_drawn/chaos.png">
+
+			<input id="draw5" type="radio" name="draw-selector">
+			<label for="draw4">Image 4</label>
+			<img src="art_drawn/presenting.png">
+
+			<input id="draw6" type="radio" name="draw-selector">
+			<label for="draw5">Image 5</label>
+			<img src="art_drawn/morning_mists.png">
+
+			<input id="draw7" type="radio" name="draw-selector">
+			<label for="draw6">Image 6</label>
+			<img src="art_drawn/dreamweaver.png">
+		
+			<label for="draw7">Image 7</label>
+		</div>
+		<div class="imgbox-exit">
+			<label for="draw0">
+				<img src="small_x.png">
+			</label>
+		</div>
+
+		<input id="photo0" type="radio" name="photo-selector" checked="checked">
+		<div class="carousel" id="art_photo">
+			<input id="photo1" type="radio" name="photo-selector">
+			<label style="display: none;"></label>
+			<img src="art_photo/pinecone.jpg">
+
+			<input id="photo2" type="radio" name="photo-selector">
+			<label for="photo1">Image 1</label>
+			<img src="art_photo/exit_38.jpg">
+
+			<input id="photo3" type="radio" name="photo-selector">
+			<label for="photo2">Image 2</label>
+			<img src="art_photo/lotus.jpg">
+
+			<input id="photo4" type="radio" name="photo-selector">
+			<label for="photo3">Image 3</label>
+			<img src="art_photo/sunset_at_crater_lake.jpg">
+
+			<input id="photo5" type="radio" name="photo-selector">
+			<label for="photo4">Image 4</label>
+			<img src="art_photo/mirror_balls.jpg">
+		
+			<label for="photo5">Image 5</label>
+		</div>
+		<div class="imgbox-exit">
+			<label for="photo0">
+				<img src="small_x.png">
+			</label>
+		</div>
+
+		<input id="code0" type="radio" name="code-selector" checked="checked">
+		<div class="carousel" id="code">
+			<input id="code1" type="radio" name="code-selector">
+			<label style="display: none;"></label>
+			<img src="code_AAA/aaa_1.png">
+
+			<input id="code2" type="radio" name="code-selector">
+			<label for="code1">Image 1</label>
+			<img src="code_AAA/aaa_2.png">
+
+			<input id="code3" type="radio" name="code-selector">
+			<label for="code2">Image 2</label>
+			<img src="code_misc/dqn-lunarlander.gif">
+		
+			<label for="code3">Image 3</label>
+		</div>
+		<div class="imgbox-exit">
+			<label for="code0">
+				<img src="small_x.png">
+			</label>
+		</div>
+
+		<input id="bike0" type="radio" name="bike-selector" checked="checked">
+		<div class="carousel" id="misc_bikes">
+			<input id="bike1" type="radio" name="bike-selector">
+			<label style="display: none;"></label>
+			<img src="misc_bikes/specialized_sirrus.jpg">
+
+			<input id="bike2" type="radio" name="bike-selector">
+			<label for="bike1">Image 1</label>
+			<img src="misc_bikes/look_kg96.jpg">
+
+			<input id="bike3" type="radio" name="bike-selector">
+			<label for="bike2">Image 2</label>
+			<img src="misc_bikes/look_kg96_drivetrain.jpg">
+
+			<input id="bike4" type="radio" name="bike-selector">
+			<label for="bike3">Image 3</label>
+			<img src="misc_bikes/specialized_epic.jpg">
+
+			<input id="bike5" type="radio" name="bike-selector">
+			<label for="bike4">Image 4</label>
+			<img src="misc_bikes/kestrel_airfoil.jpg">
+
+			<input id="bike6" type="radio" name="bike-selector">
+			<label for="bike5">Image 5</label>
+			<img src="misc_bikes/kestrel_airfoil_headon.jpg">
+
+			<input id="bike7" type="radio" name="bike-selector">
+			<label for="bike6">Image 6</label>
+			<img src="misc_bikes/all-city_nature_boy.jpg">
+
+			<input id="bike8" type="radio" name="bike-selector">
+			<label for="bike7">Image 7</label>
+			<img src="misc_bikes/all-city_nature_boy_drivetrain.jpg">
+
+			<input id="bike9" type="radio" name="bike-selector">
+			<label for="bike8">Image 8</label>
+			<img src="misc_bikes/state_track.jpg">
+
+			<input id="bike10" type="radio" name="bike-selector">
+			<label for="bike9">Image 9</label>
+			<img src="misc_bikes/state_track_drivetrain.jpg">
+
+			<input id="bike11" type="radio" name="bike-selector">
+			<label for="bike10">Image 10</label>
+			<img src="misc_bikes/odd_wheel.jpg">
+
+			<input id="bike12" type="radio" name="bike-selector">
+			<label for="bike11">Image 11</label>
+			<img src="misc_bikes/look_kg96_frontwheel.jpg">
+
+			<input id="bike13" type="radio" name="bike-selector">
+			<label for="bike12">Image 12</label>
+			<img src="misc_bikes/look_kg96_rearwheel.jpg">
+
+			<input id="bike14" type="radio" name="bike-selector">
+			<label for="bike13">Image 13</label>
+			<img src="misc_bikes/look_kg96_repair.jpg">
+
+			<input id="bike15" type="radio" name="bike-selector">
+			<label for="bike14">Image 14</label>
+			<img src="misc_bikes/state_track_glamour.jpg">
+		
+			<label for="bike15">Image 15</label>
+		</div>
+		<div class="imgbox-exit">
+			<label for="bike0">
+				<img src="small_x.png">
+			</label>
+		</div>
 
 		<div class="imgbox-backdrop"></div>
-		<div class="imgbox-exit"><a href="#">
-			<img src="small_x.png">
-		</a></div>
 	</div>
 
 	<label for="hidden-checkbox">
@@ -677,14 +1007,10 @@
 <!--
 	Stuff to do:
 
-	- Still have some scaling bugs with smaller imgbox images
 	- Need to add minimums for various scaling elements, notably font size
-	- Interface for cycling through imgbox images could be implemented
 	- .tab-content width/position works as intended but shouldn't be using absolute positioning
 	? Build functionality for tab content menu headers having tooltip on hover
 	- Scrollbars ideally will be replaced with alternative graphics
-	- Content for Miscellanea needs to be populated
-	- Add page icon to HTML header
 	- Media queries for mobile devices
 -->
 </html>
